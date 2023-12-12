@@ -1,13 +1,12 @@
-import { FC, useState } from 'react';
-import styled from 'styled-components';
+import { FC } from 'react';
 import { HeaderStyled } from '../../styledComponents/HeaderStyled/HeaderStyled';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.svg';
 import { FlexComponents } from '../../styledComponents/FlexComponents/FlexComponents';
 import { PaddingWrapper } from '../../styledComponents/PaddingWrapper/PaddingWrapper';
 
-export const Header: FC = (props) => {
-  const [isLogged, setIsLogged] = useState<boolean>(false);
+export const Header: FC = () => {
+  // const [isLogged, setIsLogged] = useState<boolean>(false);
   return (
     <HeaderStyled color="#073042">
       <PaddingWrapper>

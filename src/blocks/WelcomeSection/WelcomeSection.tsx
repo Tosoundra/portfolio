@@ -11,7 +11,7 @@ const Section = styled.section`
   background-repeat: no-repeat;
 `;
 
-export const WelcomeSection = (params) => {
+export const WelcomeSection = () => {
   return (
     <Section>
       <h1>Здравствуйте, меня зовут Антон, и здесь Вы узнаете больше обо мне.</h1>

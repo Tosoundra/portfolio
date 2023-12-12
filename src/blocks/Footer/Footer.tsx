@@ -5,7 +5,7 @@ import { FooterStyled } from './FooterStyled';
 
 const date = new Date().getFullYear();
 
-export const Footer = (params) => {
+export const Footer = () => {
   return (
     <FooterStyled>
       <PaddingWrapper>

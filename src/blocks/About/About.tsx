@@ -3,7 +3,7 @@ import photo from '../../assets/images/me-compress.jpg';
 import { ImageStyled } from './ImageStyled';
 import { PaddingWrapper } from '../../styledComponents/PaddingWrapper/PaddingWrapper';
 import { Link } from 'react-router-dom';
-export const About = (params) => {
+export const About = () => {
   return (
     <section>
       <PaddingWrapper>

@@ -1,6 +1,6 @@
 import { SignForm } from '../../components/SignForm/SignForm';
 
-export const SignIn = (params) => {
+export const SignIn = () => {
   return (
     <main>
       <SignForm

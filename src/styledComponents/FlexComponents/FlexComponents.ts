@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const FlexComponents = styled.div`
+interface props {
+  direction?: string;
+}
+
+export const FlexComponents = styled.div<props>`
   display: flex;
   flex-direction: ${(props) => props.direction || 'row'};
   justify-content: space-between;
