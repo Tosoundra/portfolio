@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { ProjectStyled, TitleComponent } from './ProjectStyled';
-import { ButtonStyledComponent } from '../../styledComponents/ButtonStyledComponent/ButtonStyledComponent';
 import { Link } from 'react-router-dom';
 
 interface Props {

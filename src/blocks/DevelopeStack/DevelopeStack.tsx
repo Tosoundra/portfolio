@@ -1,3 +1,3 @@
-export const DevelopeStack = (params) => {
-  return;
+export const DevelopeStack = () => {
+  return <div></div>;
 };

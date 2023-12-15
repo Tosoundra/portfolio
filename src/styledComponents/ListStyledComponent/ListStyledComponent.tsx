@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { WrapperDescription } from '../Wrapper/Wrapper';
 
 export const ListStyledComponent = styled.ul`
   display: flex;
