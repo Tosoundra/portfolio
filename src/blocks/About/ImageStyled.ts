@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
-export const ImageStyled = styled.img.attrs(({ src }) => ({
+export const ImageStyled = styled.img.attrs(({ src, width, height }) => ({
   src: src,
+  width: width,
+  height: height,
   alt: 'photo',
 }))`
-  height: 327px;
+  display: block;
   border-radius: 10px;
 `;

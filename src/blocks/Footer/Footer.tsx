@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { FlexComponents } from '../../styledComponents/FlexComponents/FlexComponents';
-import { PaddingWrapper } from '../../styledComponents/PaddingWrapper/PaddingWrapper';
+import { Wrapper } from '../../styledComponents/Wrapper/Wrapper';
 import { FooterStyled } from './FooterStyled';
 
 const date = new Date().getFullYear();
@@ -8,8 +8,8 @@ const date = new Date().getFullYear();
 export const Footer = () => {
   return (
     <FooterStyled>
-      <PaddingWrapper>
-        <FlexComponents>
+      <Wrapper>
+        <FlexComponents direction="row">
           <span>&#169; {date}</span>
           <div>
             <Link to="https://github.com/Tosoundra" target="_blank">
@@ -17,7 +17,7 @@ export const Footer = () => {
             </Link>
           </div>
         </FlexComponents>
-      </PaddingWrapper>
+      </Wrapper>
     </FooterStyled>
   );
 };
