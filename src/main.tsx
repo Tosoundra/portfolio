@@ -9,7 +9,7 @@ import { SignUp } from './pages/SignUp/SignUp.tsx';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/portfolio',
     element: <App />,
     errorElement: <NotFoundPages />,
   },
@@ -20,6 +20,11 @@ const router = createBrowserRouter([
   {
     path: '/sign-up',
     element: <SignUp />,
+  },
+
+  {
+    path: '/',
+    errorElement: <NotFoundPages />,
   },
 ]);
 
