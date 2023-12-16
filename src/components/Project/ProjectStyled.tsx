@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 interface Props {
   image: string;
-  positionY: string;
-  isActive: boolean;
+
+  $isActive: boolean;
 }
 
 export const ProjectStyled = styled.li<Props>`

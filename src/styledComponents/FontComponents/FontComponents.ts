@@ -5,15 +5,17 @@ interface Props {
   opacity?: number;
 }
 
-export const TitleComponents = styled.h1<Props>`
+export const TitleTextComponent = styled.h1<Props>`
   font-size: ${(props) => props.size};
   line-height: 58px;
 `;
 
-export const LabelComponents = styled(TitleComponents)`
-  font-family: Inter Medium;
+export const SectionNameTextComponent = styled.span`
+  font-size: 22px;
+  line-height: 27px;
 `;
-export const DescriptionComponents = styled(TitleComponents)`
+
+export const DescriptionTextComponent = styled.p<Props>`
   line-height: 20px;
   opacity: ${(props) => props.opacity};
 `;

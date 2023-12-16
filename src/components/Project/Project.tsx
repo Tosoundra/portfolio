@@ -6,13 +6,11 @@ interface Props {
   title: string;
   image: string;
   link: string;
-  positionY: string;
   activeCurrent: string;
   onClick: (title: string) => void;
 }
 
-export const Project: FC<Props> = ({ title, image, link, positionY, activeCurrent, onClick }) => {
-  console.log(link);
+export const Project: FC<Props> = ({ title, image, link, activeCurrent, onClick }) => {
   const onClickHandle = () => {
     if (activeCurrent === title) {
       onClick('');
@@ -23,11 +21,7 @@ export const Project: FC<Props> = ({ title, image, link, positionY, activeCurren
 
   return (
     <Link to={link} type="button" target="_blank">
-      <ProjectStyled
-        onClick={onClickHandle}
-        image={image}
-        positionY={positionY}
-        isActive={activeCurrent === title}>
+      <ProjectStyled onClick={onClickHandle} image={image} $isActive={activeCurrent === title}>
         <TitleComponent>{title}</TitleComponent>
         <img src={image} alt="img" width={50} height={50} />
       </ProjectStyled>
