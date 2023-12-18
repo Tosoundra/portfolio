@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { HoverEffect } from '../../styledComponents/HoverEffect/HoverEffect';
 
 interface Props {
   image: string;
@@ -19,7 +20,7 @@ export const ProjectStyled = styled.li<Props>`
 
   cursor: pointer;
 
-  transition: all 0.5s cubic-bezier(0.51, -0.01, 0.32, 1);
+  ${HoverEffect}
 
   & > img {
     filter: grayscale();

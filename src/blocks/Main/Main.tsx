@@ -1,6 +1,7 @@
 import { Section } from '../../components/Section/Section';
 import { About } from '../About/About';
-import { DevelopeStack } from '../DevelopeStack/DevelopeStack';
+import { DevelopmentStack } from '../DevelopmentStack/DevelopmentStack';
+
 import { WelcomeSection } from '../WelcomeSection/WelcomeSection';
 
 export const Main = () => {
@@ -10,8 +11,8 @@ export const Main = () => {
       <Section title="О себе">
         <About />
       </Section>
-      <Section title="Мой стек разработки">
-        <DevelopeStack />
+      <Section title="Стек разработки" color="#F5F5F5">
+        <DevelopmentStack />
       </Section>
     </main>
   );

@@ -6,11 +6,12 @@ import { SectionNameTextComponent } from '../../styledComponents/FontComponents/
 interface Props {
   children: ReactNode;
   title: string;
+  color?: string;
 }
 
-export const Section: FC<Props> = ({ children, title }) => {
+export const Section: FC<Props> = ({ children, title, color }) => {
   return (
-    <Wrapper>
+    <Wrapper color={color}>
       <DescriptionContainer>
         <SectionNameTextComponent>{title}</SectionNameTextComponent>
       </DescriptionContainer>
