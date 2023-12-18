@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { ListOfProjects } from '../../../assets/utils/ListOfProjects/ListOfProjects';
-import { ListStyledComponent } from '../../../styledComponents/ListStyledComponent/ListStyledComponent';
-import { WrapperDescription } from '../../../styledComponents/Wrapper/Wrapper';
-import { Project } from '../../Project/Project';
-import { DescriptionTextComponent } from '../../../styledComponents/FontComponents/FontComponents';
+import { ListOfProjects } from '../../assets/utils/ListOfProjects/ListOfProjects';
+import { ListStyledComponent } from '../../styledComponents/ListStyledComponent/ListStyledComponent';
+import { WrapperDescription } from '../../styledComponents/Wrapper/Wrapper';
+import { Project } from '../Project/Project';
+import { DescriptionTextComponent } from '../../styledComponents/FontComponents/FontComponents';
 
 export const Projects = () => {
   const [activeCurrent, setActiveCurrent] = useState('');

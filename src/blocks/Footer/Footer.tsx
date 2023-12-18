@@ -1,17 +1,17 @@
 import { Link } from 'react-router-dom';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
-import { Wrapper } from '../../styledComponents/Wrapper/Wrapper';
 import { FooterStyled } from './FooterStyled';
 import { listOfMedia } from '../../assets/utils/listOfMedia/listOfMedia';
+import { FC } from 'react';
 
 const date = new Date().getFullYear();
 
-export const Footer = () => {
+export const Footer: FC = () => {
   return (
     <FooterStyled>
       <FlexComponent direction="row">
         <span>&#169; {date}</span>
-        <ul>
+        <FlexComponent direction="row" gap="5px">
           {listOfMedia.map((item, index) => (
             <li key={index}>
               <Link to={item.link} target="_blank">
@@ -19,7 +19,7 @@ export const Footer = () => {
               </Link>
             </li>
           ))}
-        </ul>
+        </FlexComponent>
       </FlexComponent>
     </FooterStyled>
   );
