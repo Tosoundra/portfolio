@@ -6,25 +6,28 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { SignIn } from './pages/SignIn/SignIn.tsx';
 import { NotFoundPages } from './pages/NotFoundPages/NotFoundPages.tsx';
 import { SignUp } from './pages/SignUp/SignUp.tsx';
+import { Movies } from './pages/Movies/Movies.tsx';
 
 const router = createBrowserRouter([
   {
-    path: '/portfolio',
-    element: <App />,
+    path: '/',
     errorElement: <NotFoundPages />,
   },
   {
-    path: '/portfolio/sign-in',
+    path: 'portfolio',
+    element: <App />,
+  },
+  {
+    path: 'portfolio/sign-in',
     element: <SignIn />,
   },
   {
-    path: '/portfolio/sign-up',
+    path: 'portfolio/sign-up',
     element: <SignUp />,
   },
-
   {
-    path: '/',
-    errorElement: <NotFoundPages />,
+    path: 'portfolio/movies',
+    element: <Movies />,
   },
 ]);
 

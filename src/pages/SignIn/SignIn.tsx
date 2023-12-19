@@ -1,14 +1,16 @@
+import { FC } from 'react';
 import { SignForm } from '../../components/SignForm/SignForm';
+import { SignContainer } from '../../styledComponents/SignContainer/SignContainer';
 
-export const SignIn = () => {
+export const SignIn: FC = () => {
   return (
-    <main>
+    <SignContainer as="main" direction="row">
       <SignForm
         formTitle="Рады видеть!"
         isAlreadyAuthTitle="Ещё не зарегистрированы?"
         linkTitle="Регистрация"
-        link="sign-up"
+        link="portfolio/sign-up"
       />
-    </main>
+    </SignContainer>
   );
 };

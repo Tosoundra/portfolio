@@ -1,21 +1,25 @@
 import { FC } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { Link } from 'react-router-dom';
-import logo from '../../assets/images/logo.svg';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
-import { HeaderStyled } from './HeaderStyled';
+import { HeaderButtonStyled, HeaderStyled } from './HeaderStyled';
+import { Logo } from '../../components/Logo/Logo';
 
 export const Header: FC = () => {
+  const navigate = useNavigate();
+
+  const loginButtonClickHandle = () => {
+    navigate('sign-in');
+  };
+
   // const [isLogged, setIsLogged] = useState<boolean>(false);
   return (
     <HeaderStyled as="header">
-      <FlexComponent direction="row" align-items="center">
-        <img src={logo} alt="logo" />
+      <FlexComponent direction="row">
+        <Logo />
         <FlexComponent direction="row" gap="50px">
-          <Link to="/sign-up">Регистрация</Link>
-          <Link to="/sign-in">
-            <button>Войти</button>
-          </Link>
+          <Link to="sign-up">Регистрация</Link>
+          <HeaderButtonStyled onClick={loginButtonClickHandle}>Войти</HeaderButtonStyled>
         </FlexComponent>
       </FlexComponent>
     </HeaderStyled>

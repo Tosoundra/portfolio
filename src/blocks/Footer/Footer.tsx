@@ -11,7 +11,7 @@ export const Footer: FC = () => {
     <FooterStyled>
       <FlexComponent direction="row">
         <span>&#169; {date}</span>
-        <FlexComponent direction="row" gap="5px">
+        <FlexComponent as="ul" direction="row" gap="15px">
           {listOfMedia.map((item, index) => (
             <li key={index}>
               <Link to={item.link} target="_blank">

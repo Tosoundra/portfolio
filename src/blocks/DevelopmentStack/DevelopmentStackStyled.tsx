@@ -10,6 +10,15 @@ export const DevelopmentStackStyled = styled(WrapperDescription)`
     margin-top: 26px;
     margin-bottom: 100px;
   }
+
+  background-color: #202020;
+
+  @media (prefers-color-scheme: light) {
+    & {
+      color: #000;
+      background-color: #fff;
+    }
+  }
 `;
 
 interface TechnologyProps {
@@ -28,6 +37,4 @@ export const Technology = styled.li<TechnologyProps>`
   background-color: transparent;
   background-image: url(${(props) => props.image});
   color: transparent;
-  &:hover {
-  }
 `;

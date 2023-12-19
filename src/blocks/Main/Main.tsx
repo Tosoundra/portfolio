@@ -11,7 +11,7 @@ export const Main = () => {
       <Section title="О себе">
         <About />
       </Section>
-      <Section title="Стек разработки" color="#F5F5F5">
+      <Section title="Стек разработки">
         <DevelopmentStack />
       </Section>
     </main>
