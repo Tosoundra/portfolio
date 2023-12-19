@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import { ButtonStyled } from '../Button/ButtonStyled';
-import logo from '../../assets/images/logo.svg';
-import buttonHovered from '../../assets/images/landing-button_hover.svg';
+import logo from '../../assets/images/logo-button.png';
+import buttonHovered from '../../assets/images/logo-button_hovered.png';
 
 export const LogoStyled = styled(ButtonStyled)`
+  padding: unset;
   width: 38px;
   height: 38px;
   background-color: transparent;

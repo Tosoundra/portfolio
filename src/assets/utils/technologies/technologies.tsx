@@ -1,12 +1,12 @@
-import htmlPic from '../../images/html-5-logo-svgrepo-com.svg';
-import cssPic from '../../images/css-3-svgrepo-com.svg';
-import sassPic from '../../images/sass-svgrepo-com.svg';
+import htmlPic from '../../images/html.png';
+import cssPic from '../../images/css.png';
+import sassPic from '../../images/sass.png';
 import stylecomp from '../../images/styled-components.svg';
-import jsPic from '../../images/js-svgrepo-com.svg';
-import tsPic from '../../images/typescript-icon-svgrepo-com.svg';
-import reactPic from '../../images/react-svgrepo-com.svg';
-import expressPic from '../../images/express-svgrepo-com.svg';
-import mongoPic from '../../images/mongodb-svgrepo-com.svg';
+import jsPic from '../../images/js.png';
+import tsPic from '../../images/ts.png';
+import reactPic from '../../images/react.png';
+import expressPic from '../../images/express.png';
+import mongoPic from '../../images/mongo.png';
 
 export const technologies = [
   {
