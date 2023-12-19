@@ -4,7 +4,7 @@ import { App } from './pages/App/App.tsx';
 import './index.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { SignIn } from './pages/SignIn/SignIn.tsx';
-import { NotFoundPages } from './pages/NotFoundPages/NotFoundPages.tsx';
+// import { NotFoundPages } from './pages/NotFoundPages/NotFoundPages.tsx';
 import { SignUp } from './pages/SignUp/SignUp.tsx';
 import { Movies } from './pages/Movies/Movies.tsx';
 
