@@ -9,12 +9,12 @@ import { SignUp } from './pages/SignUp/SignUp.tsx';
 import { Movies } from './pages/Movies/Movies.tsx';
 
 const router = createBrowserRouter([
+  // {
+  //   path: '/',
+  //   errorElement: <NotFoundPages />,
+  // },
   {
     path: '/',
-    errorElement: <NotFoundPages />,
-  },
-  {
-    path: 'portfolio',
     element: <App />,
   },
   {
