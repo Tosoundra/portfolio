@@ -2,20 +2,27 @@ import styled from 'styled-components';
 
 interface Props {
   size: string;
-  opacity?: number;
 }
 
-export const TitleTextComponent = styled.h1<Props>`
+export const TitleText = styled.h1<Props>`
   font-size: ${(props) => props.size};
   line-height: 58px;
 `;
 
-export const SectionNameTextComponent = styled.span`
+export const SectionNameText = styled.span`
   font-size: 22px;
   line-height: 27px;
 `;
 
-export const DescriptionTextComponent = styled.p<Props>`
+export const DescriptionText = styled.p<Props>`
   line-height: 20px;
-  opacity: ${(props) => props.opacity};
+`;
+
+export const TransparentText = styled(DescriptionText)`
+  opacity: 0.5;
+`;
+
+export const MediumFont = styled.span<Props>`
+  font-family: 'Inter Medium';
+  font-size: ${({ size }) => size};
 `;

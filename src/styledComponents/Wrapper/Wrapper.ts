@@ -1,14 +1,13 @@
 import styled from 'styled-components';
+import { containerOptions } from '../../assets/utils/styles/containerOptions';
 
 interface Props {
-  color?: string;
   image?: string;
   margin?: string;
 }
 
 export const Wrapper = styled.section<Props>`
-  padding: 100px 70px;
-  background-color: ${({ color }) => color};
+  ${containerOptions}
 `;
 
 export const WrapperDescription = styled(Wrapper)`

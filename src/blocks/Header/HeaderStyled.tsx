@@ -1,20 +1,61 @@
-import styled from 'styled-components';
-import { Wrapper } from '../../styledComponents/Wrapper/Wrapper';
+import styled, { css } from 'styled-components';
 import { ButtonStyled } from '../../components/Button/ButtonStyled';
+import { additionColor, mainColor, welcomeSectionColor } from '../../assets/utils/styles/colorsVar';
+import { containerOptions } from '../../assets/utils/styles/containerOptions';
+import { NavLink } from 'react-router-dom';
 
-export const HeaderStyled = styled(Wrapper)`
-  background-color: #073042;
+interface HeaderProps {
+  $isLogged?: boolean;
+}
+
+export const HeaderStyled = styled.header<HeaderProps>`
+  background-color: ${welcomeSectionColor};
   color: #fff;
   padding-block: 18px;
+  & > div {
+    ${containerOptions}
+    padding-block:unset;
+  }
+
   div {
     align-items: center;
+  }
+
+  ${(props) =>
+    props.$isLogged &&
+    css`
+      color: inherit;
+      background-color: inherit;
+    `}
+`;
+
+export const ButtonProfile = styled(ButtonStyled)`
+  border-radius: 40px;
+  background-color: #fff;
+
+  color: #000;
+  font-family: 'Inter Medium';
+
+  box-shadow: 0 0 4px #000;
+
+  img {
+    margin-left: 5px;
   }
 `;
 
 export const HeaderButtonStyled = styled(ButtonStyled)`
-  background-color: #2be080;
+  background-color: ${mainColor};
 
   &:hover {
-    background-color: #3456f3;
+    background-color: ${additionColor};
+  }
+`;
+
+export const NavLinkStyled = styled(NavLink)`
+  font-size: 13px;
+  line-height: 18px;
+
+  &.active {
+    font-family: 'Inter Medium';
   }
 `;

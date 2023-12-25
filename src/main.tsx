@@ -7,21 +7,20 @@ import { SignIn } from './pages/SignIn/SignIn.tsx';
 import { NotFoundPages } from './pages/NotFoundPages/NotFoundPages.tsx';
 import { SignUp } from './pages/SignUp/SignUp.tsx';
 import { Movies } from './pages/Movies/Movies.tsx';
-import { Films } from './components/Films/Films.tsx';
+
 import { FavoriteMovies } from './pages/FavoriteMovies/FavoriteMovies.tsx';
 import { Main } from './blocks/Main/Main.tsx';
+import { Profile } from './pages/Profile/Profile.tsx';
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    errorElement: <NotFoundPages />,
-  },
-  {
-    path: '/',
+    path: '/portfolio',
     element: <App />,
+    errorElement: <NotFoundPages />,
+
     children: [
       {
-        path: 'portfolio',
+        path: 'landing',
         element: <Main />,
       },
       {
@@ -32,20 +31,19 @@ const router = createBrowserRouter([
         path: 'favorites',
         element: <FavoriteMovies />,
       },
+      {
+        path: 'profile',
+        element: <Profile name="frank" email="beheade_96@mail.ru" />,
+      },
     ],
   },
   {
-    path: 'sign-in',
+    path: 'portfolio/sign-in',
     element: <SignIn />,
   },
   {
-    path: 'sign-up',
+    path: 'portfolio/sign-up',
     element: <SignUp />,
-  },
-  {
-    path: 'portfolio/movies',
-    element: <Films />,
-    children: [{}],
   },
 ]);
 

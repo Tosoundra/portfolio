@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { HoverEffect } from '../../styledComponents/HoverEffect/HoverEffect';
+import { hoverEffect } from '../../assets/utils/styles/hoverEffect';
 
 interface Props {
   width?: string;
@@ -9,7 +9,7 @@ interface Props {
 export const ButtonStyled = styled.button<Props>`
   background-color: #3456f3;
   cursor: pointer;
-  ${HoverEffect}
+  ${hoverEffect}
 
   padding: 9px 20px;
 

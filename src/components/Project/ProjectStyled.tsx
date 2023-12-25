@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import { HoverEffect } from '../../styledComponents/HoverEffect/HoverEffect';
+
 import { ImageStyled } from '../../styledComponents/ImageStyled/ImageStyled';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
+import { hoverEffect } from '../../assets/utils/styles/hoverEffect';
 
 export const ProjectStyled = styled(FlexComponent)`
   align-items: center;
@@ -14,7 +15,7 @@ export const ProjectStyled = styled(FlexComponent)`
 
   cursor: pointer;
 
-  ${HoverEffect}
+  ${hoverEffect}
 
   &:hover {
     border-color: #d9d9d9;
@@ -25,7 +26,7 @@ export const ProjectStyled = styled(FlexComponent)`
   }
 `;
 
-export const TitleComponent = styled.span`
+export const Title = styled.span`
   font-size: 30px;
   line-height: 50px;
 `;

@@ -1,26 +1,48 @@
-import { FC } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-
+import { FC, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import iconProfile from '../../assets/images/icon_profile_btn.svg';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
-import { HeaderButtonStyled, HeaderStyled } from './HeaderStyled';
+import { ButtonProfile, HeaderButtonStyled, HeaderStyled, NavLinkStyled } from './HeaderStyled';
 import { Logo } from '../../components/Logo/Logo';
 
 export const Header: FC = () => {
   const navigate = useNavigate();
-
-  const loginButtonClickHandle = () => {
-    navigate('sign-in');
-  };
-
-  // const [isLogged, setIsLogged] = useState<boolean>(false);
+  const location = useLocation();
+  const [isLogged, setIsLogged] = useState<boolean>(true);
+  setIsLogged;
   return (
-    <HeaderStyled as="header">
+    <HeaderStyled $isLogged={isLogged}>
       <FlexComponent direction="row">
         <Logo />
         <FlexComponent direction="row" gap="50px">
-          <Link to="sign-up">Регистрация</Link>
-          <HeaderButtonStyled onClick={loginButtonClickHandle}>Войти</HeaderButtonStyled>
+          {(isLogged && (
+            <>
+              <NavLinkStyled to="movies">Фильмы</NavLinkStyled>
+              <NavLinkStyled to="favorites">Сохранённые фильмы</NavLinkStyled>
+            </>
+          )) || (
+            <>
+              <Link to="sign-up">Регистрация</Link>
+              <HeaderButtonStyled
+                onClick={() => {
+                  navigate('sign-in');
+                }}>
+                Войти
+              </HeaderButtonStyled>
+            </>
+          )}
         </FlexComponent>
+        {isLogged && (
+          <ButtonProfile
+            disabled={location.pathname === '/portfolio/profile'}
+            onClick={() => {
+              navigate('profile');
+            }}
+            type="button">
+            Аккаунт
+            <img src={iconProfile} alt="icon" role="icon" />
+          </ButtonProfile>
+        )}
       </FlexComponent>
     </HeaderStyled>
   );

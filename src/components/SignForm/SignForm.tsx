@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Logo } from '../Logo/Logo';
 import { LinkStyled, SignFormStyled } from './SignFormStyled';
 import { ButtonStyled } from '../Button/ButtonStyled';
+import { InputElement } from '../../styledComponents/InputElement/InputElement';
 
 interface Props {
   formTitle: string;
@@ -37,15 +38,15 @@ export const SignForm: FC<Props> = ({
       <legend>{formTitle}</legend>
       <label htmlFor="name">
         Имя
-        <input type="text" name="name" id="name" required />
+        <InputElement type="text" name="name" id="name" required />
       </label>
       <label htmlFor="email">
         Email
-        <input type="email" name="email" id="email" required />
+        <InputElement type="email" name="email" id="email" required />
       </label>
       <label htmlFor="password">
         Пароль
-        <input type="password" name="password" id="password" required />
+        <InputElement type="password" name="password" id="password" required />
       </label>
       <ButtonStyled onClick={submitClickHandle} type="submit">
         {submitTitle}

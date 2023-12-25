@@ -6,7 +6,7 @@ export const Logo: FC = () => {
   const navigate = useNavigate();
 
   const logoButtonClickHandle = () => {
-    navigate('/portfolio');
+    navigate('/portfolio/landing');
   };
   return <LogoStyled onClick={logoButtonClickHandle}></LogoStyled>;
 };

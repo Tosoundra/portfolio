@@ -8,7 +8,7 @@ const date = new Date().getFullYear();
 
 export const Footer: FC = () => {
   return (
-    <FooterStyled>
+    <FooterStyled as="footer">
       <FlexComponent direction="row">
         <span>&#169; {date}</span>
         <FlexComponent as="ul" direction="row" gap="15px">
