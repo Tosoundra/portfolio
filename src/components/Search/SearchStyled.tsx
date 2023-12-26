@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
 import { InputElement } from '../../styledComponents/InputElement/InputElement';
+import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
+
+export const SearchStyled = styled(FlexComponent)`
+  align-items: flex-start;
+`;
 
 export const Input = styled(InputElement)`
   font-family: 'Inter Medium';

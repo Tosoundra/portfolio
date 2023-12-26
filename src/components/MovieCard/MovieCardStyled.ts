@@ -13,6 +13,8 @@ interface ButtonProps {
 }
 
 export const MovieCardStyled = styled(FlexComponent)`
+  overflow: hidden;
+
   div {
     margin-top: 14px;
     margin-bottom: 6px;

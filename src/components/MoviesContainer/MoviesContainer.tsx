@@ -9,6 +9,7 @@ import { InfoTooltip } from '../InfoTooltip/InfoTooltip';
 import { notFound } from '../../assets/utils/errorMessage/errorMessage';
 import { IMovie } from '../../types/IMovie';
 import { Skeleton } from '../Skeleton/Skeleton';
+import { useLocation } from 'react-router-dom';
 
 interface IMoviesContainer {
   showShortMovie: boolean;
@@ -46,14 +47,7 @@ export const MoviesContainer: FC<IMoviesContainer> = memo(({ showShortMovie, sea
   return (
     <>
       <MoviesContainerStyled>
-        {isSkeletonActive && (
-          <>
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
-          </>
-        )}
+        {isSkeletonActive && Array(4).fill(<Skeleton />)}
 
         {renderMovies(movies, showShortMovie, searchingMovie, countMovie).map((movie, index) => (
           <MovieCard

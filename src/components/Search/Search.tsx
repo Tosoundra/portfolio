@@ -1,5 +1,5 @@
 import { Dispatch, FC, SetStateAction } from 'react';
-import { Checkbox, Input } from './SearchStyled';
+import { Checkbox, Input, SearchStyled } from './SearchStyled';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
 
 interface Props {
@@ -16,7 +16,7 @@ export const Search: FC<Props> = ({
   setSearchingMovie,
 }) => {
   return (
-    <FlexComponent direction="column" gap="32px">
+    <SearchStyled direction="column" gap="32px">
       <Input
         value={searchingMovie}
         onChange={(e) => {
@@ -37,6 +37,6 @@ export const Search: FC<Props> = ({
         />
         Короткометражки
       </label>
-    </FlexComponent>
+    </SearchStyled>
   );
 };

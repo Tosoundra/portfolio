@@ -1,11 +1,14 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 import {
+  LogoutButtonStyled,
   ProfileEditButtonStyled,
   ProfileFormStyled,
   ProfileInput,
   ProfileStyled,
 } from './ProfileStyled';
+import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
+import { MediumFont } from '../../styledComponents/FontComponents/FontComponents';
 
 interface Props {
   name: string;
@@ -13,19 +16,46 @@ interface Props {
 }
 
 export const Profile: FC<Props> = ({ name, email }) => {
+  const [nameValue, setNameValue] = useState<string>(name);
+  const [emailValue, setEmailValue] = useState<string>(email);
+
   return (
     <ProfileStyled as="main" direction="column">
-      <span>Привет, {name}!</span>
+      <MediumFont size="24px">Привет, {name}!</MediumFont>
 
-      <ProfileFormStyled>
-        <label htmlFor="name">Имя</label>
-        <ProfileInput value={name} type="text" name="name" id="name" />
-        <label htmlFor="email">E-mail</label>
-        <ProfileInput value={email} type="email" name="email" id="email" />
+      <ProfileFormStyled as="form" direction="column" gap="16px">
+        <FlexComponent as="fieldset" direction="row">
+          <MediumFont as="label" htmlFor="name" size="11px">
+            Имя
+          </MediumFont>
+          <ProfileInput
+            onChange={(e) => {
+              setNameValue(e.target.value);
+            }}
+            value={nameValue}
+            type="text"
+            name="name"
+            id="name"
+          />
+        </FlexComponent>
+        <FlexComponent as="fieldset" direction="row">
+          <MediumFont as="label" htmlFor="email" size="11px">
+            E-mail
+          </MediumFont>
+          <ProfileInput
+            onChange={(e) => {
+              setEmailValue(e.target.value);
+            }}
+            value={emailValue}
+            type="email"
+            name="email"
+            id="email"
+          />
+        </FlexComponent>
         <ProfileEditButtonStyled type="submit">Редактировать</ProfileEditButtonStyled>
       </ProfileFormStyled>
 
-      <button type="button">Выйти из аккаунта</button>
+      <LogoutButtonStyled type="button">Выйти из аккаунта</LogoutButtonStyled>
     </ProfileStyled>
   );
 };

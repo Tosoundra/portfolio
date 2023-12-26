@@ -20,3 +20,10 @@ export const ButtonStyled = styled.button<Props>`
     background-color: #2be080;
   }
 `;
+
+export const ButtonWithoutEffectStyled = styled.button`
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: inherit;
+`;

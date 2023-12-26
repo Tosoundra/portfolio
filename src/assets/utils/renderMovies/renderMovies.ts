@@ -13,11 +13,15 @@ export const renderMovies: RenderMoviesType = (
   searchingMovie,
   countMovie,
 ) => {
-  const forRender = showShortMovie ? movies.filter((movie) => movie.duration < 40) : movies;
+  try {
+    const forRender = showShortMovie ? movies.filter((movie) => movie.duration < 40) : movies;
 
-  return forRender
-    .slice(0, countMovie)
-    .filter((movie) =>
-      movie.nameRU.trim().toLocaleLowerCase().includes(searchingMovie.toLocaleLowerCase()),
-    );
+    return forRender
+      .slice(0, countMovie)
+      .filter((movie) =>
+        movie.nameRU.trim().toLocaleLowerCase().includes(searchingMovie.toLocaleLowerCase()),
+      );
+  } catch (error) {
+    throw error;
+  }
 };

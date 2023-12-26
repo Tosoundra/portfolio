@@ -36,7 +36,7 @@ export const ButtonProfile = styled(ButtonStyled)`
   color: #000;
   font-family: 'Inter Medium';
 
-  box-shadow: 0 0 4px #000;
+  box-shadow: 0 0 4px #00000035;
 
   img {
     margin-left: 5px;
