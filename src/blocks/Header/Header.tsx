@@ -1,49 +1,65 @@
-import { FC, useState } from 'react';
+import { FC, memo } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import iconProfile from '../../assets/images/icon_profile_btn.svg';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
-import { ButtonProfile, HeaderButtonStyled, HeaderStyled, NavLinkStyled } from './HeaderStyled';
-import { Logo } from '../../components/Logo/Logo';
+import {
+  ButtonProfile,
+  HeaderButtonStyled,
+  HeaderStyled,
+  HeaderWrapper,
+  NavLinkStyled,
+} from './HeaderStyled';
 
-export const Header: FC = () => {
+import { LogoStyled } from '../../styledComponents/Logo/LogoStyled';
+import { LANDING_URL, SIGN_IN_URL, SIGN_UP_URL, USER_URL } from '../../assets/utils/URLs/appURL';
+import { useAppSelector } from '../../assets/hooks/storeHooks/storeHooks';
+import { useCalculateDimensions } from '../../assets/hooks/useCalculateDimensions/useCalculateDimensions';
+import { HeaderMobile } from './HeaderMobile';
+
+export const Header: FC = memo(() => {
+  const { isMobile } = useCalculateDimensions();
   const navigate = useNavigate();
-  const location = useLocation();
-  const [isLogged, setIsLogged] = useState<boolean>(true);
-  setIsLogged;
+  const { pathname } = useLocation();
+  const { isLogged } = useAppSelector((state) => state.logged);
+
+  if (isMobile) {
+    return <HeaderMobile isLogged={isLogged} />;
+  }
+
+  if (isLogged) {
+    return (
+      <HeaderStyled $isLandingPath={pathname === LANDING_URL}>
+        <HeaderWrapper $direction="row">
+          <LogoStyled to={LANDING_URL} />
+          <FlexComponent $direction="row" $gap="50px">
+            <NavLinkStyled to="movies">Фильмы</NavLinkStyled>
+            <NavLinkStyled to="favorites">Сохранённые фильмы</NavLinkStyled>
+          </FlexComponent>
+          <NavLinkStyled to="profile">
+            <ButtonProfile disabled={pathname === USER_URL} type="button">
+              Аккаунт
+              <img src={iconProfile} alt="icon" role="icon" />
+            </ButtonProfile>
+          </NavLinkStyled>
+        </HeaderWrapper>
+      </HeaderStyled>
+    );
+  }
+
   return (
-    <HeaderStyled $isLogged={isLogged}>
-      <FlexComponent direction="row">
-        <Logo />
-        <FlexComponent direction="row" gap="50px">
-          {(isLogged && (
-            <>
-              <NavLinkStyled to="movies">Фильмы</NavLinkStyled>
-              <NavLinkStyled to="favorites">Сохранённые фильмы</NavLinkStyled>
-            </>
-          )) || (
-            <>
-              <Link to="sign-up">Регистрация</Link>
-              <HeaderButtonStyled
-                onClick={() => {
-                  navigate('sign-in');
-                }}>
-                Войти
-              </HeaderButtonStyled>
-            </>
-          )}
-        </FlexComponent>
-        {isLogged && (
-          <ButtonProfile
-            disabled={location.pathname === '/portfolio/profile'}
+    <HeaderStyled $isLandingPath={pathname === LANDING_URL}>
+      <HeaderWrapper $direction="row">
+        <LogoStyled to={LANDING_URL} />
+        <FlexComponent $direction="row" $gap="50px">
+          <Link to={SIGN_UP_URL}>Регистрация</Link>
+          <HeaderButtonStyled
             onClick={() => {
-              navigate('profile');
-            }}
-            type="button">
-            Аккаунт
-            <img src={iconProfile} alt="icon" role="icon" />
-          </ButtonProfile>
-        )}
-      </FlexComponent>
+              navigate(SIGN_IN_URL);
+            }}>
+            Войти
+          </HeaderButtonStyled>
+        </FlexComponent>
+      </HeaderWrapper>
     </HeaderStyled>
   );
-};
+});

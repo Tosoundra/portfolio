@@ -1,25 +1,35 @@
+import { FC } from 'react';
 import { TransparentText, TitleText } from '../../styledComponents/FontComponents/FontComponents';
-import { Button, TitleContainer, WrapperSection } from './WelcomeSectionStyledComponent';
-import { WelcomeSectionStyledComponent } from './WelcomeSectionStyledComponent';
+import {
+  Button,
+  GreetingsContainer,
+  ImageBackground,
+  WrapperWithColor,
+  WrapperWithImage,
+} from './WelcomeSectionStyledComponent';
+import { useCalculateDimensions } from '../../assets/hooks/useCalculateDimensions/useCalculateDimensions';
+import background from '../../assets/images/main_background.svg';
 
-const buttonClickHandle = (): void => {};
-
-export const WelcomeSection = () => {
+export const WelcomeSection: FC = () => {
+  const { isMobile } = useCalculateDimensions();
+  console.log(isMobile);
   return (
-    <WrapperSection>
-      <WelcomeSectionStyledComponent>
-        <TitleContainer direction="column" gap="36px">
-          <TitleText size="50px">
+    <WrapperWithColor>
+      <WrapperWithImage as="section" $direction="column">
+        {isMobile && <ImageBackground src={background} width={210} loading="lazy" />}
+        <GreetingsContainer $direction="column" $gap="36px">
+          <TitleText $size="50px">
             Здравствуйте! <br /> Меня зовут Антон, и здесь Вы узнаете больше обо мне.
           </TitleText>
-          <TransparentText size="13px">
+          <TransparentText $size="13px">
             Листайте ниже, чтобы узнать больше про этот проект и его создателя.
           </TransparentText>
-          <Button onClick={buttonClickHandle} title="Узнать больше">
-            Узнать больше
-          </Button>
-        </TitleContainer>
-      </WelcomeSectionStyledComponent>
-    </WrapperSection>
+
+          <a href="#aboutMe">
+            <Button title="Узнать больше">Узнать больше</Button>
+          </a>
+        </GreetingsContainer>
+      </WrapperWithImage>
+    </WrapperWithColor>
   );
 };

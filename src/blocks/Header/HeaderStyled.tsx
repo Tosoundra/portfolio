@@ -1,32 +1,45 @@
 import styled, { css } from 'styled-components';
-import { ButtonStyled } from '../../components/Button/ButtonStyled';
-import { additionColor, mainColor, welcomeSectionColor } from '../../assets/utils/styles/colorsVar';
-import { containerOptions } from '../../assets/utils/styles/containerOptions';
+import { ButtonStyled } from '../../styledComponents/ButtonStyled/ButtonStyled';
 import { NavLink } from 'react-router-dom';
+import headerMenu from '../../assets/images/header_menu.svg';
+import headerMenuWhite from '../../assets/images/header_menu_white.svg';
+import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
 
 interface HeaderProps {
-  $isLogged?: boolean;
+  $isLandingPath?: boolean;
 }
 
 export const HeaderStyled = styled.header<HeaderProps>`
-  background-color: ${welcomeSectionColor};
-  color: #fff;
   padding-block: 18px;
-  & > div {
-    ${containerOptions}
-    padding-block:unset;
+
+  ${({ $isLandingPath }) =>
+    $isLandingPath &&
+    css`
+      color: #fff;
+      background-color: ${({ theme }) => theme.colors.welcomeSectionColor};
+    `}
+
+  @media ${({ theme }) => theme.media.bigPhone} {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1;
   }
+`;
+
+export const HeaderWrapper = styled(FlexComponent)`
+  max-width: ${({ theme }) => theme.wrapperProperties.maxWidth};
+  padding: ${({ theme }) => theme.wrapperProperties.padding};
+  margin: ${({ theme }) => theme.wrapperProperties.margin};
+  padding-block: unset;
 
   div {
     align-items: center;
   }
 
-  ${(props) =>
-    props.$isLogged &&
-    css`
-      color: inherit;
-      background-color: inherit;
-    `}
+  @media ${({ theme }) => theme.media.bigPhone} {
+    padding-inline: 10px;
+  }
 `;
 
 export const ButtonProfile = styled(ButtonStyled)`
@@ -41,13 +54,26 @@ export const ButtonProfile = styled(ButtonStyled)`
   img {
     margin-left: 5px;
   }
+
+  @media ${({ theme }) => theme.media.bigPhone} {
+    position: absolute;
+    bottom: 46px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 13px;
+  }
 `;
 
 export const HeaderButtonStyled = styled(ButtonStyled)`
-  background-color: ${mainColor};
+  background-color: ${({ theme }) => theme.colors.mainColor};
 
   &:hover {
-    background-color: ${additionColor};
+    background-color: ${({ theme }) => theme.colors.additionColor};
+  }
+
+  @media ${({ theme }) => theme.media.bigPhone} {
+    font-size: 10px;
+    line-height: 16px;
   }
 `;
 
@@ -57,5 +83,34 @@ export const NavLinkStyled = styled(NavLink)`
 
   &.active {
     font-family: 'Inter Medium';
+    text-decoration: underline;
   }
+
+  &.active button {
+    background-color: ${({ theme }) => theme.colors.mainColor};
+  }
+
+  @media ${({ theme }) => theme.media.bigPhone} {
+    font-size: 10px;
+    line-height: 16px;
+  }
+`;
+
+export const SideMenuNavLink = styled(NavLinkStyled)`
+  font-size: 18px;
+`;
+
+export const HeaderMenuButtonStyled = styled.button`
+  width: 40px;
+  height: 43px;
+
+  background-color: transparent;
+  background-image: url(${headerMenu});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+`;
+
+export const HeaderMenuWhiteButtonStyled = styled(HeaderMenuButtonStyled)`
+  background-image: url(${headerMenuWhite});
 `;

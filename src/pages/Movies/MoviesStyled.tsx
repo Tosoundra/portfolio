@@ -5,4 +5,8 @@ export const MoviesStyled = styled(Wrapper)`
   display: flex;
   flex-direction: column;
   gap: 118px;
+
+  @media ${({ theme }) => theme.media.bigPhone} {
+    gap: 64px;
+  }
 `;

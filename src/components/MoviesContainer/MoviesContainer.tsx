@@ -1,76 +1,96 @@
-import { FC, useState, useEffect, memo } from 'react';
+import { FC, useState, memo, useRef, useEffect } from 'react';
 import { LoadMoreMoviesButton, MoviesContainerStyled } from './MoviesContainerStyled';
 import { MovieCard } from '../MovieCard/MovieCard';
-import { API_URL, MOVIES_URL } from "../../assets/utils/URL's/moviesAPI";
-import { request } from '../../assets/utils/request/request';
 import { renderMovies } from '../../assets/utils/renderMovies/renderMovies';
-import { createPortal } from 'react-dom';
-import { InfoTooltip } from '../InfoTooltip/InfoTooltip';
-import { notFound } from '../../assets/utils/errorMessage/errorMessage';
-import { IMovie } from '../../types/IMovie';
-import { Skeleton } from '../Skeleton/Skeleton';
-import { useLocation } from 'react-router-dom';
+import { MovieSkeleton } from '../Skeleton/MovieSkeleton/MovieSkeleton';
+import { MovieType } from '../../types/MovieType';
+import { useAppDispatch, useAppSelector } from '../../assets/hooks/storeHooks/storeHooks';
+import { BEATFILM_MOVIES_API } from '../../assets/utils/URLs/beatfilmAPI/beatfilmAPI';
+import { showErrorTooltip } from '../../store/reducers/infoTooltip/showTooltip';
 
-interface IMoviesContainer {
+interface MovieTypesContainer {
+  movies: MovieType[];
   showShortMovie: boolean;
   searchingMovie: string;
 }
 
-export const MoviesContainer: FC<IMoviesContainer> = memo(({ showShortMovie, searchingMovie }) => {
-  const [movies, setMovies] = useState<IMovie[]>([]);
+export const MoviesContainer: FC<MovieTypesContainer> = memo(
+  ({ movies, showShortMovie, searchingMovie }) => {
+    const dispatch = useAppDispatch();
 
-  const [countMovie, setCountMovie] = useState<number>(16);
-  const [isError, setIsError] = useState<boolean>(false);
-  const [messageError, setMessageError] = useState<string>('');
-  const [isSkeletonActive, setIsSkeletonActive] = useState<boolean>(false);
+    const containerWithMoviesRef = useRef<HTMLUListElement>(null);
+    const [countOfMovieInContainer, setCountOfMovieInContainer] = useState(16);
+    const [countOfMovie, setCountOfMovie] = useState<number>(16);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        setIsSkeletonActive(true);
-        const movies = await request<IMovie[]>(MOVIES_URL, 'GET');
+    const { error, isLoading } = useAppSelector((state) => state.movies);
+    const { favoriteMovies } = useAppSelector((state) => state.favoriteMovies);
 
-        setMovies(movies);
-        setIsSkeletonActive(false);
-      } catch (error) {
-        // Promise.resolve(
-        //   setTimeout(() => {
-        //     setIsError(false);
-        //   }, 3000),
-        // );
-        setMessageError(notFound);
-        setIsError(true);
-      }
-    })();
-  }, []);
+    useEffect(() => {
+      if (typeof containerWithMoviesRef.current?.childElementCount === 'number')
+        setCountOfMovieInContainer(containerWithMoviesRef.current?.childElementCount);
+    }, [countOfMovie, searchingMovie, showShortMovie, movies]);
 
-  return (
-    <>
-      <MoviesContainerStyled>
-        {isSkeletonActive && Array(4).fill(<Skeleton />)}
+    if (isLoading) {
+      return (
+        <MoviesContainerStyled>
+          {Array(4)
+            .fill(null)
+            .map((_, index) => (
+              <MovieSkeleton key={index} />
+            ))}
+        </MoviesContainerStyled>
+      );
+    }
 
-        {renderMovies(movies, showShortMovie, searchingMovie, countMovie).map((movie, index) => (
-          <MovieCard
-            title={movie.nameRU}
-            url={`${API_URL}${movie.image.url}`}
-            duration={movie.duration}
-            key={index}
-          />
-        ))}
+    if (error) {
+      dispatch(showErrorTooltip(error as string));
 
-        {isError &&
-          createPortal(<InfoTooltip status="status" message={messageError} />, document.body)}
-      </MoviesContainerStyled>
+      return (
+        <>
+          <p>Ничего не найдено</p>
+        </>
+      );
+    }
 
-      {countMovie < movies.length && (
-        <LoadMoreMoviesButton
-          onClick={() => {
-            setCountMovie((prevState) => prevState + 16);
-          }}
-          type="button">
-          Еще
-        </LoadMoreMoviesButton>
-      )}
-    </>
-  );
-});
+    if (!movies.length) {
+      return (
+        <>
+          <p>Вам ничего не нравится...</p>
+        </>
+      );
+    }
+
+    return (
+      <>
+        {!countOfMovieInContainer && (
+          <p>Ничего не найдено. Возможно вы ввели с ошибкой или такого фильма не существует.</p>
+        )}
+
+        <MoviesContainerStyled ref={containerWithMoviesRef}>
+          {renderMovies(movies, showShortMovie, searchingMovie, countOfMovie).map(
+            (movie, index) => (
+              <MovieCard
+                movieId={movie.id}
+                title={movie.nameRU}
+                url={`${BEATFILM_MOVIES_API}${movie.image.url}`}
+                duration={movie.duration}
+                isMovieLiked={favoriteMovies.includes(movie.id)}
+                key={index}
+              />
+            ),
+          )}
+        </MoviesContainerStyled>
+
+        {countOfMovieInContainer === countOfMovie && (
+          <LoadMoreMoviesButton
+            onClick={() => {
+              setCountOfMovie((prevState) => prevState + 16);
+            }}
+            type="button">
+            Еще
+          </LoadMoreMoviesButton>
+        )}
+      </>
+    );
+  },
+);

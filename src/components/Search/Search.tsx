@@ -1,6 +1,6 @@
-import { Dispatch, FC, SetStateAction } from 'react';
+import { Dispatch, FC, SetStateAction, memo } from 'react';
 import { Checkbox, Input, SearchStyled } from './SearchStyled';
-import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
+import { inputOnChangeHandle } from '../../assets/utils/inputOnChangeHandle/inputOnChangeHandle';
 
 interface Props {
   showShortMovie: boolean;
@@ -9,34 +9,29 @@ interface Props {
   setSearchingMovie: Dispatch<SetStateAction<string>>;
 }
 
-export const Search: FC<Props> = ({
-  showShortMovie,
-  searchingMovie,
-  setShowShortMovie,
-  setSearchingMovie,
-}) => {
-  return (
-    <SearchStyled direction="column" gap="32px">
-      <Input
-        value={searchingMovie}
-        onChange={(e) => {
-          setSearchingMovie(e.target.value);
-        }}
-        type="text"
-        placeholder="Введите название фильма"
-      />
-      <label htmlFor="shortMovies">
-        <Checkbox
-          checked={showShortMovie}
-          onChange={() => {
-            setShowShortMovie((prevState) => !prevState);
-          }}
-          type="checkbox"
-          name="shortMovies"
-          id="shortMovies"
+export const Search: FC<Props> = memo(
+  ({ showShortMovie, searchingMovie, setShowShortMovie, setSearchingMovie }) => {
+    return (
+      <SearchStyled $direction="column" $gap="32px">
+        <Input
+          value={searchingMovie}
+          onChange={inputOnChangeHandle(setSearchingMovie)}
+          type="text"
+          placeholder="Введите название фильма"
         />
-        Короткометражки
-      </label>
-    </SearchStyled>
-  );
-};
+        <label htmlFor="shortMovies">
+          <Checkbox
+            checked={showShortMovie}
+            onChange={() => {
+              setShowShortMovie((prevState) => !prevState);
+            }}
+            type="checkbox"
+            name="shortMovies"
+            id="shortMovies"
+          />
+          Короткометражки
+        </label>
+      </SearchStyled>
+    );
+  },
+);

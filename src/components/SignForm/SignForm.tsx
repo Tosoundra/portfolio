@@ -1,22 +1,26 @@
-import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Logo } from '../Logo/Logo';
+import { FC, ReactElement, useState } from 'react';
+
 import { LinkStyled, SignFormStyled } from './SignFormStyled';
-import { ButtonStyled } from '../Button/ButtonStyled';
+import { ButtonStyled } from '../../styledComponents/ButtonStyled/ButtonStyled';
 import { InputElement } from '../../styledComponents/InputElement/InputElement';
+import { LogoStyled } from '../../styledComponents/Logo/LogoStyled';
+import { BASE_URL } from '../../assets/utils/URLs/appURL';
+import { inputOnChangeHandle } from '../../assets/utils/inputOnChangeHandle/inputOnChangeHandle';
 
 interface Props {
+  children?: ReactElement;
   formTitle: string;
   submitTitle: string;
   isAlreadyAuthTitle: string;
   linkTitle: string;
   link: string;
-  onClick: () => void;
+  onClick: (email: string, password: string) => void;
 }
 
-type SubmitClickHandleType = (event: React.FormEvent<HTMLButtonElement>) => void;
+type SubmitClickHandleType = (e: React.FormEvent) => void;
 
 export const SignForm: FC<Props> = ({
+  children,
   formTitle,
   submitTitle,
   isAlreadyAuthTitle,
@@ -24,33 +28,47 @@ export const SignForm: FC<Props> = ({
   link,
   onClick,
 }) => {
-  const navigate = useNavigate();
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
-  const submitClickHandle: SubmitClickHandleType = (event): void => {
-    event.preventDefault();
-    onClick();
-    navigate('/portfolio/movies');
+  const submitClickHandle: SubmitClickHandleType = (e): void => {
+    e.preventDefault();
+    onClick(email, password);
   };
 
   return (
-    <SignFormStyled as="form" direction="column" gap="40px">
-      <Logo />
+    <SignFormStyled as="form" onSubmit={submitClickHandle} $direction="column" $gap="40px">
+      <LogoStyled to={`${BASE_URL}/landing`}></LogoStyled>
       <legend>{formTitle}</legend>
-      <label htmlFor="name">
-        Имя
-        <InputElement type="text" name="name" id="name" required />
-      </label>
+      {children}
       <label htmlFor="email">
         Email
-        <InputElement type="email" name="email" id="email" required />
+        <InputElement
+          onChange={inputOnChangeHandle(setEmail)}
+          value={email}
+          type="email"
+          name="email"
+          id="email"
+          pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+          minLength={2}
+          required
+        />
       </label>
       <label htmlFor="password">
         Пароль
-        <InputElement type="password" name="password" id="password" required />
+        <InputElement
+          onChange={inputOnChangeHandle(setPassword)}
+          value={password}
+          type="password"
+          name="password"
+          id="password"
+          minLength={8}
+          maxLength={30}
+          // pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+          required
+        />
       </label>
-      <ButtonStyled onClick={submitClickHandle} type="submit">
-        {submitTitle}
-      </ButtonStyled>
+      <ButtonStyled type="submit">{submitTitle}</ButtonStyled>
       <span>
         {isAlreadyAuthTitle} <LinkStyled to={`/${link}`}>{linkTitle}</LinkStyled>
       </span>

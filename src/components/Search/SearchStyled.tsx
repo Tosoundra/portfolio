@@ -10,6 +10,15 @@ export const SearchStyled = styled(FlexComponent)`
 export const Input = styled(InputElement)`
   font-family: 'Inter Medium';
   font-size: 28px;
+
+  &:valid {
+    border-color: ${({ theme }) => theme.colors.utilitiesColor};
+  }
+
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.additionColor};
+    outline: none;
+  }
 `;
 
 export const Checkbox = styled.input`

@@ -1,19 +1,20 @@
 import { ListOfProjects } from '../../assets/utils/ListOfProjects/ListOfProjects';
 import { ListStyledComponent } from '../../styledComponents/ListStyledComponent/ListStyledComponent';
-import { WrapperDescription } from '../../styledComponents/Wrapper/Wrapper';
 import { Project } from '../Project/Project';
 import { TransparentText } from '../../styledComponents/FontComponents/FontComponents';
+import { ProjectsStyled } from './ProjectsStyled';
+import { FC } from 'react';
 
-export const Projects = () => {
+export const Projects: FC = () => {
   return (
-    <WrapperDescription as="div" margin="101px">
-      <TransparentText size="18px">Мои работы</TransparentText>
+    <ProjectsStyled>
+      <TransparentText $size="18px">Мои работы</TransparentText>
 
-      <ListStyledComponent>
+      <ListStyledComponent as="ul" $direction="column">
         {ListOfProjects.map((item, index) => (
           <Project title={item.title} image={item.image} link={item.link} key={index} />
         ))}
       </ListStyledComponent>
-    </WrapperDescription>
+    </ProjectsStyled>
   );
 };

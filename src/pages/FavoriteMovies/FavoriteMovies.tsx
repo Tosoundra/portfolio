@@ -1,11 +1,40 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Search } from '../../components/Search/Search';
 import { MoviesContainer } from '../../components/MoviesContainer/MoviesContainer';
 import { MoviesStyled } from '../Movies/MoviesStyled';
+import { useAppDispatch, useAppSelector } from '../../assets/hooks/storeHooks/storeHooks';
+import { getMoviesThunkAction } from '../../store/reducers/movies/moviesAction';
+import { getFavoriteMoviesAction } from '../../store/reducers/favoriteMovies/getFavoriteMoviesAction';
+import { filterFavoriteMovies } from '../../assets/utils/filterFavoriteMovies/filterFavoriteMovies';
 
 export const FavoriteMovies: FC = () => {
+  const { movies } = useAppSelector((state) => state.movies);
+  const favoriteMoviesId = useAppSelector((state) => state.favoriteMovies.favoriteMovies);
+  const dispatch = useAppDispatch();
+
   const [showShortMovie, setShowShortMovie] = useState<boolean>(false);
   const [searchingMovie, setSearchingMovie] = useState<string>('');
+
+  const favoriteMovies = filterFavoriteMovies(movies, favoriteMoviesId);
+
+  useEffect(() => {
+    if (movies.length === 0) dispatch(getMoviesThunkAction());
+    dispatch(getFavoriteMoviesAction());
+  }, []);
+
+  // if (!favoriteMovies.length) {
+  //   return (
+  //     <MoviesStyled as="main">
+  //       <Search
+  //         showShortMovie={showShortMovie}
+  //         searchingMovie={searchingMovie}
+  //         setShowShortMovie={setShowShortMovie}
+  //         setSearchingMovie={setSearchingMovie}
+  //       />
+  //       <p>empty</p>
+  //     </MoviesStyled>
+  //   );
+  // }
 
   return (
     <MoviesStyled as="main">
@@ -15,7 +44,11 @@ export const FavoriteMovies: FC = () => {
         setShowShortMovie={setShowShortMovie}
         setSearchingMovie={setSearchingMovie}
       />
-      <MoviesContainer showShortMovie={showShortMovie} searchingMovie={searchingMovie} />
+      <MoviesContainer
+        movies={favoriteMovies}
+        showShortMovie={showShortMovie}
+        searchingMovie={searchingMovie}
+      />
     </MoviesStyled>
   );
 };

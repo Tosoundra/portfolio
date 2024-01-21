@@ -2,16 +2,16 @@ import { Link } from 'react-router-dom';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
 import { FooterStyled } from './FooterStyled';
 import { listOfMedia } from '../../assets/utils/listOfMedia/listOfMedia';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 const date = new Date().getFullYear();
 
-export const Footer: FC = () => {
+export const Footer: FC = memo(() => {
   return (
     <FooterStyled as="footer">
-      <FlexComponent direction="row">
+      <FlexComponent $direction="row">
         <span>&#169; {date}</span>
-        <FlexComponent as="ul" direction="row" gap="15px">
+        <FlexComponent as="ul" $direction="row" $gap="15px">
           {listOfMedia.map((item, index) => (
             <li key={index}>
               <Link to={item.link} target="_blank">
@@ -23,4 +23,4 @@ export const Footer: FC = () => {
       </FlexComponent>
     </FooterStyled>
   );
-};
+});

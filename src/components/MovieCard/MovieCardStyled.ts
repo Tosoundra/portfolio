@@ -1,15 +1,13 @@
 import styled, { css } from 'styled-components';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
 import { ImageStyled } from '../../styledComponents/ImageStyled/ImageStyled';
-import { utilitiesColor } from '../../assets/utils/styles/colorsVar';
-
 import buttonInactive from '../../assets/images/button-like.svg';
 import buttonActive from '../../assets/images/button-like_active.svg';
-import { ButtonStyled } from '../Button/ButtonStyled';
-import { hoverEffect } from '../../assets/utils/styles/hoverEffect';
+import { ButtonStyled } from '../../styledComponents/ButtonStyled/ButtonStyled';
+import { MediumFont } from '../../styledComponents/FontComponents/FontComponents';
 
 interface ButtonProps {
-  isActive: boolean;
+  $isActive: boolean;
 }
 
 export const MovieCardStyled = styled(FlexComponent)`
@@ -19,7 +17,7 @@ export const MovieCardStyled = styled(FlexComponent)`
     margin-top: 14px;
     margin-bottom: 6px;
     padding-bottom: 29px;
-    border-bottom: 1px solid ${utilitiesColor};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.utilitiesColor};
   }
 
   & > span {
@@ -27,11 +25,29 @@ export const MovieCardStyled = styled(FlexComponent)`
   }
 `;
 
+export const MovieTitleStyled = styled(MediumFont)`
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`;
+
 export const Image = styled(ImageStyled)`
-  ${hoverEffect}
+  transition: ${({ theme }) => theme.hoverEffect.transition};
+
   cursor: pointer;
   &:hover {
     transform: scale(110%);
+  }
+
+  @media ${({ theme }) => theme.media.bigPhone} {
+    width: 100%;
+    height: unset;
+  }
+
+  @media ${({ theme }) => theme.media.smallPhone} {
+    width: 300px;
+    height: 168px;
   }
 `;
 
@@ -44,11 +60,8 @@ export const LikeButtonStyled = styled(ButtonStyled)<ButtonProps>`
   background-size: auto;
   background-repeat: no-repeat;
 
-  &:hover {
-    background-image: url(${buttonActive});
-  }
-  ${({ isActive }) =>
-    isActive &&
+  ${({ $isActive }) =>
+    $isActive &&
     css`
       background-image: url(${buttonActive});
     `}

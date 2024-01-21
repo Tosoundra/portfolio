@@ -7,6 +7,7 @@ import tsPic from '../../images/ts.png';
 import reactPic from '../../images/react.png';
 import expressPic from '../../images/express.png';
 import mongoPic from '../../images/mongo.png';
+import redux from '../../images/redux.svg';
 
 export const technologies = [
   {
@@ -36,6 +37,10 @@ export const technologies = [
   {
     name: 'React',
     image: reactPic,
+  },
+  {
+    name: 'Redux',
+    image: redux,
   },
   {
     name: 'Express.js',

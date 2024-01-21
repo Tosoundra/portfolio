@@ -1,21 +1,12 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import { InfoTooltipStyled } from './InfoTooltipStyled';
+import { useAppSelector } from '../../assets/hooks/storeHooks/storeHooks';
 
-interface Props {
-  status: string;
-  message: string;
-}
-
-export const InfoTooltip: FC<Props> = ({ status, message }) => {
-  const [isActive, setIsActive] = useState<boolean>(false);
-
-  useEffect(() => {
-    setIsActive(true);
-  }, []);
+export const InfoTooltip: FC = () => {
+  const { isActive, message, isError } = useAppSelector((state) => state.infoTooltip);
 
   return (
-    <InfoTooltipStyled isActive={isActive} isError={false}>
-      <span>{status}</span>
+    <InfoTooltipStyled $isActive={isActive} $isError={isError}>
       <output>{message}</output>
     </InfoTooltipStyled>
   );

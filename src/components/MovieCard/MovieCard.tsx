@@ -1,23 +1,49 @@
 import { FC, memo } from 'react';
-import { Image, LikeButtonStyled, MovieCardStyled } from './MovieCardStyled';
+import { Image, LikeButtonStyled, MovieCardStyled, MovieTitleStyled } from './MovieCardStyled';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
-import { convertToTime } from '../../assets/utils/convertToTime/convertToTime';
-import { MediumFont } from '../../styledComponents/FontComponents/FontComponents';
+import { convertNumberToTime } from '../../assets/utils/convertNumberToTime/convertNumberToTime';
+import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../assets/hooks/storeHooks/storeHooks';
+import { dislikeMovie, likeMovie } from '../../assets/utils/likeButtonHandles/likeButtonHandles';
 
 interface MovieProps {
+  movieId: number;
   title: string;
   url: string;
   duration: number;
+  isMovieLiked: boolean;
 }
 
-export const MovieCard: FC<MovieProps> = memo(({ title, url, duration }) => {
-  const { hour, minutes } = convertToTime(duration);
+export const MovieCard: FC<MovieProps> = memo(({ movieId, title, url, duration, isMovieLiked }) => {
+  const dispatch = useAppDispatch();
+
+  const { hour, minutes } = convertNumberToTime(duration);
+
+  const likeButtonOnClickHandle = () => {
+    try {
+      if (isMovieLiked) {
+        dispatch(dislikeMovie(movieId));
+      } else {
+        dispatch(likeMovie(movieId));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <MovieCardStyled as="li" direction="column">
-      <Image src={url} width={270} height={151} alt={title} />
-      <FlexComponent direction="row">
-        <MediumFont size="13px">{title}</MediumFont>
-        <LikeButtonStyled type="button"></LikeButtonStyled>
+    <MovieCardStyled as="li" $direction="column">
+      <Link to={String(movieId)}>
+        <Image src={url} alt={title} width={270} height={151} />
+      </Link>
+      <FlexComponent $direction="row">
+        <Link to={String(movieId)}>
+          <MovieTitleStyled $size="13px">{title}</MovieTitleStyled>
+        </Link>
+        <LikeButtonStyled
+          $isActive={isMovieLiked}
+          onClick={likeButtonOnClickHandle}
+          type="button"></LikeButtonStyled>
       </FlexComponent>
       <span>
         {hour}ч. {minutes}мин.

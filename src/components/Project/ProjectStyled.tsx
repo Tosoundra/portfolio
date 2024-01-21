@@ -1,8 +1,6 @@
 import styled from 'styled-components';
-
 import { ImageStyled } from '../../styledComponents/ImageStyled/ImageStyled';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
-import { hoverEffect } from '../../assets/utils/styles/hoverEffect';
 
 export const ProjectStyled = styled(FlexComponent)`
   align-items: center;
@@ -15,7 +13,7 @@ export const ProjectStyled = styled(FlexComponent)`
 
   cursor: pointer;
 
-  ${hoverEffect}
+  transition: ${({ theme }) => theme.hoverEffect.transition};
 
   &:hover {
     border-color: #d9d9d9;

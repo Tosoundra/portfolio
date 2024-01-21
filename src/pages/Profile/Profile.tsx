@@ -1,61 +1,52 @@
-import { FC, useState } from 'react';
-
-import {
-  LogoutButtonStyled,
-  ProfileEditButtonStyled,
-  ProfileFormStyled,
-  ProfileInput,
-  ProfileStyled,
-} from './ProfileStyled';
-import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
+import { FC, useEffect } from 'react';
+import { LogoutButtonStyled, ProfileStyled } from './ProfileStyled';
 import { MediumFont } from '../../styledComponents/FontComponents/FontComponents';
+import { userThunkActionCreator } from '../../store/reducers/user/userAction';
+import { useAppDispatch, useAppSelector } from '../../assets/hooks/storeHooks/storeHooks';
+import { showTooltip } from '../../store/reducers/infoTooltip/showTooltip';
+import { useNavigate } from 'react-router-dom';
+import { LANDING_URL } from '../../assets/utils/URLs/appURL';
+import { logout } from '../../assets/utils/authRequests/logout';
+import { ProfileSkeleton } from '../../components/Skeleton/ProfileSkeleton/ProfileSkeleton';
+import { ProfileForm } from '../../components/ProfileForm/ProfileForm';
 
-interface Props {
-  name: string;
-  email: string;
-}
+export const Profile: FC = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { email, name, registrationDate, isLoading, error } = useAppSelector((state) => state.user);
 
-export const Profile: FC<Props> = ({ name, email }) => {
-  const [nameValue, setNameValue] = useState<string>(name);
-  const [emailValue, setEmailValue] = useState<string>(email);
+  const logoutButtonOnClickHandle = async () => {
+    try {
+      await dispatch(logout());
+      navigate(LANDING_URL);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    dispatch(userThunkActionCreator());
+  }, [dispatch]);
+
+  if (isLoading) {
+    return (
+      <>
+        <ProfileSkeleton />
+      </>
+    );
+  }
+
+  if (error) {
+    if (error instanceof Error) dispatch(showTooltip(error.message));
+  }
 
   return (
-    <ProfileStyled as="main" direction="column">
-      <MediumFont size="24px">Привет, {name}!</MediumFont>
-
-      <ProfileFormStyled as="form" direction="column" gap="16px">
-        <FlexComponent as="fieldset" direction="row">
-          <MediumFont as="label" htmlFor="name" size="11px">
-            Имя
-          </MediumFont>
-          <ProfileInput
-            onChange={(e) => {
-              setNameValue(e.target.value);
-            }}
-            value={nameValue}
-            type="text"
-            name="name"
-            id="name"
-          />
-        </FlexComponent>
-        <FlexComponent as="fieldset" direction="row">
-          <MediumFont as="label" htmlFor="email" size="11px">
-            E-mail
-          </MediumFont>
-          <ProfileInput
-            onChange={(e) => {
-              setEmailValue(e.target.value);
-            }}
-            value={emailValue}
-            type="email"
-            name="email"
-            id="email"
-          />
-        </FlexComponent>
-        <ProfileEditButtonStyled type="submit">Редактировать</ProfileEditButtonStyled>
-      </ProfileFormStyled>
-
-      <LogoutButtonStyled type="button">Выйти из аккаунта</LogoutButtonStyled>
+    <ProfileStyled as="main" $direction="column">
+      <MediumFont $size="24px">Привет, {name}!</MediumFont>
+      <ProfileForm email={email} registrationDate={registrationDate} />
+      <LogoutButtonStyled onClick={logoutButtonOnClickHandle} type="button">
+        Выйти из аккаунта
+      </LogoutButtonStyled>
     </ProfileStyled>
   );
 };

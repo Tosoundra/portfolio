@@ -1,22 +1,17 @@
-import { IMovie } from '../../../types/IMovie';
+import { MovieType } from '../../../types/MovieType';
 
 type RenderMoviesType = (
-  movies: IMovie[],
+  movies: MovieType[],
   showShortMovie: boolean,
   searchingMovie: string,
-  countMovie: number,
-) => IMovie[];
+  countOfMovie: number,
+) => MovieType[];
 
-export const renderMovies: RenderMoviesType = (
-  movies,
-  showShortMovie,
-  searchingMovie,
-  countMovie,
-) => {
+export const renderMovies: RenderMoviesType = (movies, showShortMovie, searchingMovie, countOfMovie) => {
   const forRender = showShortMovie ? movies.filter((movie) => movie.duration < 40) : movies;
 
   return forRender
-    .slice(0, countMovie)
+    .slice(0, countOfMovie)
     .filter((movie) =>
       movie.nameRU.trim().toLocaleLowerCase().includes(searchingMovie.toLocaleLowerCase()),
     );

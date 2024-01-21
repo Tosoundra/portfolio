@@ -20,7 +20,7 @@ export const ListOfProjects = [
     link: 'https://tosoundra.github.io/react_main/',
   },
   {
-    title: 'Arithmetic',
+    title: 'Пет - проект Arithmetic',
     image: arithmetic,
     link: 'https://tosoundra.github.io/arithmetics',
   },

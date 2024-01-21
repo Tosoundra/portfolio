@@ -1,40 +1,27 @@
 import styled from 'styled-components';
-import { WrapperDescription } from '../../styledComponents/Wrapper/Wrapper';
+import { ImageStyled } from '../../styledComponents/ImageStyled/ImageStyled';
+import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
 
-export const DevelopmentStackStyled = styled(WrapperDescription)`
-  display: flex;
-  flex-direction: column;
+export const DevelopmentStackStyled = styled(FlexComponent)`
   align-items: center;
+  margin-top: 90px;
+  text-align: center;
+`;
 
-  & p {
-    margin-top: 26px;
-    margin-bottom: 100px;
+export const ListOfTechnologiesStyled = styled(FlexComponent)`
+  margin-top: 100px;
+
+  @media ${({ theme }) => theme.media.bigPhone} {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    row-gap: 8px;
   }
 
-  background-color: #202020;
-
-  @media (prefers-color-scheme: light) {
-    & {
-      color: #000;
-      background-color: #fff;
-    }
+  @media ${({ theme }) => theme.media.smallPhone} {
+    justify-content: center;
   }
 `;
 
-interface TechnologyProps {
-  image: string;
-}
-
-export const Technology = styled.li<TechnologyProps>`
-  width: 90px;
-  height: 60px;
-  border-radius: 10px;
-  background-color: #e8e8e8;
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  background-color: transparent;
-  background-image: url(${(props) => props.image});
-  color: transparent;
+export const ImageTechnology = styled(ImageStyled)`
+  object-fit: contain;
 `;

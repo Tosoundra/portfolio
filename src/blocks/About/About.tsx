@@ -1,10 +1,11 @@
-import { User } from '../../components/User/User';
+import { AboutMe } from '../../components/User/AboutMe';
 import { Projects } from '../../components/Projects/Projects';
+import { FC } from 'react';
 
-export const About = () => {
+export const About: FC = () => {
   return (
     <>
-      <User />
+      <AboutMe />
       <Projects />
     </>
   );
