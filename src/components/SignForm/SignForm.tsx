@@ -1,10 +1,9 @@
-import { FC, ReactElement, useState } from 'react';
-
+import { FC, ReactElement, useEffect, useRef, useState } from 'react';
 import { LinkStyled, SignFormStyled } from './SignFormStyled';
 import { ButtonStyled } from '../../styledComponents/ButtonStyled/ButtonStyled';
 import { InputElement } from '../../styledComponents/InputElement/InputElement';
 import { LogoStyled } from '../../styledComponents/Logo/LogoStyled';
-import { BASE_URL } from '../../assets/utils/URLs/appURL';
+import { LANDING_URL } from '../../assets/utils/URLs/appURL';
 import { inputOnChangeHandle } from '../../assets/utils/inputOnChangeHandle/inputOnChangeHandle';
 
 interface Props {
@@ -28,17 +27,31 @@ export const SignForm: FC<Props> = ({
   link,
   onClick,
 }) => {
+  const formRef = useRef<HTMLFormElement>(null);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const submitClickHandle: SubmitClickHandleType = (e): void => {
     e.preventDefault();
     onClick(email, password);
   };
 
+  useEffect(() => {
+    setIsFormValid(formRef.current!.checkValidity());
+  }, [email, password, children]);
+
   return (
-    <SignFormStyled as="form" onSubmit={submitClickHandle} $direction="column" $gap="40px">
-      <LogoStyled to={`${BASE_URL}/landing`}></LogoStyled>
+    <SignFormStyled
+      as="form"
+      id="authForm"
+      ref={formRef}
+      onSubmit={submitClickHandle}
+      $direction="column"
+      $gap="40px">
+      <a href={LANDING_URL}>
+        <LogoStyled type="button" />
+      </a>
       <legend>{formTitle}</legend>
       {children}
       <label htmlFor="email">
@@ -49,7 +62,6 @@ export const SignForm: FC<Props> = ({
           type="email"
           name="email"
           id="email"
-          pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
           minLength={2}
           required
         />
@@ -58,17 +70,20 @@ export const SignForm: FC<Props> = ({
         Пароль
         <InputElement
           onChange={inputOnChangeHandle(setPassword)}
+          onInvalid={(e) => console.log(e.currentTarget.validity.valid)}
           value={password}
           type="password"
           name="password"
           id="password"
           minLength={8}
           maxLength={30}
-          // pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
           required
         />
       </label>
-      <ButtonStyled type="submit">{submitTitle}</ButtonStyled>
+
+      <ButtonStyled form="authForm" type="submit" disabled={!isFormValid}>
+        {submitTitle}
+      </ButtonStyled>
       <span>
         {isAlreadyAuthTitle} <LinkStyled to={`/${link}`}>{linkTitle}</LinkStyled>
       </span>

@@ -26,7 +26,9 @@ export const HeaderMobile: FC<Props> = ({ isLogged }) => {
     return (
       <HeaderStyled $isLandingPath={pathname === LANDING_URL}>
         <HeaderWrapper $direction="row">
-          <LogoStyled to={LANDING_URL} />
+          <a href={LANDING_URL}>
+            <LogoStyled />
+          </a>
 
           {(pathname === LANDING_URL && (
             <HeaderMenuWhiteButtonStyled onClick={() => setIsActive(true)} />
@@ -41,7 +43,9 @@ export const HeaderMobile: FC<Props> = ({ isLogged }) => {
   return (
     <HeaderStyled $isLandingPath={pathname === LANDING_URL}>
       <HeaderWrapper $direction="row">
-        <LogoStyled to={LANDING_URL} />
+        <a href={LANDING_URL}>
+          <LogoStyled />
+        </a>
         <FlexComponent $direction="row" $gap="14px">
           <NavLinkStyled to="sign-up">Регистрация</NavLinkStyled>
           <HeaderButtonStyled

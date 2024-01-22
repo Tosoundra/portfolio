@@ -1,11 +1,9 @@
 import styled from 'styled-components';
-
 import logo from '../../assets/images/logo.svg';
 import buttonHovered from '../../assets/images/logo_hover.svg';
-import { Link } from 'react-router-dom';
+import { ButtonStyled } from '../ButtonStyled/ButtonStyled';
 
-export const LogoStyled = styled(Link)`
-  display: block;
+export const LogoStyled = styled(ButtonStyled)`
   padding: unset;
   width: 38px;
   height: 38px;
@@ -14,8 +12,6 @@ export const LogoStyled = styled(Link)`
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-
-  transition: ${({ theme }) => theme.hoverEffect.transition};
 
   &:hover {
     background-color: transparent;

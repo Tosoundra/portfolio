@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyled = createGlobalStyle`
   :root {
    
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter',  sans-serif;
   line-height: 1;
 
   color-scheme: light dark;

@@ -18,6 +18,10 @@ export const ButtonStyled = styled.button<Props>`
   &:hover {
     background-color: ${({ theme }) => theme.colors.mainColor};
   }
+  &:disabled {
+    cursor: default;
+    background-color: ${({ theme }) => theme.colors.utilitiesColor};
+  }
 `;
 
 export const ButtonWithoutEffectStyled = styled.button`

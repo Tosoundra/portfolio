@@ -17,7 +17,7 @@ export const App: FC = memo(() => {
 
   useEffect(() => {
     dispatch(authentication());
-  }, [isLogged, pathname, dispatch]);
+  }, [isLogged, dispatch]);
 
   return (
     <>

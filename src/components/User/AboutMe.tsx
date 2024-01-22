@@ -16,7 +16,7 @@ export const AboutMe: FC = () => {
         <TitleText as="span" $size="50px">
           Антон Ковальчук
         </TitleText>
-        <OccupationTextStyle>Фронтенд-разработчик, 27 лет</OccupationTextStyle>
+        <OccupationTextStyle $size="18px">Фронтенд-разработчик, 27 лет</OccupationTextStyle>
         <DescriptionText $size="14px">
           Родился в России. Сейчас проживаю в Таиланде. Сколько себя помню, увлекался компьютерами и
           музыкой. В последствии начал создавать свою музыку, а спустя некоторое время полностью

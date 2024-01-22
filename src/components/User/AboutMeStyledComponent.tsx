@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
 import { ImageStyled } from '../../styledComponents/ImageStyled/ImageStyled';
+import { MediumFont } from '../../styledComponents/FontComponents/FontComponents';
 
 export const AboutMeStyled = styled(FlexComponent)`
   padding-top: 66px;
@@ -24,9 +25,7 @@ export const AboutMeDescriptionContainer = styled(FlexComponent)`
   }
 `;
 
-export const OccupationTextStyle = styled.span`
-  font-family: 'Inter Medium';
-  font-size: 18px;
+export const OccupationTextStyle = styled(MediumFont)`
   line-height: 20px;
 `;
 

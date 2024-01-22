@@ -33,6 +33,6 @@ export const TransparentText = styled(DescriptionText)`
 
 export const MediumFont = styled.span<Props>`
   display: block;
-  font-family: 'Inter Medium';
+  font-weight: 500;
   font-size: ${({ $size }) => $size};
 `;
