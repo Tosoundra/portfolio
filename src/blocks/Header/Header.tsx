@@ -30,9 +30,12 @@ export const Header: FC = memo(() => {
     return (
       <HeaderStyled $isLandingPath={pathname === LANDING_URL}>
         <HeaderWrapper $direction="row">
-          <a href={LANDING_URL}>
-            <LogoStyled />
-          </a>
+          <LogoStyled
+            onClick={() => {
+              navigate(LANDING_URL);
+            }}
+          />
+
           <FlexComponent $direction="row" $gap="50px">
             <NavLinkStyled to="movies">Фильмы</NavLinkStyled>
             <NavLinkStyled to="favorites">Сохранённые фильмы</NavLinkStyled>
@@ -51,9 +54,11 @@ export const Header: FC = memo(() => {
   return (
     <HeaderStyled $isLandingPath={pathname === LANDING_URL}>
       <HeaderWrapper $direction="row">
-        <a href={LANDING_URL}>
-          <LogoStyled />
-        </a>
+        <LogoStyled
+          onClick={() => {
+            navigate(LANDING_URL);
+          }}
+        />
         <FlexComponent $direction="row" $gap="50px">
           <Link to={SIGN_UP_URL}>Регистрация</Link>
           <HeaderButtonStyled

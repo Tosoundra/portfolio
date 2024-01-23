@@ -5,6 +5,7 @@ import { InputElement } from '../../styledComponents/InputElement/InputElement';
 import { LogoStyled } from '../../styledComponents/Logo/LogoStyled';
 import { LANDING_URL } from '../../assets/utils/URLs/appURL';
 import { inputOnChangeHandle } from '../../assets/utils/inputOnChangeHandle/inputOnChangeHandle';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   children?: ReactElement;
@@ -27,6 +28,7 @@ export const SignForm: FC<Props> = ({
   link,
   onClick,
 }) => {
+  const navigate = useNavigate();
   const formRef = useRef<HTMLFormElement>(null);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -49,9 +51,11 @@ export const SignForm: FC<Props> = ({
       onSubmit={submitClickHandle}
       $direction="column"
       $gap="40px">
-      <a href={LANDING_URL}>
-        <LogoStyled type="button" />
-      </a>
+      <LogoStyled
+        onClick={() => {
+          navigate(LANDING_URL);
+        }}
+      />
       <legend>{formTitle}</legend>
       {children}
       <label htmlFor="email">
