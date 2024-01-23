@@ -52,6 +52,7 @@ export const SignUp: FC = () => {
             type="text"
             name="name"
             id="name"
+            minLength={2}
             maxLength={30}
             pattern="^[а-яА-Яa-zA-Z\s]+$"
             title="Любые цифры и символы запрещены"
