@@ -9,12 +9,11 @@ import {
   HeaderWrapper,
   NavLinkStyled,
 } from './HeaderStyled';
-
-import { LogoStyled } from '../../styledComponents/Logo/LogoStyled';
 import { LANDING_URL, SIGN_IN_URL, SIGN_UP_URL, USER_URL } from '../../assets/utils/URLs/appURL';
 import { useAppSelector } from '../../assets/hooks/storeHooks/storeHooks';
 import { useCalculateDimensions } from '../../assets/hooks/useCalculateDimensions/useCalculateDimensions';
 import { HeaderMobile } from './HeaderMobile';
+import { Logo } from '../../components/Logo/Logo';
 
 export const Header: FC = memo(() => {
   const { isMobile } = useCalculateDimensions();
@@ -30,12 +29,7 @@ export const Header: FC = memo(() => {
     return (
       <HeaderStyled $isLandingPath={pathname === LANDING_URL}>
         <HeaderWrapper $direction="row">
-          <LogoStyled
-            onClick={() => {
-              navigate(LANDING_URL);
-            }}
-          />
-
+          <Logo />
           <FlexComponent $direction="row" $gap="50px">
             <NavLinkStyled to="movies">Фильмы</NavLinkStyled>
             <NavLinkStyled to="favorites">Сохранённые фильмы</NavLinkStyled>
@@ -54,11 +48,7 @@ export const Header: FC = memo(() => {
   return (
     <HeaderStyled $isLandingPath={pathname === LANDING_URL}>
       <HeaderWrapper $direction="row">
-        <LogoStyled
-          onClick={() => {
-            navigate(LANDING_URL);
-          }}
-        />
+        <Logo />
         <FlexComponent $direction="row" $gap="50px">
           <Link to={SIGN_UP_URL}>Регистрация</Link>
           <HeaderButtonStyled

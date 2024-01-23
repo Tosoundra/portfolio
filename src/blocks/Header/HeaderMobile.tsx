@@ -1,7 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { LANDING_URL, SIGN_IN_URL } from '../../assets/utils/URLs/appURL';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
-import { LogoStyled } from '../../styledComponents/Logo/LogoStyled';
 import {
   HeaderButtonStyled,
   HeaderMenuButtonStyled,
@@ -12,6 +11,7 @@ import {
 } from './HeaderStyled';
 import { FC, useState } from 'react';
 import { HeaderSideMenu } from '../../components/HeaderSideMenu/HeaderSideMenu';
+import { LogoStyled } from '../../components/Logo/LogoStyled';
 
 interface Props {
   isLogged: boolean;
@@ -30,8 +30,8 @@ export const HeaderMobile: FC<Props> = ({ isLogged }) => {
             onClick={() => {
               navigate(LANDING_URL);
             }}
+            type="button"
           />
-
           {(pathname === LANDING_URL && (
             <HeaderMenuWhiteButtonStyled onClick={() => setIsActive(true)} />
           )) || <HeaderMenuButtonStyled onClick={() => setIsActive(true)} />}
@@ -49,6 +49,7 @@ export const HeaderMobile: FC<Props> = ({ isLogged }) => {
           onClick={() => {
             navigate(LANDING_URL);
           }}
+          type="button"
         />
         <FlexComponent $direction="row" $gap="14px">
           <NavLinkStyled to="sign-up">Регистрация</NavLinkStyled>

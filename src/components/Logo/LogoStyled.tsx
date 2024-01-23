@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import logo from '../../assets/images/logo.svg';
-import buttonHovered from '../../assets/images/logo_hover.svg';
-import { ButtonStyled } from '../ButtonStyled/ButtonStyled';
+import logo from '../../assets/images/logo.png';
+import buttonHovered from '../../assets/images/logo-hovered.png';
+import { ButtonStyled } from '../../styledComponents/ButtonStyled/ButtonStyled';
 
 export const LogoStyled = styled(ButtonStyled)`
   padding: unset;
