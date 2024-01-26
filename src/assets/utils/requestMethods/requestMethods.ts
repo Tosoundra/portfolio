@@ -1,3 +1,5 @@
+import { serverErrorMessage } from '../errorMessage/errorMessage';
+
 type RequestType = <T>(url: string, data: unknown) => Promise<T>;
 
 export const getRequest = async (url: string) => {
@@ -13,6 +15,9 @@ export const getRequest = async (url: string) => {
     }
     return await response.json();
   } catch (error) {
+    if (error instanceof TypeError) {
+      throw new Error(serverErrorMessage);
+    }
     console.log(error);
     throw error;
   }
@@ -36,7 +41,9 @@ export const postRequest: RequestType = async (url, data) => {
 
     return await response.json();
   } catch (error) {
-    console.log(error);
+    if (error instanceof TypeError) {
+      throw new Error(serverErrorMessage);
+    }
     throw error;
   }
 };
@@ -55,6 +62,9 @@ export const deleteRequest = async (url: string) => {
 
     return await response.json();
   } catch (error) {
+    if (error instanceof TypeError) {
+      throw new Error(serverErrorMessage);
+    }
     console.log(error);
     throw error;
   }
@@ -74,6 +84,9 @@ export const putRequest = async (url: string) => {
 
     return await response.json();
   } catch (error) {
+    if (error instanceof TypeError) {
+      throw new Error(serverErrorMessage);
+    }
     console.log(error);
     throw error;
   }
@@ -97,6 +110,9 @@ export const patchRequest: RequestType = async (url, data) => {
 
     return await response.json();
   } catch (error) {
+    if (error instanceof TypeError) {
+      throw new Error(serverErrorMessage);
+    }
     console.log(error);
     throw error;
   }

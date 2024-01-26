@@ -4,6 +4,7 @@ export const GlobalStyled = createGlobalStyle`
   :root {
    
   font-family: 'Inter',  sans-serif;
+  font-weight:400;
   line-height: 1;
 
   color-scheme: light dark;
@@ -14,12 +15,18 @@ export const GlobalStyled = createGlobalStyle`
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  @media (prefers-color-scheme: light) {
+  & {
+    color: #000;
+    background-color: #fff;
+  }
+}
 }
 
+
+
 #root{
-    height:100vh;
-    
-    display:flex;
     flex-direction:column;
     justify-content:space-between;
 
@@ -42,11 +49,5 @@ ul {
   list-style: none;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #000;
-    background-color: #fff;
-  }
-}
 
 `;

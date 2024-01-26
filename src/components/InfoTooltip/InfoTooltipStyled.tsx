@@ -9,12 +9,12 @@ export const InfoTooltipStyled = styled.div<Props>`
   position: fixed;
   top: 10px;
   right: 10px;
-
+  z-index: 1;
   opacity: 0;
 
   padding: 20px 10px;
   color: #fff;
-  /* height: 75px; */
+
   border: 1px solid ${({ theme }) => theme.colors.utilitiesColor};
 
   background-color: ${({ theme }) => theme.colors.mainColor};

@@ -54,5 +54,4 @@ export const router = createBrowserRouter([
     path: SIGN_UP_URL,
     element: <SignUp />,
   },
-  { path: '/', errorElement: <NotFoundPages /> },
 ]);

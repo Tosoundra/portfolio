@@ -3,7 +3,7 @@ import { SignForm } from '../../components/SignForm/SignForm';
 import { SignContainer } from '../../styledComponents/SignContainer/SignContainer';
 import { InputElement } from '../../styledComponents/InputElement/InputElement';
 import { useNavigate } from 'react-router-dom';
-import { SIGN_UP_URL } from '../../assets/utils/URLs/appURL';
+import { SIGN_IN_URL } from '../../assets/utils/URLs/appURL';
 import { InfoTooltip } from '../../components/InfoTooltip/InfoTooltip';
 import { SERVER_SIGN_UP_URL } from '../../assets/utils/URLs/serverAPI/authAPI';
 import { postRequest } from '../../assets/utils/requestMethods/requestMethods';
@@ -27,7 +27,8 @@ export const SignUp: FC = () => {
 
       Promise.resolve(
         setTimeout(() => {
-          navigate(SIGN_UP_URL);
+          navigate(SIGN_IN_URL);
+          console.log(123);
         }, 3000),
       );
     } catch (error) {
@@ -42,7 +43,7 @@ export const SignUp: FC = () => {
         submitTitle="Зарегистрироваться"
         isAlreadyAuthTitle="Уже зарегистрированы?"
         linkTitle="Войти"
-        link="portfolio/sign-in"
+        link={SIGN_IN_URL}
         onClick={registerHandle}>
         <label htmlFor="name">
           Имя

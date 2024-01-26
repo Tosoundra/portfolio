@@ -1,4 +1,4 @@
-import { setLoggedIn } from '../../../store/reducers/logged/logged.slice';
+import { setLoggedIn, setLoggedOut } from '../../../store/reducers/logged/logged.slice';
 import { AppDispatch } from '../../../store/store';
 import { SERVER_USER_URL } from '../URLs/serverAPI/userAPI';
 import { getRequest } from '../requestMethods/requestMethods';
@@ -10,6 +10,7 @@ export const authentication = () => {
 
       dispatch(setLoggedIn());
     } catch (error) {
+      dispatch(setLoggedOut());
       console.log(error);
     }
   };

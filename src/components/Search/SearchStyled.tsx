@@ -8,7 +8,7 @@ export const SearchStyled = styled(FlexComponent)`
 `;
 
 export const Input = styled(InputElement)`
-  font-family: 'Inter Medium';
+  font-weight: 500;
   font-size: 28px;
 
   &:valid {
@@ -43,7 +43,6 @@ export const Checkbox = styled.input`
   &::after {
     content: '';
     position: absolute;
-    z-index: 1;
     top: 50%;
     translate: 50% -50%;
     display: block;

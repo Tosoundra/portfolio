@@ -12,6 +12,7 @@ export const HeaderSideMenuStyled = styled(FlexComponent)<Props>`
   width: 100%;
   height: 100vh;
   justify-content: center;
+  align-items: center;
 
   position: fixed;
   top: 0;
@@ -32,19 +33,22 @@ export const HeaderSideMenuStyled = styled(FlexComponent)<Props>`
 `;
 
 export const SideMenuContainerStyled = styled(FlexComponent)`
+  position: relative;
+  top: 30%;
   align-items: center;
+  margin-bottom: auto;
 `;
 
 export const HeaderSideMenuButtonCloseStyled = styled.button`
   position: absolute;
   top: 14px;
   right: 14px;
-
+/* 
   width: 22px;
   height: 22px;
 
   background-color: transparent;
   background-image: url(${menuCloseButton});
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
 `;

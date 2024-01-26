@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
 import { ImageStyled } from '../../styledComponents/ImageStyled/ImageStyled';
-import buttonInactive from '../../assets/images/button-like.svg';
-import buttonActive from '../../assets/images/button-like_active.svg';
+import buttonInactive from '../../assets/images/button-like_inactive.png';
+import buttonActive from '../../assets/images/button-like_active.png';
 import { ButtonStyled } from '../../styledComponents/ButtonStyled/ButtonStyled';
 import { MediumFont } from '../../styledComponents/FontComponents/FontComponents';
 

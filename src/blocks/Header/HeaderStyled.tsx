@@ -1,16 +1,17 @@
 import styled, { css } from 'styled-components';
 import { ButtonStyled } from '../../styledComponents/ButtonStyled/ButtonStyled';
 import { NavLink } from 'react-router-dom';
-import headerMenu from '../../assets/images/header_menu.svg';
-import headerMenuWhite from '../../assets/images/header_menu_white.svg';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
 
 interface HeaderProps {
   $isLandingPath?: boolean;
+  $isDarkMode?: boolean;
 }
 
 export const HeaderStyled = styled.header<HeaderProps>`
   padding-block: 18px;
+
+  background-color: ${({ theme }) => (theme.colorScheme.dark && theme.colors.blackTheme) || '#fff'};
 
   ${({ $isLandingPath }) =>
     $isLandingPath &&
@@ -27,40 +28,20 @@ export const HeaderStyled = styled.header<HeaderProps>`
   }
 `;
 
-export const HeaderWrapper = styled(FlexComponent)`
+export const NavigationMenu = styled(FlexComponent)`
   max-width: ${({ theme }) => theme.wrapperProperties.maxWidth};
   padding: ${({ theme }) => theme.wrapperProperties.padding};
   margin: ${({ theme }) => theme.wrapperProperties.margin};
-  padding-block: unset;
 
+  align-items: center;
+  padding-block: unset;
+  
   div {
     align-items: center;
   }
-
+  
   @media ${({ theme }) => theme.media.bigPhone} {
     padding-inline: 10px;
-  }
-`;
-
-export const ButtonProfile = styled(ButtonStyled)`
-  border-radius: 40px;
-  background-color: #fff;
-
-  color: #000;
-  font-family: 'Inter Medium';
-
-  box-shadow: 0 0 4px #00000035;
-
-  img {
-    margin-left: 5px;
-  }
-
-  @media ${({ theme }) => theme.media.bigPhone} {
-    position: absolute;
-    bottom: 46px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 13px;
   }
 `;
 
@@ -82,12 +63,8 @@ export const NavLinkStyled = styled(NavLink)`
   line-height: 18px;
 
   &.active {
-    font-family: 'Inter Medium';
+    font-weight: 500;
     text-decoration: underline;
-  }
-
-  &.active button {
-    background-color: ${({ theme }) => theme.colors.mainColor};
   }
 
   @media ${({ theme }) => theme.media.bigPhone} {
@@ -100,17 +77,35 @@ export const SideMenuNavLink = styled(NavLinkStyled)`
   font-size: 18px;
 `;
 
-export const HeaderMenuButtonStyled = styled.button`
-  width: 40px;
-  height: 43px;
+export const ButtonProfile = styled(NavLink)`
+  display: block;
+  padding: 9px 20px;
+  border-radius: 40px;
+  background-color: #fff;
 
-  background-color: transparent;
-  background-image: url(${headerMenu});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: auto;
-`;
+  color: #000;
+  font-family: 'Inter';
+  font-weight: 500;
 
-export const HeaderMenuWhiteButtonStyled = styled(HeaderMenuButtonStyled)`
-  background-image: url(${headerMenuWhite});
+  box-shadow: 0 0 4px #00000035;
+
+  transition: ${({ theme }) => theme.hoverEffect.transition};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.mainColor};
+  }
+
+  &.active {
+    background-color: ${({ theme }) => theme.colors.mainColor};
+  }
+
+  img {
+    margin-left: 5px;
+  }
+
+  @media ${({ theme }) => theme.media.bigPhone} {
+    margin-bottom: 10%;
+
+    font-size: 13px;
+  }
 `;

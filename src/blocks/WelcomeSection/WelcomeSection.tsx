@@ -12,11 +12,11 @@ import background from '../../assets/images/main_background.svg';
 
 export const WelcomeSection: FC = () => {
   const { isMobile } = useCalculateDimensions();
-  console.log(isMobile);
+
   return (
     <WrapperWithColor>
       <WrapperWithImage as="section" $direction="column">
-        {isMobile && <ImageBackground src={background} width={210} loading="lazy" />}
+        {isMobile && <ImageBackground src={background} width={210} height={206} loading="lazy" />}
         <GreetingsContainer $direction="column" $gap="36px">
           <TitleText $size="50px">
             Здравствуйте! <br /> Меня зовут Антон, и здесь Вы узнаете больше обо мне.

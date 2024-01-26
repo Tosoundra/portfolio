@@ -67,7 +67,6 @@ export const SignForm: FC<Props> = ({
         Пароль
         <InputElement
           onChange={inputOnChangeHandle(setPassword)}
-          onInvalid={(e) => console.log(e.currentTarget.validity.valid)}
           value={password}
           type="password"
           name="password"
@@ -82,7 +81,7 @@ export const SignForm: FC<Props> = ({
         {submitTitle}
       </ButtonStyled>
       <span>
-        {isAlreadyAuthTitle} <LinkStyled to={`/${link}`}>{linkTitle}</LinkStyled>
+        {isAlreadyAuthTitle} <LinkStyled to={link}>{linkTitle}</LinkStyled>
       </span>
     </SignFormStyled>
   );

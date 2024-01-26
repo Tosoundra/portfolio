@@ -3,7 +3,7 @@ import { LogoutButtonStyled, ProfileStyled } from './ProfileStyled';
 import { MediumFont } from '../../styledComponents/FontComponents/FontComponents';
 import { userThunkActionCreator } from '../../store/reducers/user/userAction';
 import { useAppDispatch, useAppSelector } from '../../assets/hooks/storeHooks/storeHooks';
-import { showTooltip } from '../../store/reducers/infoTooltip/showTooltip';
+import { showErrorTooltip } from '../../store/reducers/infoTooltip/showTooltip';
 import { useNavigate } from 'react-router-dom';
 import { LANDING_URL } from '../../assets/utils/URLs/appURL';
 import { logout } from '../../assets/utils/authRequests/logout';
@@ -25,7 +25,13 @@ export const Profile: FC = () => {
   };
 
   useEffect(() => {
-    dispatch(userThunkActionCreator());
+    try {
+      dispatch(userThunkActionCreator());
+    } catch (error) {
+      if (error instanceof Error) {
+        dispatch(showErrorTooltip(error.message));
+      }
+    }
   }, [dispatch]);
 
   if (isLoading) {
@@ -37,7 +43,7 @@ export const Profile: FC = () => {
   }
 
   if (error) {
-    if (error instanceof Error) dispatch(showTooltip(error.message));
+    if (error instanceof Error) dispatch(showErrorTooltip(error.message));
   }
 
   return (

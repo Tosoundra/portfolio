@@ -43,7 +43,8 @@ export const MovieCard: FC<MovieProps> = memo(({ movieId, title, url, duration, 
         <LikeButtonStyled
           $isActive={isMovieLiked}
           onClick={likeButtonOnClickHandle}
-          type="button"></LikeButtonStyled>
+          type="button"
+        />
       </FlexComponent>
       <span>
         {hour}ч. {minutes}мин.

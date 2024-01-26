@@ -1,17 +1,11 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { LANDING_URL, SIGN_IN_URL } from '../../assets/utils/URLs/appURL';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
-import {
-  HeaderButtonStyled,
-  HeaderMenuButtonStyled,
-  HeaderMenuWhiteButtonStyled,
-  HeaderStyled,
-  HeaderWrapper,
-  NavLinkStyled,
-} from './HeaderStyled';
-import { FC, useState } from 'react';
+import { HeaderButtonStyled, HeaderStyled, NavLinkStyled, NavigationMenu } from './HeaderStyled';
+import { FC, useEffect, useState } from 'react';
 import { HeaderSideMenu } from '../../components/HeaderSideMenu/HeaderSideMenu';
 import { LogoStyled } from '../../components/Logo/LogoStyled';
+import { HeaderMobileMenu } from '../../components/HeaderMobileMenu/HeaderMobileMenu';
 
 interface Props {
   isLogged: boolean;
@@ -22,29 +16,35 @@ export const HeaderMobile: FC<Props> = ({ isLogged }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
+  useEffect(() => {
+    if (isActive) document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'initial';
+    };
+  }, [isActive]);
+
   if (isLogged) {
     return (
-      <HeaderStyled $isLandingPath={pathname === LANDING_URL}>
-        <HeaderWrapper $direction="row">
-          <LogoStyled
-            onClick={() => {
-              navigate(LANDING_URL);
-            }}
-            type="button"
-          />
-          {(pathname === LANDING_URL && (
-            <HeaderMenuWhiteButtonStyled onClick={() => setIsActive(true)} />
-          )) || <HeaderMenuButtonStyled onClick={() => setIsActive(true)} />}
-
-          <HeaderSideMenu isActive={isActive} setIsActive={setIsActive} />
-        </HeaderWrapper>
-      </HeaderStyled>
+      <>
+        <HeaderStyled $isLandingPath={pathname === LANDING_URL}>
+          <NavigationMenu $direction="row">
+            <LogoStyled
+              onClick={() => {
+                navigate(LANDING_URL);
+              }}
+              type="button"
+            />
+            <HeaderMobileMenu setIsActive={setIsActive} />
+          </NavigationMenu>
+        </HeaderStyled>
+        <HeaderSideMenu isActive={isActive} setIsActive={setIsActive} />
+      </>
     );
   }
 
   return (
     <HeaderStyled $isLandingPath={pathname === LANDING_URL}>
-      <HeaderWrapper $direction="row">
+      <NavigationMenu $direction="row">
         <LogoStyled
           onClick={() => {
             navigate(LANDING_URL);
@@ -60,7 +60,7 @@ export const HeaderMobile: FC<Props> = ({ isLogged }) => {
             Войти
           </HeaderButtonStyled>
         </FlexComponent>
-      </HeaderWrapper>
+      </NavigationMenu>
     </HeaderStyled>
   );
 };

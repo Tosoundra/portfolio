@@ -6,10 +6,10 @@ import {
   ButtonProfile,
   HeaderButtonStyled,
   HeaderStyled,
-  HeaderWrapper,
   NavLinkStyled,
+  NavigationMenu,
 } from './HeaderStyled';
-import { LANDING_URL, SIGN_IN_URL, SIGN_UP_URL, USER_URL } from '../../assets/utils/URLs/appURL';
+import { LANDING_URL, SIGN_IN_URL, SIGN_UP_URL } from '../../assets/utils/URLs/appURL';
 import { useAppSelector } from '../../assets/hooks/storeHooks/storeHooks';
 import { useCalculateDimensions } from '../../assets/hooks/useCalculateDimensions/useCalculateDimensions';
 import { HeaderMobile } from './HeaderMobile';
@@ -28,26 +28,25 @@ export const Header: FC = memo(() => {
   if (isLogged) {
     return (
       <HeaderStyled $isLandingPath={pathname === LANDING_URL}>
-        <HeaderWrapper $direction="row">
+        <NavigationMenu $direction="row">
           <Logo />
           <FlexComponent $direction="row" $gap="50px">
             <NavLinkStyled to="movies">Фильмы</NavLinkStyled>
             <NavLinkStyled to="favorites">Сохранённые фильмы</NavLinkStyled>
           </FlexComponent>
-          <NavLinkStyled to="profile">
-            <ButtonProfile disabled={pathname === USER_URL} type="button">
-              Аккаунт
-              <img src={iconProfile} alt="icon" role="icon" />
-            </ButtonProfile>
-          </NavLinkStyled>
-        </HeaderWrapper>
+
+          <ButtonProfile to="profile">
+            Аккаунт
+            <img src={iconProfile} alt="icon" role="icon" />
+          </ButtonProfile>
+        </NavigationMenu>
       </HeaderStyled>
     );
   }
 
   return (
     <HeaderStyled $isLandingPath={pathname === LANDING_URL}>
-      <HeaderWrapper $direction="row">
+      <NavigationMenu $direction="row">
         <Logo />
         <FlexComponent $direction="row" $gap="50px">
           <Link to={SIGN_UP_URL}>Регистрация</Link>
@@ -58,7 +57,7 @@ export const Header: FC = memo(() => {
             Войти
           </HeaderButtonStyled>
         </FlexComponent>
-      </HeaderWrapper>
+      </NavigationMenu>
     </HeaderStyled>
   );
 });

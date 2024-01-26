@@ -25,6 +25,12 @@ declare module 'styled-components' {
       smallPhone: string;
       bigPhone: string;
     };
+
+    colorScheme: {
+      // dark: string;
+      light: string;
+      dark: boolean;
+    };
   }
 }
 
@@ -51,5 +57,10 @@ export const theme: DefaultTheme = {
   media: {
     smallPhone: '(max-width:425px)',
     bigPhone: '(max-width:767px)',
+  },
+
+  colorScheme: {
+    dark: window.matchMedia('(prefers-color-scheme:dark)').matches,
+    light: '(prefers-color-scheme: light)',
   },
 };
