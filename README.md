@@ -8,4 +8,4 @@
 ##### - Redux Toolkit для работы с глобальным состоянием приложения.
 ##### - StyledComponents для стилизации React компонентов.
 
-### Бэкенд https://github.com/Tosoundra/movies-backend
+## Бэкенд https://github.com/Tosoundra/movies-backend
