@@ -55,7 +55,9 @@ export const LikeButtonStyled = styled(ButtonStyled)<ButtonProps>`
   padding: 12px 12px;
   border-radius: 50%;
   background-color: #d5d5d5;
-  background-image: url(${buttonInactive});
+  background-image: ${({ $isActive }) =>
+    $isActive ? `url(${buttonActive})` : `url(${buttonInactive})`};
+
   background-position: center;
   background-size: auto;
   background-repeat: no-repeat;

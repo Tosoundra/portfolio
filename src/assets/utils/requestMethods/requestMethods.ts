@@ -1,8 +1,15 @@
+import { showErrorTooltip } from '../../../store/reducers/infoTooltip/showTooltip';
+import { store } from '../../../store/store';
 import { serverErrorMessage } from '../errorMessage/errorMessage';
 
 type RequestType = <T>(url: string, data: unknown) => Promise<T>;
 
-export const getRequest = async (url: string) => {
+const errorHandle = (error: unknown) => {
+  if (error instanceof TypeError) store.dispatch(showErrorTooltip(serverErrorMessage));
+  if (error instanceof Error) store.dispatch(showErrorTooltip(error.message as string));
+};
+
+export const getRequest = async <T>(url: string): Promise<T | undefined> => {
   try {
     const response = await fetch(url, {
       method: 'GET',
@@ -15,11 +22,7 @@ export const getRequest = async (url: string) => {
     }
     return await response.json();
   } catch (error) {
-    if (error instanceof TypeError) {
-      throw new Error(serverErrorMessage);
-    }
-    console.log(error);
-    throw error;
+    if (error instanceof Error) throw error;
   }
 };
 
@@ -41,14 +44,11 @@ export const postRequest: RequestType = async (url, data) => {
 
     return await response.json();
   } catch (error) {
-    if (error instanceof TypeError) {
-      throw new Error(serverErrorMessage);
-    }
-    throw error;
+    errorHandle(error);
   }
 };
 
-export const deleteRequest = async (url: string) => {
+export const deleteRequest = async <T>(url: string): Promise<T | undefined> => {
   try {
     const response = await fetch(url, {
       method: 'DELETE',
@@ -62,15 +62,11 @@ export const deleteRequest = async (url: string) => {
 
     return await response.json();
   } catch (error) {
-    if (error instanceof TypeError) {
-      throw new Error(serverErrorMessage);
-    }
-    console.log(error);
-    throw error;
+    errorHandle(error);
   }
 };
 
-export const putRequest = async (url: string) => {
+export const putRequest = async <T>(url: string): Promise<T | undefined> => {
   try {
     const response = await fetch(url, {
       method: 'PUT',
@@ -84,11 +80,7 @@ export const putRequest = async (url: string) => {
 
     return await response.json();
   } catch (error) {
-    if (error instanceof TypeError) {
-      throw new Error(serverErrorMessage);
-    }
-    console.log(error);
-    throw error;
+    errorHandle(error);
   }
 };
 
@@ -110,10 +102,6 @@ export const patchRequest: RequestType = async (url, data) => {
 
     return await response.json();
   } catch (error) {
-    if (error instanceof TypeError) {
-      throw new Error(serverErrorMessage);
-    }
-    console.log(error);
-    throw error;
+    errorHandle(error);
   }
 };

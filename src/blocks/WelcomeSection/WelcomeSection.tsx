@@ -21,9 +21,6 @@ export const WelcomeSection: FC = () => {
           <TitleText $size="50px">
             Здравствуйте! <br /> Меня зовут Антон, и здесь Вы узнаете больше обо мне.
           </TitleText>
-          <TransparentText $size="13px">
-            Листайте ниже, чтобы узнать больше про этот проект и его создателя.
-          </TransparentText>
 
           <a href="#aboutMe">
             <Button title="Узнать больше">Узнать больше</Button>

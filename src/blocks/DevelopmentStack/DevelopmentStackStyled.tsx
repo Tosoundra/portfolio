@@ -21,7 +21,3 @@ export const ListOfTechnologiesStyled = styled(FlexComponent)`
     justify-content: center;
   }
 `;
-
-export const ImageTechnology = styled(ImageStyled)`
-  object-fit: contain;
-`;

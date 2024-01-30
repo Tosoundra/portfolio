@@ -20,21 +20,7 @@ export const FavoriteMovies: FC = () => {
   useEffect(() => {
     if (movies.length === 0) dispatch(getMoviesThunkAction());
     dispatch(getFavoriteMoviesAction());
-  }, []);
-
-  // if (!favoriteMovies.length) {
-  //   return (
-  //     <MoviesStyled as="main">
-  //       <Search
-  //         showShortMovie={showShortMovie}
-  //         searchingMovie={searchingMovie}
-  //         setShowShortMovie={setShowShortMovie}
-  //         setSearchingMovie={setSearchingMovie}
-  //       />
-  //       <p>empty</p>
-  //     </MoviesStyled>
-  //   );
-  // }
+  }, [dispatch, movies]);
 
   return (
     <MoviesStyled as="main">

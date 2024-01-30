@@ -1,4 +1,5 @@
 import { technologies } from '../../assets/utils/technologies/technologies';
+import { TechnologyCard } from '../../components/TechnologyCard/TechnologyCard';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
 import { DescriptionText, TitleText } from '../../styledComponents/FontComponents/FontComponents';
 import {
@@ -20,9 +21,7 @@ export const DevelopmentStack = () => {
       </FlexComponent>
       <ListOfTechnologiesStyled as="ul" $direction="row">
         {technologies.map((item, index) => (
-          <li key={index}>
-            <ImageTechnology width={90} height={60} src={item.image} alt="Technology" />
-          </li>
+          <TechnologyCard link={item.image} description={item.description} key={index} />
         ))}
       </ListOfTechnologiesStyled>
     </DevelopmentStackStyled>

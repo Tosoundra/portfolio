@@ -16,7 +16,11 @@ export const App: FC = memo(() => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    dispatch(authentication());
+    try {
+      dispatch(authentication());
+    } catch (error) {
+      console.log(error);
+    }
   }, [isLogged, dispatch]);
 
   return (

@@ -28,7 +28,7 @@ export const Header: FC = memo(() => {
   if (isLogged) {
     return (
       <HeaderStyled $isLandingPath={pathname === LANDING_URL}>
-        <NavigationMenu $direction="row">
+        <NavigationMenu as="nav" $direction="row">
           <Logo />
           <FlexComponent $direction="row" $gap="50px">
             <NavLinkStyled to="movies">Фильмы</NavLinkStyled>
@@ -46,7 +46,7 @@ export const Header: FC = memo(() => {
 
   return (
     <HeaderStyled $isLandingPath={pathname === LANDING_URL}>
-      <NavigationMenu $direction="row">
+      <NavigationMenu as="nav" $direction="row">
         <Logo />
         <FlexComponent $direction="row" $gap="50px">
           <Link to={SIGN_UP_URL}>Регистрация</Link>

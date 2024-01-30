@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { userThunkActionCreator } from './userAction';
+import { getUserThunkAction } from './getUserAction';
 
 type InitialStateType = {
   name: string;
@@ -29,11 +29,11 @@ const userSlice = createSlice({
     },
   },
   extraReducers(builder) {
-    builder.addCase(userThunkActionCreator.pending, (state) => {
+    builder.addCase(getUserThunkAction.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(
-      userThunkActionCreator.fulfilled,
+      getUserThunkAction.fulfilled,
       (state, action: PayloadAction<InitialStateType>) => {
         state.isLoading = false;
         state.name = action.payload.name;
@@ -44,7 +44,7 @@ const userSlice = createSlice({
       },
     );
     builder.addCase(
-      userThunkActionCreator.rejected,
+      getUserThunkAction.rejected,
       (state, action: PayloadAction<unknown | Error>) => {
         state.isLoading = false;
         state.error = action.payload;

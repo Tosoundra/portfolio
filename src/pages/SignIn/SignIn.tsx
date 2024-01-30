@@ -6,27 +6,19 @@ import { MOVIES_URL, SIGN_UP_URL } from '../../assets/utils/URLs/appURL';
 import { useAppDispatch } from '../../assets/hooks/storeHooks/storeHooks';
 import { setLoggedIn } from '../../store/reducers/logged/logged.slice';
 import { InfoTooltip } from '../../components/InfoTooltip/InfoTooltip';
-import { showErrorTooltip, showTooltip } from '../../store/reducers/infoTooltip/showTooltip';
-import { SERVER_SIGN_IN_URL } from '../../assets/utils/URLs/serverAPI/authAPI';
-import { postRequest } from '../../assets/utils/requestMethods/requestMethods';
+import { showTooltip } from '../../store/reducers/infoTooltip/showTooltip';
+import { authAPI } from '../../assets/utils/URLs/serverAPI/authAPI';
 
 export const SignIn: FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const loginHandle = async (email: string, password: string): Promise<void> => {
-    try {
-      const { message } = await postRequest<{ message: string }>(SERVER_SIGN_IN_URL, {
-        email,
-        password,
-      });
+    const { message } = await authAPI.login(email, password);
 
-      dispatch(showTooltip(message));
-      dispatch(setLoggedIn());
-      navigate(MOVIES_URL);
-    } catch (error) {
-      if (error instanceof Error) dispatch(showErrorTooltip(error.message as string));
-    }
+    dispatch(showTooltip(message));
+    dispatch(setLoggedIn());
+    navigate(MOVIES_URL);
   };
 
   return (

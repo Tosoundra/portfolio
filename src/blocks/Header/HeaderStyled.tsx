@@ -104,7 +104,7 @@ export const ButtonProfile = styled(NavLink)`
   }
 
   @media ${({ theme }) => theme.media.bigPhone} {
-    margin-bottom: 10%;
+    margin-bottom: 30%;
 
     font-size: 13px;
   }

@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react';
 import { LogoutButtonStyled, ProfileStyled } from './ProfileStyled';
 import { MediumFont } from '../../styledComponents/FontComponents/FontComponents';
-import { userThunkActionCreator } from '../../store/reducers/user/userAction';
+import { getUserThunkAction } from '../../store/reducers/user/getUserAction';
 import { useAppDispatch, useAppSelector } from '../../assets/hooks/storeHooks/storeHooks';
 import { showErrorTooltip } from '../../store/reducers/infoTooltip/showTooltip';
 import { useNavigate } from 'react-router-dom';
@@ -16,22 +16,12 @@ export const Profile: FC = () => {
   const { email, name, registrationDate, isLoading, error } = useAppSelector((state) => state.user);
 
   const logoutButtonOnClickHandle = async () => {
-    try {
-      await dispatch(logout());
-      navigate(LANDING_URL);
-    } catch (error) {
-      console.log(error);
-    }
+    await dispatch(logout());
+    navigate(LANDING_URL);
   };
 
   useEffect(() => {
-    try {
-      dispatch(userThunkActionCreator());
-    } catch (error) {
-      if (error instanceof Error) {
-        dispatch(showErrorTooltip(error.message));
-      }
-    }
+    dispatch(getUserThunkAction());
   }, [dispatch]);
 
   if (isLoading) {

@@ -27,7 +27,7 @@ export const HeaderMobile: FC<Props> = ({ isLogged }) => {
     return (
       <>
         <HeaderStyled $isLandingPath={pathname === LANDING_URL}>
-          <NavigationMenu $direction="row">
+          <NavigationMenu as="nav" $direction="row">
             <LogoStyled
               onClick={() => {
                 navigate(LANDING_URL);
@@ -44,7 +44,7 @@ export const HeaderMobile: FC<Props> = ({ isLogged }) => {
 
   return (
     <HeaderStyled $isLandingPath={pathname === LANDING_URL}>
-      <NavigationMenu $direction="row">
+      <NavigationMenu as="nav" $direction="row">
         <LogoStyled
           onClick={() => {
             navigate(LANDING_URL);

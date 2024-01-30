@@ -20,6 +20,7 @@ export const SectionNameText = styled.span`
 `;
 
 export const DescriptionText = styled.p<Props>`
+  font-size: ${({ $size }) => $size};
   line-height: 20px;
 `;
 

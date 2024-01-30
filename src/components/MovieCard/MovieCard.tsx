@@ -4,7 +4,8 @@ import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponen
 import { convertNumberToTime } from '../../assets/utils/convertNumberToTime/convertNumberToTime';
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../assets/hooks/storeHooks/storeHooks';
-import { dislikeMovie, likeMovie } from '../../assets/utils/likeButtonHandles/likeButtonHandles';
+import { likeMovieAction } from '../../store/reducers/favoriteMovies/likeMovieAction';
+import { dislikeMovieAction } from '../../store/reducers/favoriteMovies/dislikeMovieAction';
 
 interface MovieProps {
   movieId: number;
@@ -22,9 +23,9 @@ export const MovieCard: FC<MovieProps> = memo(({ movieId, title, url, duration, 
   const likeButtonOnClickHandle = () => {
     try {
       if (isMovieLiked) {
-        dispatch(dislikeMovie(movieId));
+        dispatch(dislikeMovieAction(movieId));
       } else {
-        dispatch(likeMovie(movieId));
+        dispatch(likeMovieAction(movieId));
       }
     } catch (error) {
       console.log(error);

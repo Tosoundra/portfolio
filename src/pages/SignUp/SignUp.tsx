@@ -5,7 +5,7 @@ import { InputElement } from '../../styledComponents/InputElement/InputElement';
 import { useNavigate } from 'react-router-dom';
 import { SIGN_IN_URL } from '../../assets/utils/URLs/appURL';
 import { InfoTooltip } from '../../components/InfoTooltip/InfoTooltip';
-import { SERVER_SIGN_UP_URL } from '../../assets/utils/URLs/serverAPI/authAPI';
+import { SERVER_SIGN_UP_URL, authAPI } from '../../assets/utils/URLs/serverAPI/authAPI';
 import { postRequest } from '../../assets/utils/requestMethods/requestMethods';
 import { showErrorTooltip, showTooltip } from '../../store/reducers/infoTooltip/showTooltip';
 import { useAppDispatch } from '../../assets/hooks/storeHooks/storeHooks';
@@ -17,23 +17,14 @@ export const SignUp: FC = () => {
   const [name, setName] = useState<string>('');
 
   const registerHandle = async (email: string, password: string): Promise<void> => {
-    try {
-      const { message } = await postRequest<{ message: string }>(SERVER_SIGN_UP_URL, {
-        name,
-        email,
-        password,
-      });
-      dispatch(showTooltip(message));
+    const { message } = await authAPI.register(name, email, password);
+    dispatch(showTooltip(message));
 
-      Promise.resolve(
-        setTimeout(() => {
-          navigate(SIGN_IN_URL);
-          console.log(123);
-        }, 3000),
-      );
-    } catch (error) {
-      if (error instanceof Error) dispatch(showErrorTooltip(error.message as string));
-    }
+    Promise.resolve(
+      setTimeout(() => {
+        navigate(SIGN_IN_URL);
+      }, 3000),
+    );
   };
 
   return (

@@ -1,17 +1,15 @@
 import { setLoggedIn, setLoggedOut } from '../../../store/reducers/logged/logged.slice';
 import { AppDispatch } from '../../../store/store';
-import { SERVER_USER_URL } from '../URLs/serverAPI/userAPI';
-import { getRequest } from '../requestMethods/requestMethods';
+import { userAPI } from '../URLs/serverAPI/userAPI';
 
 export const authentication = () => {
   return async function (dispatch: AppDispatch) {
     try {
-      await getRequest(SERVER_USER_URL);
+      await userAPI.checkToken();
 
       dispatch(setLoggedIn());
     } catch (error) {
       dispatch(setLoggedOut());
-      console.log(error);
     }
   };
 };
