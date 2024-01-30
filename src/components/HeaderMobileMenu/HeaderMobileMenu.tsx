@@ -1,6 +1,6 @@
 import { FC, SetStateAction, memo, Dispatch } from 'react';
 import { useLocation } from 'react-router-dom';
-import { LANDING_URL } from '../../assets/utils/URLs/appURL';
+import { LANDING_URL } from '../../constants/URLs/appURL';
 import { HeaderMenuButtonStyled } from './HeaderMobileMenuStyled';
 import { ImageStyled } from '../../styledComponents/ImageStyled/ImageStyled';
 import headerMobileMenu from '../../assets/images/header_menu.svg';

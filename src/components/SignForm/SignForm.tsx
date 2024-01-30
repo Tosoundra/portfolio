@@ -2,7 +2,7 @@ import { FC, ReactElement, useEffect, useRef, useState } from 'react';
 import { LinkStyled, SignFormStyled } from './SignFormStyled';
 import { ButtonStyled } from '../../styledComponents/ButtonStyled/ButtonStyled';
 import { InputElement } from '../../styledComponents/InputElement/InputElement';
-import { inputOnChangeHandle } from '../../assets/utils/inputOnChangeHandle/inputOnChangeHandle';
+import { inputOnChangeHandle } from '../../constants/inputOnChangeHandle/inputOnChangeHandle';
 import { Logo } from '../Logo/Logo';
 
 interface Props {

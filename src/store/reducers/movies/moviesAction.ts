@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { BEATFILM_MOVIES_URL } from '../../../assets/utils/URLs/beatfilmAPI/beatfilmAPI';
-import { notFound } from '../../../assets/utils/errorMessage/errorMessage';
+import { BEATFILM_MOVIES_URL } from '../../../constants/URLs/beatfilmAPI/beatfilmAPI';
+import { notFound } from '../../../constants/errorMessage/errorMessage';
 
 export const getMoviesThunkAction = createAsyncThunk('movies/getAll', async (_, thunkAPI) => {
   try {

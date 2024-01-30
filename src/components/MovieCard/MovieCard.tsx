@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { Image, LikeButtonStyled, MovieCardStyled, MovieTitleStyled } from './MovieCardStyled';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
-import { convertNumberToTime } from '../../assets/utils/convertNumberToTime/convertNumberToTime';
+import { convertNumberToTime } from '../../constants/convertNumberToTime/convertNumberToTime';
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../assets/hooks/storeHooks/storeHooks';
 import { likeMovieAction } from '../../store/reducers/favoriteMovies/likeMovieAction';

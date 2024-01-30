@@ -1,4 +1,4 @@
-import { ListOfProjects } from '../../assets/utils/ListOfProjects/ListOfProjects';
+import { ListOfProjects } from '../../constants/ListOfProjects/ListOfProjects';
 import { ListStyledComponent } from '../../styledComponents/ListStyledComponent/ListStyledComponent';
 import { Project } from '../Project/Project';
 import { TransparentText } from '../../styledComponents/FontComponents/FontComponents';

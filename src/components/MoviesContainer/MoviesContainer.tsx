@@ -1,11 +1,11 @@
 import { FC, useState, memo, useRef, useEffect } from 'react';
 import { LoadMoreMoviesButton, MoviesContainerStyled } from './MoviesContainerStyled';
 import { MovieCard } from '../MovieCard/MovieCard';
-import { renderMovies } from '../../assets/utils/renderMovies/renderMovies';
+import { renderMovies } from '../../constants/renderMovies/renderMovies';
 import { MovieSkeleton } from '../Skeleton/MovieSkeleton/MovieSkeleton';
 import { MovieType } from '../../types/MovieType';
 import { useAppDispatch, useAppSelector } from '../../assets/hooks/storeHooks/storeHooks';
-import { BEATFILM_MOVIES_API } from '../../assets/utils/URLs/beatfilmAPI/beatfilmAPI';
+import { BEATFILM_MOVIES_API } from '../../constants/URLs/beatfilmAPI/beatfilmAPI';
 import { showErrorTooltip } from '../../store/reducers/infoTooltip/showTooltip';
 
 interface MovieTypesContainer {

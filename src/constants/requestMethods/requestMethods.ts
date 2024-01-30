@@ -1,5 +1,5 @@
-import { showErrorTooltip } from '../../../store/reducers/infoTooltip/showTooltip';
-import { store } from '../../../store/store';
+import { showErrorTooltip } from '../../store/reducers/infoTooltip/showTooltip';
+import { store } from '../../store/store';
 import { serverErrorMessage } from '../errorMessage/errorMessage';
 
 type RequestType = <T>(url: string, data: unknown) => Promise<T>;

@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
 import { useAppSelector } from '../../assets/hooks/storeHooks/storeHooks';
 import { useParams } from 'react-router-dom';
-import { BEATFILM_MOVIES_API } from '../../assets/utils/URLs/beatfilmAPI/beatfilmAPI';
+import { BEATFILM_MOVIES_API } from '../../constants/URLs/beatfilmAPI/beatfilmAPI';
 import {
   LabelStyled,
   ListOfMovieInformationStyled,
@@ -12,6 +12,7 @@ import {
   MovieInfoContainer,
   MovieMainPictureStyled,
   MoviePosterStyled,
+  MovieTitleCover,
   MovieTitleStyled,
 } from './MoviePageStyled';
 import { Wrapper } from '../../styledComponents/Wrapper/Wrapper';
@@ -27,7 +28,7 @@ export const MoviePage: FC = () => {
     <Wrapper as="main">
       <MainPictureContainerStyled>
         <MovieMainPictureStyled src={`${BEATFILM_MOVIES_API}${image.url}`} alt="movie poster" />
-        <span>{nameRU}</span>
+        <MovieTitleCover $size="50px">{nameRU}</MovieTitleCover>
       </MainPictureContainerStyled>
       <MovieInfoContainer as="article" $direction="row" $gap="42px">
         <MoviePosterStyled

@@ -1,4 +1,4 @@
-import { MovieType } from '../../../types/MovieType';
+import { MovieType } from '../../types/MovieType';
 
 type RenderMoviesType = (
   movies: MovieType[],
@@ -7,7 +7,12 @@ type RenderMoviesType = (
   countOfMovie: number,
 ) => MovieType[];
 
-export const renderMovies: RenderMoviesType = (movies, showShortMovie, searchingMovie, countOfMovie) => {
+export const renderMovies: RenderMoviesType = (
+  movies,
+  showShortMovie,
+  searchingMovie,
+  countOfMovie,
+) => {
   const forRender = showShortMovie ? movies.filter((movie) => movie.duration < 40) : movies;
 
   return forRender

@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { NotFoundPages } from '../pages/NotFoundPages/NotFoundPages';
 import { SignUp } from '../pages/SignUp/SignUp';
-import { BASE_URL, SIGN_IN_URL, SIGN_UP_URL } from '../assets/utils/URLs/appURL';
+import { BASE_URL, SIGN_IN_URL, SIGN_UP_URL } from '../constants/URLs/appURL';
 import { SignIn } from '../pages/SignIn/SignIn';
 import { MoviePage } from '../pages/MoviePage/MoviePage';
 import { Profile } from '../pages/Profile/Profile';

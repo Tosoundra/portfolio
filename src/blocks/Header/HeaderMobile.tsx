@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { LANDING_URL, SIGN_IN_URL } from '../../assets/utils/URLs/appURL';
+import { LANDING_URL, SIGN_IN_URL } from '../../constants/URLs/appURL';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
 import { HeaderButtonStyled, HeaderStyled, NavLinkStyled, NavigationMenu } from './HeaderStyled';
 import { FC, useEffect, useState } from 'react';

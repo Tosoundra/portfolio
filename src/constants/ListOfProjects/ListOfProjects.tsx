@@ -1,7 +1,7 @@
-import gymn from '../../images/gmnsm_icon.svg';
-import airdrop from '../../images/logo_AirDrop.svg';
-import mesto from '../../images/mesto.svg';
-import arithmetic from '../../images/arithmetic-logo.png';
+import gymn from '../../assets/images/gmnsm_icon.svg';
+import airdrop from '../../assets/images/logo_AirDrop.svg';
+import mesto from '../../assets/images/mesto.svg';
+import arithmetic from '../../assets/images/arithmetic-logo.png';
 
 export const ListOfProjects = [
   {

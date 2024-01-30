@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction, memo } from 'react';
 import { Checkbox, Input, SearchStyled } from './SearchStyled';
-import { inputOnChangeHandle } from '../../assets/utils/inputOnChangeHandle/inputOnChangeHandle';
+import { inputOnChangeHandle } from '../../constants/inputOnChangeHandle/inputOnChangeHandle';
 
 interface Props {
   showShortMovie: boolean;

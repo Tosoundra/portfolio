@@ -1,4 +1,4 @@
-import { technologies } from '../../assets/utils/technologies/technologies';
+import { technologies } from '../../constants/technologies/technologies';
 import { TechnologyCard } from '../../components/TechnologyCard/TechnologyCard';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
 import { DescriptionText, TitleText } from '../../styledComponents/FontComponents/FontComponents';

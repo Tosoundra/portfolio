@@ -1,24 +1,24 @@
-import htmlPic from '../../images/html.png';
-import cssPic from '../../images/css.png';
-import sassPic from '../../images/sass.png';
-import stylecomp from '../../images/styled-components.svg';
-import jsPic from '../../images/js.png';
-import tsPic from '../../images/ts.png';
-import reactPic from '../../images/react.png';
-import expressPic from '../../images/express.png';
-import mongoPic from '../../images/mongo.png';
-import redux from '../../images/redux.svg';
+import htmlPic from '../../assets/images/html.png';
+import cssPic from '../../assets/images/css.png';
+import sassPic from '../../assets/images/sass.png';
+import stylecomp from '../../assets/images/styled-components.svg';
+import jsPic from '../../assets/images/js.png';
+import tsPic from '../../assets/images/ts.png';
+import reactPic from '../../assets/images/react.png';
+import expressPic from '../../assets/images/express.png';
+import mongoPic from '../../assets/images/mongo.png';
+import redux from '../../assets/images/redux.svg';
 
 export const technologies = [
   {
     name: 'HTML',
     image: htmlPic,
-    description: 'Соблюдаю принцип семантической верстки.',
+    description: 'Соблюдаю принцип семантической верстки. Уделяю внимание доступности.',
   },
   {
     name: 'CSS',
     image: cssPic,
-    description: 'Верстаю сайты с учетом кросс-браузерности, адаптивности и доступности',
+    description: 'Верстаю сайты с учетом кросс-браузерности и адаптивности.',
   },
   {
     name: 'SASS',
@@ -33,7 +33,7 @@ export const technologies = [
   {
     name: 'JS',
     image: jsPic,
-    description: 'Активно использую ФП, ООП в своих проектах.',
+    description: 'Разработал проект по генерации математических задач.',
   },
   {
     name: 'TS',

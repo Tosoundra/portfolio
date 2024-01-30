@@ -5,7 +5,7 @@ import { MoviesStyled } from '../Movies/MoviesStyled';
 import { useAppDispatch, useAppSelector } from '../../assets/hooks/storeHooks/storeHooks';
 import { getMoviesThunkAction } from '../../store/reducers/movies/moviesAction';
 import { getFavoriteMoviesAction } from '../../store/reducers/favoriteMovies/getFavoriteMoviesAction';
-import { filterFavoriteMovies } from '../../assets/utils/filterFavoriteMovies/filterFavoriteMovies';
+import { filterFavoriteMovies } from '../../constants/filterFavoriteMovies/filterFavoriteMovies';
 
 export const FavoriteMovies: FC = () => {
   const { movies } = useAppSelector((state) => state.movies);

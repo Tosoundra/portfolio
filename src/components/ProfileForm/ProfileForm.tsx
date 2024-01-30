@@ -7,8 +7,8 @@ import {
 } from './ProfileFormStyled';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
 import { MediumFont } from '../../styledComponents/FontComponents/FontComponents';
-import { inputOnChangeHandle } from '../../assets/utils/inputOnChangeHandle/inputOnChangeHandle';
-import { updateUserData } from '../../assets/utils/userRequests/updateUserData/updateUserData';
+import { inputOnChangeHandle } from '../../constants/inputOnChangeHandle/inputOnChangeHandle';
+import { updateUserData } from '../../constants/updateUserData/updateUserData';
 import { useAppDispatch } from '../../assets/hooks/storeHooks/storeHooks';
 import { showErrorTooltip } from '../../store/reducers/infoTooltip/showTooltip';
 

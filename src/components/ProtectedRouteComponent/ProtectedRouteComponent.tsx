@@ -1,7 +1,7 @@
 import { FC, ReactElement, useEffect } from 'react';
 import { useAppSelector } from '../../assets/hooks/storeHooks/storeHooks';
 import { useNavigate } from 'react-router-dom';
-import { SIGN_IN_URL } from '../../assets/utils/URLs/appURL';
+import { SIGN_IN_URL } from '../../constants/URLs/appURL';
 
 interface IProtectedRouteComponent {
   children: ReactElement;

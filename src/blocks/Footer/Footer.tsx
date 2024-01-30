@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
 import { FooterStyled } from './FooterStyled';
-import { listOfMedia } from '../../assets/utils/listOfMedia/listOfMedia';
+import { listOfMedia } from '../../constants/listOfMedia/listOfMedia';
 import { FC, memo } from 'react';
 
 const date = new Date().getFullYear();

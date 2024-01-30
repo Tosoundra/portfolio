@@ -5,8 +5,8 @@ import { getUserThunkAction } from '../../store/reducers/user/getUserAction';
 import { useAppDispatch, useAppSelector } from '../../assets/hooks/storeHooks/storeHooks';
 import { showErrorTooltip } from '../../store/reducers/infoTooltip/showTooltip';
 import { useNavigate } from 'react-router-dom';
-import { LANDING_URL } from '../../assets/utils/URLs/appURL';
-import { logout } from '../../assets/utils/authRequests/logout';
+import { LANDING_URL } from '../../constants/URLs/appURL';
+import { logout } from '../../constants/authRequests/logout';
 import { ProfileSkeleton } from '../../components/Skeleton/ProfileSkeleton/ProfileSkeleton';
 import { ProfileForm } from '../../components/ProfileForm/ProfileForm';
 

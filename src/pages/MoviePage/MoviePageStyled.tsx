@@ -19,23 +19,23 @@ export const MovieTitleStyled = styled(MediumFont)`
   }
 `;
 
+export const MovieTitleCover = styled(MediumFont)`
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
+  z-index: 2;
+  font-weight: 500;
+  line-height: 55px;
+  color: #fff;
+  @media ${({ theme }) => theme.media.bigPhone} {
+    display: none;
+  }
+`;
+
 export const MainPictureContainerStyled = styled.div`
   width: 100%;
   position: relative;
 
-  span {
-    position: absolute;
-    left: 50px;
-    bottom: 50px;
-    z-index: 2;
-    font-family: 'Inter Medium';
-    font-size: 50px;
-    line-height: 55px;
-    color: #fff;
-    @media ${({ theme }) => theme.media.bigPhone} {
-      display: none;
-    }
-  }
   &::before {
     display: block;
     content: '';

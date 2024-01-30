@@ -9,7 +9,7 @@ import {
   NavLinkStyled,
   NavigationMenu,
 } from './HeaderStyled';
-import { LANDING_URL, SIGN_IN_URL, SIGN_UP_URL } from '../../assets/utils/URLs/appURL';
+import { LANDING_URL, SIGN_IN_URL, SIGN_UP_URL } from '../../constants/URLs/appURL';
 import { useAppSelector } from '../../assets/hooks/storeHooks/storeHooks';
 import { useCalculateDimensions } from '../../assets/hooks/useCalculateDimensions/useCalculateDimensions';
 import { HeaderMobile } from './HeaderMobile';

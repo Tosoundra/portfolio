@@ -1,7 +1,7 @@
-import github from '../../images/github-mark.svg';
-import telegram from '../../images/telegram.svg';
-import whatsup from '../../images/whatsup.svg';
-import inst from '../../images/inst-compress.png'
+import github from '../../assets/images/github-mark.svg';
+import telegram from '../../assets/images/telegram.svg';
+import whatsup from '../../assets/images/whatsup.svg';
+import inst from '../../assets/images/inst-compress.png';
 
 export const listOfMedia = [
   { image: github, link: 'https://github.com/Tosoundra' },

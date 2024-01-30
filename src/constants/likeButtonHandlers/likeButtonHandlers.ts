@@ -1,8 +1,8 @@
 import {
   addFavoriteMovie,
   removeFavoriteMovie,
-} from '../../../store/reducers/favoriteMovies/favoriteMovies.slice';
-import { AppDispatch } from '../../../store/store';
+} from '../../store/reducers/favoriteMovies/favoriteMovies.slice';
+import { AppDispatch } from '../../store/store';
 import { userAPI } from '../URLs/serverAPI/userAPI';
 import { deleteRequest, putRequest } from '../requestMethods/requestMethods';
 

@@ -3,13 +3,13 @@ import { SignForm } from '../../components/SignForm/SignForm';
 import { SignContainer } from '../../styledComponents/SignContainer/SignContainer';
 import { InputElement } from '../../styledComponents/InputElement/InputElement';
 import { useNavigate } from 'react-router-dom';
-import { SIGN_IN_URL } from '../../assets/utils/URLs/appURL';
+import { SIGN_IN_URL } from '../../constants/URLs/appURL';
 import { InfoTooltip } from '../../components/InfoTooltip/InfoTooltip';
-import { SERVER_SIGN_UP_URL, authAPI } from '../../assets/utils/URLs/serverAPI/authAPI';
-import { postRequest } from '../../assets/utils/requestMethods/requestMethods';
+import { SERVER_SIGN_UP_URL, authAPI } from '../../constants/URLs/serverAPI/authAPI';
+import { postRequest } from '../../constants/requestMethods/requestMethods';
 import { showErrorTooltip, showTooltip } from '../../store/reducers/infoTooltip/showTooltip';
 import { useAppDispatch } from '../../assets/hooks/storeHooks/storeHooks';
-import { inputOnChangeHandle } from '../../assets/utils/inputOnChangeHandle/inputOnChangeHandle';
+import { inputOnChangeHandle } from '../../constants/inputOnChangeHandle/inputOnChangeHandle';
 
 export const SignUp: FC = () => {
   const dispatch = useAppDispatch();
