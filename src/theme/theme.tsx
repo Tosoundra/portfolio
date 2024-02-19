@@ -39,7 +39,7 @@ export const theme: DefaultTheme = {
     mainColor: '#2be080',
     additionColor: '#3456f3',
     welcomeSectionColor: '#073042',
-    blackTheme: '#202020',
+    blackTheme: '#000',
     utilitiesColor: '#e8e8e8',
     errorColor: '#b91414',
   },
@@ -51,7 +51,7 @@ export const theme: DefaultTheme = {
   },
 
   hoverEffect: {
-    transition: 'all 0.5s cubic-bezier(0.51, -0.01, 0.32, 1)',
+    transition: '0.3s cubic-bezier(0.51, -0.01, 0.32, 1)',
   },
 
   media: {

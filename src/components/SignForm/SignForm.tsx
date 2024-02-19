@@ -41,13 +41,7 @@ export const SignForm: FC<Props> = ({
   }, [email, password, children]);
 
   return (
-    <SignFormStyled
-      as="form"
-      id="authForm"
-      ref={formRef}
-      onSubmit={submitClickHandle}
-      $direction="column"
-      $gap="40px">
+    <SignFormStyled as="form" id="authForm" ref={formRef} onSubmit={submitClickHandle}>
       <Logo />
       <legend>{formTitle}</legend>
       {children}

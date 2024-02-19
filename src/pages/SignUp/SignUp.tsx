@@ -3,12 +3,12 @@ import { SignForm } from '../../components/SignForm/SignForm';
 import { SignContainer } from '../../styledComponents/SignContainer/SignContainer';
 import { InputElement } from '../../styledComponents/InputElement/InputElement';
 import { useNavigate } from 'react-router-dom';
-import { SIGN_IN_URL } from '../../constants/URLs/appURL';
+import { SIGN_IN_URL } from '../../constants/API/appURL';
 import { InfoTooltip } from '../../components/InfoTooltip/InfoTooltip';
-import { SERVER_SIGN_UP_URL, authAPI } from '../../constants/URLs/serverAPI/authAPI';
-import { postRequest } from '../../constants/requestMethods/requestMethods';
-import { showErrorTooltip, showTooltip } from '../../store/reducers/infoTooltip/showTooltip';
-import { useAppDispatch } from '../../assets/hooks/storeHooks/storeHooks';
+import { authAPI } from '../../constants/API/serverAPI/authAPI';
+import {} from '../../constants/requestMethods/requestMethods';
+import { showTooltip } from '../../store/reducers/infoTooltip/showTooltip';
+import { useAppDispatch } from '../../hooks/storeHooks/storeHooks';
 import { inputOnChangeHandle } from '../../constants/inputOnChangeHandle/inputOnChangeHandle';
 
 export const SignUp: FC = () => {
@@ -28,7 +28,7 @@ export const SignUp: FC = () => {
   };
 
   return (
-    <SignContainer as="main" $direction="row">
+    <SignContainer as="main">
       <SignForm
         formTitle="Добро пожаловать!"
         submitTitle="Зарегистрироваться"

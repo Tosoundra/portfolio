@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const InputElement = styled.input`
+  color: white;
+  
   display: block;
   width: 100%;
   margin-top: 5px;

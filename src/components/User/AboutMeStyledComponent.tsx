@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
 import { ImageStyled } from '../../styledComponents/ImageStyled/ImageStyled';
-import { MediumFont } from '../../styledComponents/FontComponents/FontComponents';
+import {
+  DescriptionText,
+  MediumFont,
+  TitleText,
+} from '../../styledComponents/FontComponents/FontComponents';
 
 export const AboutMeStyled = styled(FlexComponent)`
   padding-top: 66px;
@@ -18,6 +22,8 @@ export const AboutMeStyled = styled(FlexComponent)`
 
 export const AboutMeDescriptionContainer = styled(FlexComponent)`
   width: 70%;
+  flex-direction: column;
+
   @media ${({ theme }) => theme.media.bigPhone} {
     width: unset;
     gap: 20px;
@@ -25,7 +31,12 @@ export const AboutMeDescriptionContainer = styled(FlexComponent)`
   }
 `;
 
-export const OccupationTextStyle = styled(MediumFont)`
+export const UserNameText = styled(TitleText)`
+  font-size: 50px;
+`;
+
+export const OccupationText = styled(MediumFont)`
+  font-size: 18px;
   line-height: 20px;
 `;
 
@@ -36,4 +47,8 @@ export const PhotoStyled = styled(ImageStyled)`
     width: 100%;
     height: unset;
   }
+`;
+
+export const AboutText = styled(DescriptionText)`
+  font-size: 14px;
 `;

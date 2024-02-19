@@ -1,28 +1,43 @@
 import styled, { css } from 'styled-components';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
 import { ImageStyled } from '../../styledComponents/ImageStyled/ImageStyled';
-import buttonInactive from '../../assets/images/button-like_inactive.png';
-import buttonActive from '../../assets/images/button-like_active.png';
-import { ButtonStyled } from '../../styledComponents/ButtonStyled/ButtonStyled';
 import { MediumFont } from '../../styledComponents/FontComponents/FontComponents';
 
-interface ButtonProps {
-  $isActive: boolean;
-}
+export const MovieCardStyled = styled(FlexComponent)<{ $isSelected: boolean }>`
+  position: relative;
+  z-index: 0;
 
-export const MovieCardStyled = styled(FlexComponent)`
-  overflow: hidden;
+  border: transparent 1px solid;
+  border-color: ${({ $isSelected }) => $isSelected && '#fff'};
+  flex-direction: column;
 
-  div {
-    margin-top: 14px;
-    margin-bottom: 6px;
-    padding-bottom: 29px;
-    border-bottom: 1px solid ${({ theme }) => theme.colors.utilitiesColor};
+  transition: box-shadow ${({ theme }) => theme.hoverEffect.transition},
+    z-index ${({ theme }) => theme.hoverEffect.transition},
+    transform ${({ theme }) => theme.hoverEffect.transition};
+
+  ${({ $isSelected }) =>
+    $isSelected &&
+    css`
+      &:after {
+        content: ' ';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border: transparent 7px solid;
+        border-top-color: ${({ theme }) => theme.colors.utilitiesColor};
+      }
+    `}
+
+  &:hover {
+    box-shadow: ${({ theme }) => theme.colors.blackTheme} 0 0 20px 20px;
+    z-index: 1;
+    transform: scale(105%);
   }
+`;
 
-  & > span {
-    color: #a0a0a0;
-  }
+export const MovieTitleContainerStyled = styled(FlexComponent)`
+  margin-top: 14px;
 `;
 
 export const MovieTitleStyled = styled(MediumFont)`
@@ -32,39 +47,13 @@ export const MovieTitleStyled = styled(MediumFont)`
   }
 `;
 
-export const Image = styled(ImageStyled)`
-  transition: ${({ theme }) => theme.hoverEffect.transition};
-
+export const Image = styled(ImageStyled)<{ $isAllMoviesPage: boolean }>`
+  width: calc((100vw - 70px * 2 - 8px * 4) / 4);
+  object-fit: cover;
   cursor: pointer;
-  &:hover {
-    transform: scale(110%);
-  }
 
   @media ${({ theme }) => theme.media.bigPhone} {
-    width: 100%;
-    height: unset;
-  }
-
-  @media ${({ theme }) => theme.media.smallPhone} {
     width: 300px;
     height: 168px;
   }
-`;
-
-export const LikeButtonStyled = styled(ButtonStyled)<ButtonProps>`
-  padding: 12px 12px;
-  border-radius: 50%;
-  background-color: #d5d5d5;
-  background-image: ${({ $isActive }) =>
-    $isActive ? `url(${buttonActive})` : `url(${buttonInactive})`};
-
-  background-position: center;
-  background-size: auto;
-  background-repeat: no-repeat;
-
-  ${({ $isActive }) =>
-    $isActive &&
-    css`
-      background-image: url(${buttonActive});
-    `}
 `;

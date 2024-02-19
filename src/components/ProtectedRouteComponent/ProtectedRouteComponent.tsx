@@ -1,7 +1,7 @@
 import { FC, ReactElement, useEffect } from 'react';
-import { useAppSelector } from '../../assets/hooks/storeHooks/storeHooks';
 import { useNavigate } from 'react-router-dom';
-import { SIGN_IN_URL } from '../../constants/URLs/appURL';
+import { LANDING_URL } from '../../constants/API/appURL';
+import { useAppSelector } from '../../hooks/storeHooks/storeHooks';
 
 interface IProtectedRouteComponent {
   children: ReactElement;
@@ -12,7 +12,7 @@ export const ProtectedRouteComponent: FC<IProtectedRouteComponent> = ({ children
   const navigate = useNavigate();
 
   useEffect(() => {
-    !isLogged && navigate(SIGN_IN_URL);
+    !isLogged && navigate(LANDING_URL);
   });
 
   return <>{children}</>;

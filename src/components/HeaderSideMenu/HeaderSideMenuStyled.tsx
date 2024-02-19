@@ -10,6 +10,7 @@ export const HeaderSideMenuStyled = styled(FlexComponent)<Props>`
 
   width: 100%;
   height: 100vh;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
@@ -18,10 +19,9 @@ export const HeaderSideMenuStyled = styled(FlexComponent)<Props>`
   right: 0;
   z-index: 1;
   transform: translateX(100%);
-  background-color: #fff;
-  color: #000;
+  background-color: ${({ theme }) => theme.colors.blackTheme};
 
-  transition: ${({ theme }) => theme.hoverEffect.transition};
+  transition: transform ${({ theme }) => theme.hoverEffect.transition};
 
   ${({ $isActive }) =>
     $isActive &&
@@ -34,7 +34,9 @@ export const HeaderSideMenuStyled = styled(FlexComponent)<Props>`
 export const SideMenuContainerStyled = styled(FlexComponent)`
   position: relative;
   top: 30%;
+  flex-direction: column;
   align-items: center;
+  gap: 24px;
   margin-bottom: auto;
 `;
 

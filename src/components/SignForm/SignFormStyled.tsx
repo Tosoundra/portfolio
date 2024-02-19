@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 export const SignFormStyled = styled(FlexComponent)`
   max-width: 396px;
   width: 100%;
-
+  flex-direction: column;
+  gap: 40px;
+  
   @media ${({ theme }) => theme.media.bigPhone} {
     align-items: center;
     padding-inline: 14px;

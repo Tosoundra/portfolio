@@ -18,11 +18,16 @@ export const getRequest = async <T>(url: string): Promise<T | undefined> => {
 
     if (!response.ok) {
       const { error } = await response.json();
+
+      if (error) {
+        throw new Error();
+      }
       throw new Error(error);
     }
     return await response.json();
   } catch (error) {
-    if (error instanceof Error) throw error;
+    errorHandle(error);
+    throw error;
   }
 };
 

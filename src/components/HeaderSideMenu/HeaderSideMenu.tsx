@@ -5,7 +5,7 @@ import {
   SideMenuContainerStyled,
 } from './HeaderSideMenuStyled';
 import { ButtonProfile, SideMenuNavLink } from '../../blocks/Header/HeaderStyled';
-import { FAVORITE_MOVIES_URL, LANDING_URL, MOVIES_URL } from '../../constants/URLs/appURL';
+import { FAVORITE_MOVIES_URL, LANDING_URL, MOVIES_URL } from '../../constants/API/appURL';
 import iconProfile from '../../assets/images/icon_profile_btn.svg';
 import { ImageStyled } from '../../styledComponents/ImageStyled/ImageStyled';
 import closeButton from '../../assets/images/menu_close-button.svg';
@@ -16,11 +16,11 @@ interface Props {
 
 export const HeaderSideMenu: FC<Props> = ({ isActive, setIsActive }) => {
   return (
-    <HeaderSideMenuStyled as="aside" $direction="column" $isActive={isActive}>
+    <HeaderSideMenuStyled as="aside" $isActive={isActive}>
       <HeaderSideMenuButtonCloseStyled onClick={() => setIsActive(false)}>
         <ImageStyled src={closeButton} width={22} height={22} />
       </HeaderSideMenuButtonCloseStyled>
-      <SideMenuContainerStyled $direction="column" $gap="24px">
+      <SideMenuContainerStyled>
         <SideMenuNavLink to={LANDING_URL} onClick={() => setIsActive(false)}>
           Главная
         </SideMenuNavLink>

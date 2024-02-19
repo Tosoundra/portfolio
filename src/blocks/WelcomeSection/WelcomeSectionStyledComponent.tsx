@@ -18,11 +18,10 @@ export const WrapperWithColor = styled.section`
 `;
 
 export const WrapperWithImage = styled(FlexComponent)`
-  max-width: ${({ theme }) => theme.wrapperProperties.maxWidth};
   padding: ${({ theme }) => theme.wrapperProperties.padding};
-  margin: ${({ theme }) => theme.wrapperProperties.margin};
-
+  flex-direction: column;
   height: 100%;
+
   background-image: url(${background});
   background-size: auto;
   background-position: calc(100% - 70px) center;
@@ -38,6 +37,8 @@ export const WrapperWithImage = styled(FlexComponent)`
 
 export const GreetingsContainer = styled(FlexComponent)`
   margin-block: auto;
+  flex-direction: column;
+  gap: 36px;
 
   @media ${({ theme }) => theme.media.bigPhone} {
     margin-top: 44px;

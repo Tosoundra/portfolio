@@ -1,17 +1,36 @@
+import React, { FC, SetStateAction, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { LANDING_URL, SIGN_IN_URL } from '../../constants/URLs/appURL';
-import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
-import { HeaderButtonStyled, HeaderStyled, NavLinkStyled, NavigationMenu } from './HeaderStyled';
-import { FC, useEffect, useState } from 'react';
-import { HeaderSideMenu } from '../../components/HeaderSideMenu/HeaderSideMenu';
-import { LogoStyled } from '../../components/Logo/LogoStyled';
 import { HeaderMobileMenu } from '../../components/HeaderMobileMenu/HeaderMobileMenu';
+import { HeaderSideMenu } from '../../components/HeaderSideMenu/HeaderSideMenu';
+import { Logo } from '../../components/Logo/Logo';
+import { LogoStyled } from '../../components/Logo/LogoStyled';
+import { SearchMovieDropdownMenu } from '../../components/SearchMovieDropdownMenu/SearchMovieDropdownMenu';
+import { LANDING_URL, SIGN_IN_URL } from '../../constants/API/appURL';
+import { MovieType } from '../../types/MovieType';
+import {
+  HeaderButtonStyled,
+  HeaderNavigationButtonsContainerStyled,
+  HeaderStyled,
+  NavLinkStyled,
+  NavigationMenu,
+  SearchButton,
+} from './HeaderStyled';
 
 interface Props {
+  movies: MovieType[];
+  isSearchInputActive: boolean;
+  setIsSearchInputActive: React.Dispatch<SetStateAction<boolean>>;
   isLogged: boolean;
+  isHidden: boolean;
 }
 
-export const HeaderMobile: FC<Props> = ({ isLogged }) => {
+export const HeaderMobile: FC<Props> = ({
+  isLogged,
+  isHidden,
+  isSearchInputActive,
+  movies,
+  setIsSearchInputActive,
+}) => {
   const [isActive, setIsActive] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -23,14 +42,35 @@ export const HeaderMobile: FC<Props> = ({ isLogged }) => {
     };
   }, [isActive]);
 
+  if (isSearchInputActive) {
+    return (
+      <>
+        <HeaderStyled $isLandingPath={pathname === LANDING_URL} $isHidden={isHidden}>
+          <NavigationMenu as="nav">
+            <Logo />
+            <SearchMovieDropdownMenu
+              movies={movies}
+              isSearchInputActive={isSearchInputActive}
+              setIsSearchInputActive={setIsSearchInputActive}
+            />
+            <HeaderMobileMenu setIsActive={setIsActive} />
+          </NavigationMenu>
+        </HeaderStyled>
+        <HeaderSideMenu isActive={isActive} setIsActive={setIsActive} />
+      </>
+    );
+  }
+
   if (isLogged) {
     return (
       <>
-        <HeaderStyled $isLandingPath={pathname === LANDING_URL}>
-          <NavigationMenu as="nav" $direction="row">
-            <LogoStyled
-              onClick={() => {
-                navigate(LANDING_URL);
+        <HeaderStyled $isLandingPath={pathname === LANDING_URL} $isHidden={isHidden}>
+          <NavigationMenu as="nav">
+            <Logo />
+            <SearchButton
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsSearchInputActive(true);
               }}
               type="button"
             />
@@ -43,15 +83,15 @@ export const HeaderMobile: FC<Props> = ({ isLogged }) => {
   }
 
   return (
-    <HeaderStyled $isLandingPath={pathname === LANDING_URL}>
-      <NavigationMenu as="nav" $direction="row">
+    <HeaderStyled $isLandingPath={pathname === LANDING_URL} $isHidden={isHidden}>
+      <NavigationMenu as="nav">
         <LogoStyled
           onClick={() => {
             navigate(LANDING_URL);
           }}
           type="button"
         />
-        <FlexComponent $direction="row" $gap="14px">
+        <HeaderNavigationButtonsContainerStyled>
           <NavLinkStyled to="sign-up">Регистрация</NavLinkStyled>
           <HeaderButtonStyled
             onClick={() => {
@@ -59,7 +99,7 @@ export const HeaderMobile: FC<Props> = ({ isLogged }) => {
             }}>
             Войти
           </HeaderButtonStyled>
-        </FlexComponent>
+        </HeaderNavigationButtonsContainerStyled>
       </NavigationMenu>
     </HeaderStyled>
   );

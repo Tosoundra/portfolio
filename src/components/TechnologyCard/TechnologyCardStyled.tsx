@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { ImageStyled } from '../../styledComponents/ImageStyled/ImageStyled';
 
-export const TechnologyCardStyled = styled.li`
+export const TechnologyCardStyled = styled.div`
   position: relative;
 
-  transition: ${({ theme }) => theme.hoverEffect.transition};
+  transition: transform ${({ theme }) => theme.hoverEffect.transition};
 
   &:hover {
     transform: translateY(10%);
@@ -23,11 +23,13 @@ export const TechnologyDescriptionContainer = styled.div`
   transform: translate(50%, -25%);
 
   opacity: 0;
-  transition: ${({ theme }) => theme.hoverEffect.transition};
+  transition: opacity ${({ theme }) => theme.hoverEffect.transition},
+    transform ${({ theme }) => theme.hoverEffect.transition};
 
   background-color: ${({ theme }) => theme.colors.utilitiesColor};
 
-  color: ${({ theme }) => (theme.colorScheme.dark ? '#000' : '#fff')};
+  color: ${({ theme }) => theme.colors.blackTheme};
+  font-size: 13px;
 
   &:after {
     content: ' ';
@@ -40,12 +42,17 @@ export const TechnologyDescriptionContainer = styled.div`
     border-color: transparent;
     border-top-color: ${({ theme }) => theme.colors.utilitiesColor};
   }
+
+  @media ${({ theme }) => theme.media.bigPhone} {
+    bottom: 70px;
+    width: 100px;
+    font-size: 10px;
+  }
 `;
 
 export const ImageTechnology = styled(ImageStyled)`
   object-fit: contain;
   cursor: pointer;
-  transition: ${({ theme }) => theme.hoverEffect.transition};
 
   &:hover + div {
     visibility: visible;

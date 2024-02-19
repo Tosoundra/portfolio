@@ -1,96 +1,168 @@
-import { FC, useState, memo, useRef, useEffect } from 'react';
-import { LoadMoreMoviesButton, MoviesContainerStyled } from './MoviesContainerStyled';
-import { MovieCard } from '../MovieCard/MovieCard';
-import { renderMovies } from '../../constants/renderMovies/renderMovies';
-import { MovieSkeleton } from '../Skeleton/MovieSkeleton/MovieSkeleton';
-import { MovieType } from '../../types/MovieType';
-import { useAppDispatch, useAppSelector } from '../../assets/hooks/storeHooks/storeHooks';
-import { BEATFILM_MOVIES_API } from '../../constants/URLs/beatfilmAPI/beatfilmAPI';
+import { FC, Suspense, lazy, memo, useEffect, useState } from 'react';
+import { Link, Outlet } from 'react-router-dom';
+import loadMoreMovieArrowIcon from '../../assets/images/right-arrow_load-more-movie-section.svg';
+import { ALL_MOVIES_URL } from '../../constants/API/appURL';
+import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks/storeHooks';
 import { showErrorTooltip } from '../../store/reducers/infoTooltip/showTooltip';
+import { setMovies } from '../../store/reducers/selectedCategoryOfMovies/selectedCategoryOfMovies.slice';
+import { ImageStyled } from '../../styledComponents/ImageStyled/ImageStyled';
+import { MovieType } from '../../types/MovieType';
+import arrowIcon from '.././../assets/images/right-arrow.svg';
+import { ListOfMovies } from '../ListOfMovies/ListOfMovies';
+import {
+  ArrowIconStyled,
+  ButtonContainerStyled,
+  CarouselOfMoviesStyled,
+  ContainerWithCarouselStyled,
+  GoToMoreMoviesButtonStyled,
+  ItemOfCarouselStyled,
+  LoadMoreMovieTextStyled,
+  TitleOfCarouselStyled,
+} from '../ListOfMovies/ListOfMoviesStyled';
 
-interface MovieTypesContainer {
+import { MovieSkeleton } from '../Skeleton/MovieSkeleton/MovieSkeleton';
+import { MoviesContainerStyled } from './MoviesContainerStyled';
+
+const MovieCardLazy = lazy(() => import('../MovieCard/MovieCard'));
+
+interface Props {
   movies: MovieType[];
-  showShortMovie: boolean;
-  searchingMovie: string;
 }
 
-export const MoviesContainer: FC<MovieTypesContainer> = memo(
-  ({ movies, showShortMovie, searchingMovie }) => {
-    const dispatch = useAppDispatch();
+interface MoviesCategory {
+  title: string;
+  movies: MovieType[];
+}
 
-    const containerWithMoviesRef = useRef<HTMLUListElement>(null);
-    const [countOfMovieInContainer, setCountOfMovieInContainer] = useState(16);
-    const [countOfMovie, setCountOfMovie] = useState<number>(16);
+type ListsOfMoviesCategories = [MoviesCategory, MoviesCategory, MoviesCategory];
 
-    const { error, isLoading } = useAppSelector((state) => state.movies);
-    const { favoriteMovies } = useAppSelector((state) => state.favoriteMovies);
+const moviesCategories: ListsOfMoviesCategories = [
+  { title: 'Отечественное кино', movies: [] },
+  { title: 'Зарубежное кино', movies: [] },
+  { title: 'Короткометражное кино', movies: [] },
+];
+const maxNumberOfMoviesInContainer = 6;
+export const MoviesContainer: FC<Props> = memo(({ movies }) => {
+  const dispatch = useAppDispatch();
 
-    useEffect(() => {
-      if (typeof containerWithMoviesRef.current?.childElementCount === 'number')
-        setCountOfMovieInContainer(containerWithMoviesRef.current?.childElementCount);
-    }, [countOfMovie, searchingMovie, showShortMovie, movies]);
+  const [filteredListsOfMovies, setFilteredListsOfMovies] = useState(moviesCategories);
 
-    if (isLoading) {
-      return (
-        <MoviesContainerStyled>
-          {Array(4)
-            .fill(null)
-            .map((_, index) => (
-              <MovieSkeleton key={index} />
-            ))}
-        </MoviesContainerStyled>
-      );
-    }
+  const { error, isLoading } = useAppSelector((state) => state.movies);
 
-    if (error) {
-      dispatch(showErrorTooltip(error as string));
+  const [currentMovieDetailsContainerId, setCurrentMovieDetailsContainerId] = useState(0);
 
-      return (
-        <>
-          <p>Ничего не найдено</p>
-        </>
-      );
-    }
+  useEffect(() => {
+    const allRussianMovies = movies.filter((movie) => movie.country === 'Россия');
+    const allForeignMovies = movies.filter((movie) => movie.country !== 'Россия');
+    const allShortMovies = movies.filter((movie) => movie.duration < 40);
 
-    if (!movies.length) {
-      return (
-        <>
-          <p>Вам ничего не нравится...</p>
-        </>
-      );
-    }
+    const filteredMoviesByCategories: ListsOfMoviesCategories = [
+      { title: 'Отечественное кино', movies: [...moviesCategories[0].movies, ...allRussianMovies] },
+      { title: 'Зарубежное кино', movies: [...moviesCategories[1].movies, ...allForeignMovies] },
+      {
+        title: 'Короткометражное кино',
+        movies: [...moviesCategories[2].movies, ...allShortMovies],
+      },
+    ];
+
+    setFilteredListsOfMovies(filteredMoviesByCategories);
+  }, [movies]);
+
+  if (isLoading) {
+    return (
+      <MoviesContainerStyled>
+        {Array(4)
+          .fill(null)
+          .map((_, index) => (
+            <MovieSkeleton key={index} />
+          ))}
+      </MoviesContainerStyled>
+    );
+  }
+
+  if (error) {
+    dispatch(showErrorTooltip(error as string));
 
     return (
       <>
-        {!countOfMovieInContainer && (
-          <p>Ничего не найдено. Возможно вы ввели с ошибкой или такого фильма не существует.</p>
-        )}
-
-        <MoviesContainerStyled ref={containerWithMoviesRef}>
-          {renderMovies(movies, showShortMovie, searchingMovie, countOfMovie).map(
-            (movie, index) => (
-              <MovieCard
-                movieId={movie.id}
-                title={movie.nameRU}
-                url={`${BEATFILM_MOVIES_API}${movie.image.url}`}
-                duration={movie.duration}
-                isMovieLiked={favoriteMovies.includes(movie.id)}
-                key={index}
-              />
-            ),
-          )}
-        </MoviesContainerStyled>
-
-        {countOfMovieInContainer === countOfMovie && (
-          <LoadMoreMoviesButton
-            onClick={() => {
-              setCountOfMovie((prevState) => prevState + 16);
-            }}
-            type="button">
-            Еще
-          </LoadMoreMoviesButton>
-        )}
+        <p>Ничего не найдено</p>
       </>
     );
-  },
-);
+  }
+
+  return (
+    <>
+      {filteredListsOfMovies.map((categoryOfMovies, indexOfCategory) => {
+        if (categoryOfMovies.movies.length) {
+          return (
+            <ContainerWithCarouselStyled
+              key={indexOfCategory}
+              id={`listOfMovies${indexOfCategory}`}>
+              <Link
+                to={ALL_MOVIES_URL}
+                onClick={() => {
+                  dispatch(setMovies(categoryOfMovies.movies));
+                }}>
+                <TitleOfCarouselStyled>{categoryOfMovies.title}</TitleOfCarouselStyled>
+                <ArrowIconStyled src={arrowIcon} width={15} height={15} alt="button icon" />
+              </Link>
+              <CarouselOfMoviesStyled as="ul">
+                <ListOfMovies
+                  currentMovieDetailsContainerId={currentMovieDetailsContainerId}
+                  setCurrentMovieDetailsContainerId={setCurrentMovieDetailsContainerId}
+                  containerId={indexOfCategory}
+                  movies={categoryOfMovies.movies.slice(0, maxNumberOfMoviesInContainer)}
+                  renderItem={(movie, index, setIsOpen) => (
+                    // <ItemOfCarouselStyled key={index}>
+                    //   <MovieCard
+                    //     movie={movie}
+                    //     containerId={indexOfCategory}
+                    //     currentMovieDetailsContainerId={indexOfCategory}
+                    //     setCurrentMovieDetailsContainerId={setCurrentMovieDetailsContainerId}
+                    //     setIsOpen={setIsOpen}
+                    //   />
+                    // </ItemOfCarouselStyled>
+                    <Suspense key={index} fallback={<MovieSkeleton />}>
+                      <ItemOfCarouselStyled>
+                        <MovieCardLazy
+                          movie={movie}
+                          containerId={indexOfCategory}
+                          currentMovieDetailsContainerId={indexOfCategory}
+                          setCurrentMovieDetailsContainerId={setCurrentMovieDetailsContainerId}
+                          setIsOpen={setIsOpen}
+                        />
+                      </ItemOfCarouselStyled>
+                    </Suspense>
+                  )}
+                />
+
+                {categoryOfMovies.movies.length > maxNumberOfMoviesInContainer && (
+                  <ItemOfCarouselStyled>
+                    <Link to={ALL_MOVIES_URL}>
+                      <ButtonContainerStyled
+                        onClick={() => {
+                          dispatch(setMovies(categoryOfMovies.movies));
+                          console.log(123);
+                        }}>
+                        <GoToMoreMoviesButtonStyled type="button">
+                          <ImageStyled
+                            src={loadMoreMovieArrowIcon}
+                            width={24}
+                            height={24}
+                            alt="icon"
+                          />
+                        </GoToMoreMoviesButtonStyled>
+                        <LoadMoreMovieTextStyled>Показать все</LoadMoreMovieTextStyled>
+                      </ButtonContainerStyled>
+                    </Link>
+                  </ItemOfCarouselStyled>
+                )}
+              </CarouselOfMoviesStyled>
+            </ContainerWithCarouselStyled>
+          );
+        }
+      })}
+      <Outlet />
+    </>
+  );
+});

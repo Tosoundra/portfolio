@@ -2,26 +2,30 @@ import styled, { css } from 'styled-components';
 import { ButtonStyled } from '../../styledComponents/ButtonStyled/ButtonStyled';
 import { NavLink } from 'react-router-dom';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
+import SearchIcon from '../../assets/images/searchIcon.svg';
 
-interface HeaderProps {
-  $isLandingPath?: boolean;
-  $isDarkMode?: boolean;
-}
+export const HeaderStyled = styled.header<{ $isLandingPath: boolean; $isHidden: boolean }>`
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 2;
 
-export const HeaderStyled = styled.header<HeaderProps>`
-  padding-block: 18px;
+  background-color: ${({ theme }) => theme.colors.blackTheme};
+  box-shadow: ${({ theme }) => theme.colors.blackTheme} 0 5px 10px;
+  padding-block: 16px;
 
-  background-color: ${({ theme }) => (theme.colorScheme.dark && theme.colors.blackTheme) || '#fff'};
+  transform: ${({ $isHidden }) => ($isHidden ? 'translateY(calc(-100% - 15px))' : 'translateY(0)')};
+
+  transition: ${({ theme }) => theme.hoverEffect.transition};
 
   ${({ $isLandingPath }) =>
     $isLandingPath &&
     css`
-      color: #fff;
       background-color: ${({ theme }) => theme.colors.welcomeSectionColor};
+      box-shadow: ${({ theme }) => theme.colors.welcomeSectionColor} 0 5px 10px;
     `}
 
   @media ${({ theme }) => theme.media.bigPhone} {
-    position: sticky;
     top: 0;
     left: 0;
     z-index: 1;
@@ -29,19 +33,26 @@ export const HeaderStyled = styled.header<HeaderProps>`
 `;
 
 export const NavigationMenu = styled(FlexComponent)`
-  max-width: ${({ theme }) => theme.wrapperProperties.maxWidth};
   padding: ${({ theme }) => theme.wrapperProperties.padding};
-  margin: ${({ theme }) => theme.wrapperProperties.margin};
+
+  position: relative;
 
   align-items: center;
   padding-block: unset;
-  
-  div {
+
+  & > div {
     align-items: center;
   }
-  
+
   @media ${({ theme }) => theme.media.bigPhone} {
     padding-inline: 10px;
+  }
+`;
+
+export const HeaderNavigationButtonsContainerStyled = styled(FlexComponent)`
+  gap: 50px;
+  @media ${({ theme }) => theme.media.bigPhone} {
+    gap: 14px;
   }
 `;
 
@@ -59,12 +70,13 @@ export const HeaderButtonStyled = styled(ButtonStyled)`
 `;
 
 export const NavLinkStyled = styled(NavLink)`
-  font-size: 13px;
+  font-size: 15px;
   line-height: 18px;
-
+  font-weight: 500;
+  padding-bottom: 5px;
+  border-bottom: transparent 3px solid;
   &.active {
-    font-weight: 500;
-    text-decoration: underline;
+    border-bottom-color: ${({ theme }) => theme.colors.mainColor};
   }
 
   @media ${({ theme }) => theme.media.bigPhone} {
@@ -108,4 +120,15 @@ export const ButtonProfile = styled(NavLink)`
 
     font-size: 13px;
   }
+`;
+
+export const SearchButton = styled.button`
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  background-image: url(${SearchIcon});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  cursor: pointer;
 `;

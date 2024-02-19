@@ -1,16 +1,16 @@
 import { FC, FormEvent, useEffect, useState } from 'react';
+import { inputOnChangeHandle } from '../../constants/inputOnChangeHandle/inputOnChangeHandle';
+import { updateUserData } from '../../constants/updateUserData/updateUserData';
+import { useAppDispatch } from '../../hooks/storeHooks/storeHooks';
+import { showErrorTooltip } from '../../store/reducers/infoTooltip/showTooltip';
+import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
 import {
   ProfileEditButtonStyled,
+  ProfileFieldsetLabelStyled,
   ProfileFieldsetStyled,
   ProfileFormStyled,
   ProfileInput,
 } from './ProfileFormStyled';
-import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
-import { MediumFont } from '../../styledComponents/FontComponents/FontComponents';
-import { inputOnChangeHandle } from '../../constants/inputOnChangeHandle/inputOnChangeHandle';
-import { updateUserData } from '../../constants/updateUserData/updateUserData';
-import { useAppDispatch } from '../../assets/hooks/storeHooks/storeHooks';
-import { showErrorTooltip } from '../../store/reducers/infoTooltip/showTooltip';
 
 interface Props {
   email: string;
@@ -37,15 +37,11 @@ export const ProfileForm: FC<Props> = ({ email, registrationDate }) => {
   }, [email]);
 
   return (
-    <ProfileFormStyled
-      onSubmit={updateUserButtonOnClickHandle}
-      as="form"
-      $direction="column"
-      $gap="16px">
-      <ProfileFieldsetStyled as="fieldset" $direction="row">
-        <MediumFont as="label" htmlFor="email" $size="11px">
+    <ProfileFormStyled onSubmit={updateUserButtonOnClickHandle} as="form">
+      <ProfileFieldsetStyled as="fieldset">
+        <ProfileFieldsetLabelStyled as="label" htmlFor="email">
           Электронная почта
-        </MediumFont>
+        </ProfileFieldsetLabelStyled>
         <ProfileInput
           onChange={inputOnChangeHandle(setEmailValue)}
           value={emailValue}
@@ -56,10 +52,10 @@ export const ProfileForm: FC<Props> = ({ email, registrationDate }) => {
           required
         />
       </ProfileFieldsetStyled>
-      <ProfileFieldsetStyled as="fieldset" $direction="row">
-        <MediumFont as="label" htmlFor="oldPassword" $size="11px">
+      <ProfileFieldsetStyled as="fieldset">
+        <ProfileFieldsetLabelStyled as="label" htmlFor="oldPassword">
           Старый пароль
-        </MediumFont>
+        </ProfileFieldsetLabelStyled>
         <ProfileInput
           onChange={inputOnChangeHandle(setOldPasswordValue)}
           value={oldPasswordValue}
@@ -70,10 +66,10 @@ export const ProfileForm: FC<Props> = ({ email, registrationDate }) => {
           minLength={8}
         />
       </ProfileFieldsetStyled>
-      <ProfileFieldsetStyled as="fieldset" $direction="row">
-        <MediumFont as="label" htmlFor="newPassword" $size="11px">
+      <ProfileFieldsetStyled as="fieldset">
+        <ProfileFieldsetLabelStyled as="label" htmlFor="newPassword">
           Новый пароль
-        </MediumFont>
+        </ProfileFieldsetLabelStyled>
         <ProfileInput
           onChange={inputOnChangeHandle(setNewPasswordValue)}
           value={newPasswordValue}
@@ -84,10 +80,8 @@ export const ProfileForm: FC<Props> = ({ email, registrationDate }) => {
           minLength={8}
         />
       </ProfileFieldsetStyled>
-      <FlexComponent $direction="row">
-        <MediumFont as="label" $size="11px">
-          Дата регистрации
-        </MediumFont>
+      <FlexComponent>
+        <ProfileFieldsetLabelStyled as="label">Дата регистрации</ProfileFieldsetLabelStyled>
         <span>{registrationDate.split('T', 1).join()}</span>
       </FlexComponent>
       <ProfileEditButtonStyled type="submit">Редактировать</ProfileEditButtonStyled>

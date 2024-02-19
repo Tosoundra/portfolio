@@ -6,17 +6,20 @@ interface Props {
 }
 
 export const ButtonStyled = styled.button<Props>`
-  background-color: ${({ theme }) => theme.colors.additionColor};
-  cursor: pointer;
-  transition: ${({ theme }) => theme.hoverEffect.transition};
-
   padding: 9px 20px;
-
-  color: #fff;
   border-radius: 3px;
 
+  
+  cursor: pointer;
+  background-color: ${({ theme }) => theme.colors.mainColor};
+  transition: background-color ${({ theme }) => theme.hoverEffect.transition},
+  opacity ${({ theme }) => theme.hoverEffect.transition};
+  
+  color: #fff;
+  font-weight: 600;
+
   &:hover {
-    background-color: ${({ theme }) => theme.colors.mainColor};
+    background-color: ${({ theme }) => theme.colors.additionColor};
   }
   &:disabled {
     cursor: default;

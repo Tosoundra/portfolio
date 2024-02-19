@@ -1,14 +1,13 @@
 import { FC, useEffect } from 'react';
-import { LogoutButtonStyled, ProfileStyled } from './ProfileStyled';
-import { MediumFont } from '../../styledComponents/FontComponents/FontComponents';
-import { getUserThunkAction } from '../../store/reducers/user/getUserAction';
-import { useAppDispatch, useAppSelector } from '../../assets/hooks/storeHooks/storeHooks';
-import { showErrorTooltip } from '../../store/reducers/infoTooltip/showTooltip';
 import { useNavigate } from 'react-router-dom';
-import { LANDING_URL } from '../../constants/URLs/appURL';
-import { logout } from '../../constants/authRequests/logout';
-import { ProfileSkeleton } from '../../components/Skeleton/ProfileSkeleton/ProfileSkeleton';
 import { ProfileForm } from '../../components/ProfileForm/ProfileForm';
+import { ProfileSkeleton } from '../../components/Skeleton/ProfileSkeleton/ProfileSkeleton';
+import { LANDING_URL } from '../../constants/API/appURL';
+import { logout } from '../../constants/authRequests/logout';
+import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks/storeHooks';
+import { showErrorTooltip } from '../../store/reducers/infoTooltip/showTooltip';
+import { getUserThunkAction } from '../../store/reducers/user/getUserAction';
+import { LogoutButtonStyled, ProfileNameText, ProfileStyled } from './ProfileStyled';
 
 export const Profile: FC = () => {
   const navigate = useNavigate();
@@ -37,8 +36,8 @@ export const Profile: FC = () => {
   }
 
   return (
-    <ProfileStyled as="main" $direction="column">
-      <MediumFont $size="24px">Привет, {name}!</MediumFont>
+    <ProfileStyled as="main">
+      <ProfileNameText>Привет, {name}!</ProfileNameText>
       <ProfileForm email={email} registrationDate={registrationDate} />
       <LogoutButtonStyled onClick={logoutButtonOnClickHandle} type="button">
         Выйти из аккаунта

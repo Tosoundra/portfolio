@@ -45,7 +45,19 @@ class UserAPI {
   }
 
   async checkToken() {
-    return await getRequest(this.SERVER_USER_URL);
+    try {
+      const response = await fetch(this.SERVER_USER_URL, {
+        method: 'GET',
+        credentials: 'include',
+      });
+
+      if (!response.ok) {
+        throw new Error();
+      }
+      return await response.json();
+    } catch (error) {
+      if (error instanceof Error) throw error;
+    }
   }
 }
 

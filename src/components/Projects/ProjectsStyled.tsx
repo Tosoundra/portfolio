@@ -1,5 +1,6 @@
 import styled from 'styled-components';
+import { TransparentText } from '../../styledComponents/FontComponents/FontComponents';
 
-export const ProjectsStyled = styled.article`
-  margin-top: 128px;
+export const SectionTitle = styled(TransparentText)`
+  font-size: 18px;
 `;

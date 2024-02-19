@@ -5,8 +5,8 @@ import { FC } from 'react';
 export const About: FC = () => {
   return (
     <>
-      <AboutMe />
       <Projects />
+      <AboutMe />
     </>
   );
 };

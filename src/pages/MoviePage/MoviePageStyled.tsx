@@ -5,6 +5,7 @@ import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponen
 
 export const MovieInfoContainer = styled(FlexComponent)`
   margin-top: 48px;
+  gap: 42px;
 
   @media ${({ theme }) => theme.media.bigPhone} {
     justify-content: flex-start;
@@ -62,8 +63,15 @@ export const MovieMainPictureStyled = styled(ImageStyled)`
 `;
 
 export const ListOfMovieInformationStyled = styled(FlexComponent)`
+  flex-direction: column;
+  gap: 20px;
   justify-content: unset;
   flex: 1;
+`;
+
+export const MovieDetailsWrapper = styled(FlexComponent)`
+  flex-direction:column:
+  gap:8px;
 `;
 
 export const MoviePosterStyled = styled(ImageStyled)`

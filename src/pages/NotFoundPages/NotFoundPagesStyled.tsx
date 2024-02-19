@@ -3,12 +3,14 @@ import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponen
 
 export const NotFoundPagesStyled = styled(FlexComponent)`
   height: 100vh;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
 
   h1 {
     line-height: inherit;
+    font-size: 140px;
   }
 
   p {

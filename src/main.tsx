@@ -6,7 +6,8 @@ import { store } from './store/store.ts';
 import { router } from './router/router.tsx';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './theme/theme.tsx';
-import { GlobalStyled } from './styledComponents/GlobalStyled/GlobalStyled.tsx';
+import GlobalStyled from './styledComponents/GlobalStyled/GlobalStyled.ts';
+
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

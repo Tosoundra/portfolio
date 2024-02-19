@@ -3,7 +3,7 @@ import {
   removeFavoriteMovie,
 } from '../../store/reducers/favoriteMovies/favoriteMovies.slice';
 import { AppDispatch } from '../../store/store';
-import { userAPI } from '../URLs/serverAPI/userAPI';
+import { userAPI } from '../API/serverAPI/userAPI';
 import { deleteRequest, putRequest } from '../requestMethods/requestMethods';
 
 const SERVER_FAVORITE_MOVIES_URL = userAPI.SERVER_FAVORITE_MOVIES_URL;

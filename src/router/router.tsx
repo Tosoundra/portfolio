@@ -1,14 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { NotFoundPages } from '../pages/NotFoundPages/NotFoundPages';
-import { SignUp } from '../pages/SignUp/SignUp';
-import { BASE_URL, SIGN_IN_URL, SIGN_UP_URL } from '../constants/URLs/appURL';
-import { SignIn } from '../pages/SignIn/SignIn';
-import { MoviePage } from '../pages/MoviePage/MoviePage';
-import { Profile } from '../pages/Profile/Profile';
-import { FavoriteMovies } from '../pages/FavoriteMovies/FavoriteMovies';
-import { Movies } from '../pages/Movies/Movies';
-import { Landing } from '../blocks/Landing/Landing';
+import { BASE_URL, SIGN_IN_URL, SIGN_UP_URL } from '../constants/API/appURL';
+import { AllMovies } from '../pages/AllMovies/AllMovies';
 import { App } from '../pages/App/App';
+import { FavoriteMovies } from '../pages/FavoriteMovies/FavoriteMovies';
+import { Landing } from '../pages/Landing/Landing';
+
+import { Movies } from '../pages/Movies/Movies';
+import { NotFoundPages } from '../pages/NotFoundPages/NotFoundPages';
+import { Profile } from '../pages/Profile/Profile';
+import { SignIn } from '../pages/SignIn/SignIn';
+import { SignUp } from '../pages/SignUp/SignUp';
+import { MoviePage } from '../pages/MoviePage/MoviePage';
 
 export const router = createBrowserRouter([
   {
@@ -24,22 +26,23 @@ export const router = createBrowserRouter([
       {
         path: 'movies',
         element: <Movies />,
-        children: [
-          {
-            path: ':movieId',
-            element: <MoviePage />,
-          },
-        ],
       },
       {
         path: 'favorites',
         element: <FavoriteMovies />,
       },
       {
+        path: 'all',
+        element: <AllMovies />,
+      },
+      {
         path: 'profile',
         element: <Profile />,
       },
-
+      {
+        path: 'movie/:movieId',
+        element: <MoviePage />,
+      },
       {
         path: 'favorites/:movieId',
         element: <MoviePage />,

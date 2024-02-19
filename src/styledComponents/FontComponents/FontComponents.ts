@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 
-interface Props {
-  $size: string;
-}
-
-export const TitleText = styled.h1<Props>`
-  font-size: ${({ $size }) => $size};
+export const TitleText = styled.h1`
+  font-size: 50px;
   line-height: 58px;
 
   @media ${({ theme }) => theme.media.bigPhone} {
@@ -14,13 +10,7 @@ export const TitleText = styled.h1<Props>`
   }
 `;
 
-export const SectionNameText = styled.span`
-  font-size: 22px;
-  line-height: 27px;
-`;
-
-export const DescriptionText = styled.p<Props>`
-  font-size: ${({ $size }) => $size};
+export const DescriptionText = styled.p`
   line-height: 20px;
 `;
 
@@ -32,8 +22,7 @@ export const TransparentText = styled(DescriptionText)`
   }
 `;
 
-export const MediumFont = styled.span<Props>`
+export const MediumFont = styled.span`
   display: block;
   font-weight: 500;
-  font-size: ${({ $size }) => $size};
 `;

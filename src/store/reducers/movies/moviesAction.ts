@@ -1,17 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { BEATFILM_MOVIES_URL } from '../../../constants/URLs/beatfilmAPI/beatfilmAPI';
-import { notFound } from '../../../constants/errorMessage/errorMessage';
+import { moviesAPI } from '../../../constants/API/movies/moviesAPI';
 
 export const getMoviesThunkAction = createAsyncThunk('movies/getAll', async (_, thunkAPI) => {
   try {
-    const response = await fetch(BEATFILM_MOVIES_URL);
+    const response = await moviesAPI.getMovies();
 
-    if (!response.ok) throw new Error('failed to fetch');
-
-    const data = await response.json();
-    return data;
+    return response;
   } catch (error) {
-    console.log(error);
-    if (error instanceof Error) return thunkAPI.rejectWithValue(notFound);
+    if (error instanceof Error) return thunkAPI.rejectWithValue(error.message);
   }
 });

@@ -4,7 +4,7 @@ import { MovieSkeletonStyled } from '../../../styledComponents/SkeletonStyled/Mo
 
 export const MovieSkeleton: FC = memo(() => {
   return (
-    <MovieSkeletonStyled as="li" $direction="column" $gap="10px">
+    <MovieSkeletonStyled as="li">
       <InnerComponentStyled $height="151px" />
       <InnerComponentStyled />
       <InnerComponentStyled />

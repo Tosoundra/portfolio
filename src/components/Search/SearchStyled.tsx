@@ -4,6 +4,8 @@ import { InputElement } from '../../styledComponents/InputElement/InputElement';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
 
 export const SearchStyled = styled(FlexComponent)`
+  flex-direction: column;
+  gap: 32px;
   align-items: flex-start;
 `;
 

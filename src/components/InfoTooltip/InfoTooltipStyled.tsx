@@ -9,8 +9,7 @@ export const InfoTooltipStyled = styled.div<Props>`
   position: fixed;
   top: 10px;
   right: 10px;
-  z-index: 1;
-  opacity: 0;
+  z-index: 3;
 
   padding: 20px 10px;
   color: #fff;
@@ -25,8 +24,10 @@ export const InfoTooltipStyled = styled.div<Props>`
   flex-direction: column;
   gap: 10px;
 
+  opacity: 0;
   transform: translateX(100%);
-  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  transition: transform ${({ theme }) => theme.hoverEffect.transition},
+    opacity ${({ theme }) => theme.hoverEffect.transition};
 
   ${({ $isActive }) =>
     $isActive &&

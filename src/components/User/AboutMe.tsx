@@ -1,31 +1,30 @@
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import photo from '../../assets/images/me-compress.jpg';
-import { DescriptionText, TitleText } from '../../styledComponents/FontComponents/FontComponents';
 import {
   AboutMeDescriptionContainer,
   AboutMeStyled,
-  OccupationTextStyle,
+  AboutText,
+  OccupationText,
   PhotoStyled,
+  UserNameText,
 } from './AboutMeStyledComponent';
-import { FC } from 'react';
 
 export const AboutMe: FC = () => {
   return (
-    <AboutMeStyled as="article" $direction="row" id="aboutMe">
-      <AboutMeDescriptionContainer $direction="column">
-        <TitleText as="span" $size="50px">
-          Антон Ковальчук
-        </TitleText>
-        <OccupationTextStyle $size="18px">Фронтенд-разработчик, 27 лет</OccupationTextStyle>
-        <DescriptionText $size="14px">
-          Родился в России. Сейчас проживаю в Таиланде. Сколько себя помню, увлекался компьютерами и
-          музыкой. В последствии начал создавать свою музыку, а спустя некоторое время полностью
-          сфокусировался на программировании, так как очень затянуло. <br /> В 2022 году окончил
-          Государственный университет "Дубна" института САУ со степенью магистра.
-          <br />
-          Каждый день недели посвящаю изучению новых технологий, разбору и улучшению кода в своих
-          проектах. Очень открытый, неконфликтный молодой человек в самом расцвете сил!
-        </DescriptionText>
+    <AboutMeStyled as="article" id="aboutMe">
+      <AboutMeDescriptionContainer>
+        <UserNameText as="span">Антон Ковальчук</UserNameText>
+        <OccupationText>Фронтенд-разработчик, 27 лет</OccupationText>
+        <AboutText>
+          Кстати, обо мне. Я Антон, мне 27 лет. Хоть я и живу в Таиланде, это не привязывает меня к
+          часовым поясам, а теплое море в 5 минутах от дома не ослабило мою любовь к web-разработке.
+          В 2022 году окончил Государственный университет "Дубна" института САУ со степенью магистра
+          по специальности "Системы корпоративного управления"
+          <br />Я обожаю слушать музыку. Это помогает мне в работе: как и пятница — день релизов
+          музыки на стриминговых площадках — так и я каждую неделю изучаю новую технологию, чтобы
+          быть на волне.
+        </AboutText>
         <Link to="https://github.com/Tosoundra" target="_blank">
           Github
         </Link>

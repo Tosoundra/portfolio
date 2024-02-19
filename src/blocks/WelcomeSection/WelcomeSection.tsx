@@ -1,5 +1,7 @@
 import { FC } from 'react';
-import { TransparentText, TitleText } from '../../styledComponents/FontComponents/FontComponents';
+import background from '../../assets/images/main_background.svg';
+import { useCalculateDimensions } from '../../hooks/useCalculateDimensions/useCalculateDimensions';
+import { TitleText } from '../../styledComponents/FontComponents/FontComponents';
 import {
   Button,
   GreetingsContainer,
@@ -7,22 +9,21 @@ import {
   WrapperWithColor,
   WrapperWithImage,
 } from './WelcomeSectionStyledComponent';
-import { useCalculateDimensions } from '../../assets/hooks/useCalculateDimensions/useCalculateDimensions';
-import background from '../../assets/images/main_background.svg';
 
 export const WelcomeSection: FC = () => {
   const { isMobile } = useCalculateDimensions();
 
   return (
     <WrapperWithColor>
-      <WrapperWithImage as="section" $direction="column">
+      <WrapperWithImage as="section">
         {isMobile && <ImageBackground src={background} width={210} height={206} loading="lazy" />}
-        <GreetingsContainer $direction="column" $gap="36px">
-          <TitleText $size="50px">
-            Здравствуйте! <br /> Меня зовут Антон, и здесь Вы узнаете больше обо мне.
+        <GreetingsContainer>
+          <TitleText>
+            Привет. Это Антон и я
+            <br />
+            Frontend Developer.
           </TitleText>
-
-          <a href="#aboutMe">
+          <a href="#projects">
             <Button title="Узнать больше">Узнать больше</Button>
           </a>
         </GreetingsContainer>

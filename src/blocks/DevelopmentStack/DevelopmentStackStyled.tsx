@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { ImageStyled } from '../../styledComponents/ImageStyled/ImageStyled';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
 
 export const DevelopmentStackStyled = styled(FlexComponent)`
-  align-items: center;
   margin-top: 90px;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 `;
 

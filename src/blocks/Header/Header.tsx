@@ -1,39 +1,86 @@
-import { FC, memo } from 'react';
+import { FC, memo, useLayoutEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import iconProfile from '../../assets/images/icon_profile_btn.svg';
-import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
+import { Logo } from '../../components/Logo/Logo';
+import { SearchMovieDropdownMenu } from '../../components/SearchMovieDropdownMenu/SearchMovieDropdownMenu';
+import { LANDING_URL, SIGN_IN_URL, SIGN_UP_URL } from '../../constants/API/appURL';
+import { useAppSelector } from '../../hooks/storeHooks/storeHooks';
+import { useCalculateDimensions } from '../../hooks/useCalculateDimensions/useCalculateDimensions';
+import { useScrollY } from '../../hooks/useScrollY/useScrollY';
+import { HeaderMobile } from './HeaderMobile';
 import {
   ButtonProfile,
   HeaderButtonStyled,
+  HeaderNavigationButtonsContainerStyled,
   HeaderStyled,
   NavLinkStyled,
   NavigationMenu,
+  SearchButton,
 } from './HeaderStyled';
-import { LANDING_URL, SIGN_IN_URL, SIGN_UP_URL } from '../../constants/URLs/appURL';
-import { useAppSelector } from '../../assets/hooks/storeHooks/storeHooks';
-import { useCalculateDimensions } from '../../assets/hooks/useCalculateDimensions/useCalculateDimensions';
-import { HeaderMobile } from './HeaderMobile';
-import { Logo } from '../../components/Logo/Logo';
 
 export const Header: FC = memo(() => {
-  const { isMobile } = useCalculateDimensions();
   const navigate = useNavigate();
+  const { isHidden } = useScrollY();
   const { pathname } = useLocation();
+  const { isMobile } = useCalculateDimensions();
+  const { movies } = useAppSelector((state) => state.movies);
   const { isLogged } = useAppSelector((state) => state.logged);
 
+  const [isSearchInputActive, setIsSearchInputActive] = useState(false);
+
+  useLayoutEffect(() => {
+    if (isHidden) {
+      setIsSearchInputActive(false);
+    }
+  }, [isHidden]);
+
   if (isMobile) {
-    return <HeaderMobile isLogged={isLogged} />;
+    return (
+      <HeaderMobile
+        isLogged={isLogged}
+        isHidden={isHidden}
+        isSearchInputActive={isSearchInputActive}
+        movies={movies}
+        setIsSearchInputActive={setIsSearchInputActive}
+      />
+    );
+  }
+
+  if (isSearchInputActive) {
+    return (
+      <HeaderStyled $isHidden={isHidden} $isLandingPath={pathname === LANDING_URL}>
+        <NavigationMenu as="nav">
+          <Logo />
+          <SearchMovieDropdownMenu
+            movies={movies}
+            isSearchInputActive={isSearchInputActive}
+            setIsSearchInputActive={setIsSearchInputActive}
+          />
+          <ButtonProfile to="profile">
+            Аккаунт
+            <img src={iconProfile} alt="icon" role="icon" />
+          </ButtonProfile>
+        </NavigationMenu>
+      </HeaderStyled>
+    );
   }
 
   if (isLogged) {
     return (
-      <HeaderStyled $isLandingPath={pathname === LANDING_URL}>
-        <NavigationMenu as="nav" $direction="row">
+      <HeaderStyled $isHidden={isHidden} $isLandingPath={pathname === LANDING_URL}>
+        <NavigationMenu as="nav">
           <Logo />
-          <FlexComponent $direction="row" $gap="50px">
+          <HeaderNavigationButtonsContainerStyled>
             <NavLinkStyled to="movies">Фильмы</NavLinkStyled>
             <NavLinkStyled to="favorites">Сохранённые фильмы</NavLinkStyled>
-          </FlexComponent>
+            <SearchButton
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsSearchInputActive(true);
+              }}
+              type="button"
+            />
+          </HeaderNavigationButtonsContainerStyled>
 
           <ButtonProfile to="profile">
             Аккаунт
@@ -45,10 +92,10 @@ export const Header: FC = memo(() => {
   }
 
   return (
-    <HeaderStyled $isLandingPath={pathname === LANDING_URL}>
-      <NavigationMenu as="nav" $direction="row">
+    <HeaderStyled $isHidden={isHidden} $isLandingPath={pathname === LANDING_URL}>
+      <NavigationMenu as="nav">
         <Logo />
-        <FlexComponent $direction="row" $gap="50px">
+        <HeaderNavigationButtonsContainerStyled>
           <Link to={SIGN_UP_URL}>Регистрация</Link>
           <HeaderButtonStyled
             onClick={() => {
@@ -56,7 +103,7 @@ export const Header: FC = memo(() => {
             }}>
             Войти
           </HeaderButtonStyled>
-        </FlexComponent>
+        </HeaderNavigationButtonsContainerStyled>
       </NavigationMenu>
     </HeaderStyled>
   );

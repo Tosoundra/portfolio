@@ -1,40 +1,43 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { MovieType } from '../../../types/MovieType';
 
-type InitialStateType = {
-  title: string;
-  director: string;
-  duration: number;
-  year: string;
-  country: string;
-  language: string;
-  image: string;
-};
-
-const initialState: InitialStateType = {
-  title: '',
+const initialState: MovieType = {
+  country: '',
+  description: '',
   director: '',
   duration: 0,
+  image: { url: '' },
+  nameRU: '',
   year: '',
-  country: '',
-  language: '',
-  image: '',
+  id: null,
 };
 
 const selectedMovieSlice = createSlice({
   name: 'selectedMovie',
   initialState: initialState,
   reducers: {
-    setMovie: (state, action: PayloadAction<InitialStateType>) => {
-      state.title = action.payload.title;
+    setSelectedMovie: (state, action: PayloadAction<MovieType>) => {
+      state.country = action.payload.country;
+      state.description = action.payload.description;
       state.director = action.payload.director;
       state.duration = action.payload.duration;
-      state.country = action.payload.country;
-      state.language = action.payload.language;
+      state.nameRU = action.payload.nameRU;
       state.year = action.payload.year;
-      state.image = action.payload.image;
+      state.image.url = action.payload.image.url;
+      state.id = action.payload.id;
+    },
+    resetSelectedMovie: (state) => {
+      state.country = '';
+      state.description = '';
+      state.director = '';
+      state.duration = 0;
+      state.nameRU = '';
+      state.year = '';
+      state.image.url = '';
+      state.id = null;
     },
   },
 });
 
-export const { setMovie } = selectedMovieSlice.actions;
+export const { setSelectedMovie, resetSelectedMovie } = selectedMovieSlice.actions;
 export default selectedMovieSlice.reducer;

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { InfoTooltipStyled } from './InfoTooltipStyled';
-import { useAppSelector } from '../../assets/hooks/storeHooks/storeHooks';
+import { useAppSelector } from '../../hooks/storeHooks/storeHooks';
 
 export const InfoTooltip: FC = () => {
   const { isActive, message, isError } = useAppSelector((state) => state.infoTooltip);

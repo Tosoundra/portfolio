@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
-import { FooterStyled } from './FooterStyled';
+import { FooterMediaContainerStyled, FooterStyled } from './FooterStyled';
 import { listOfMedia } from '../../constants/listOfMedia/listOfMedia';
 import { FC, memo } from 'react';
 
@@ -9,9 +9,9 @@ const date = new Date().getFullYear();
 export const Footer: FC = memo(() => {
   return (
     <FooterStyled as="footer">
-      <FlexComponent $direction="row">
+      <FlexComponent>
         <span>&#169; {date}</span>
-        <FlexComponent as="ul" $direction="row" $gap="15px">
+        <FooterMediaContainerStyled as="ul">
           {listOfMedia.map((item, index) => (
             <li key={index}>
               <Link to={item.link} target="_blank">
@@ -19,7 +19,7 @@ export const Footer: FC = memo(() => {
               </Link>
             </li>
           ))}
-        </FlexComponent>
+        </FooterMediaContainerStyled>
       </FlexComponent>
     </FooterStyled>
   );

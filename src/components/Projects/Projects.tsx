@@ -1,20 +1,24 @@
+import { FC, useState } from 'react';
 import { ListOfProjects } from '../../constants/ListOfProjects/ListOfProjects';
 import { ListStyledComponent } from '../../styledComponents/ListStyledComponent/ListStyledComponent';
 import { Project } from '../Project/Project';
-import { TransparentText } from '../../styledComponents/FontComponents/FontComponents';
-import { ProjectsStyled } from './ProjectsStyled';
-import { FC } from 'react';
 
 export const Projects: FC = () => {
+  const [currentOpenProject, setCurrentOpenProject] = useState('');
   return (
-    <ProjectsStyled>
-      <TransparentText $size="18px">Мои работы</TransparentText>
-
-      <ListStyledComponent as="ul" $direction="column">
-        {ListOfProjects.map((item, index) => (
-          <Project title={item.title} image={item.image} link={item.link} key={index} />
-        ))}
-      </ListStyledComponent>
-    </ProjectsStyled>
+    <ListStyledComponent as="ul" id="projects">
+      {ListOfProjects.map((item, index) => (
+        <li key={index}>
+          <Project
+            title={item.title}
+            image={item.image}
+            link={item.link}
+            description={item.description}
+            isOpen={currentOpenProject === item.title}
+            setCurrentOpenProject={setCurrentOpenProject}
+          />
+        </li>
+      ))}
+    </ListStyledComponent>
   );
 };

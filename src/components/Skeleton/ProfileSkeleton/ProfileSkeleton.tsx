@@ -6,7 +6,7 @@ import {
 
 export const ProfileSkeleton: FC = memo(() => {
   return (
-    <ProfileSkeletonStyled $direction="column" $gap="10px">
+    <ProfileSkeletonStyled>
       <ProfileInnerComponentStyled />
       <ProfileInnerComponentStyled />
       <ProfileInnerComponentStyled />

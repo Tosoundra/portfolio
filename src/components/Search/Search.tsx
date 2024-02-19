@@ -1,37 +1,22 @@
 import { Dispatch, FC, SetStateAction, memo } from 'react';
-import { Checkbox, Input, SearchStyled } from './SearchStyled';
 import { inputOnChangeHandle } from '../../constants/inputOnChangeHandle/inputOnChangeHandle';
+import { Input, SearchStyled } from './SearchStyled';
 
 interface Props {
-  showShortMovie: boolean;
   searchingMovie: string;
-  setShowShortMovie: Dispatch<SetStateAction<boolean>>;
+
   setSearchingMovie: Dispatch<SetStateAction<string>>;
 }
 
-export const Search: FC<Props> = memo(
-  ({ showShortMovie, searchingMovie, setShowShortMovie, setSearchingMovie }) => {
-    return (
-      <SearchStyled $direction="column" $gap="32px">
-        <Input
-          value={searchingMovie}
-          onChange={inputOnChangeHandle(setSearchingMovie)}
-          type="text"
-          placeholder="Введите название фильма"
-        />
-        <label htmlFor="shortMovies">
-          <Checkbox
-            checked={showShortMovie}
-            onChange={() => {
-              setShowShortMovie((prevState) => !prevState);
-            }}
-            type="checkbox"
-            name="shortMovies"
-            id="shortMovies"
-          />
-          Короткометражки
-        </label>
-      </SearchStyled>
-    );
-  },
-);
+export const Search: FC<Props> = memo(({ searchingMovie, setSearchingMovie }) => {
+  return (
+    <SearchStyled>
+      <Input
+        value={searchingMovie}
+        onChange={inputOnChangeHandle(setSearchingMovie)}
+        type="search"
+        placeholder="Введите название фильма"
+      />
+    </SearchStyled>
+  );
+});
