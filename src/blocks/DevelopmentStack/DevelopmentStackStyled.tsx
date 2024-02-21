@@ -10,9 +10,9 @@ export const DevelopmentStackStyled = styled(FlexComponent)`
 
 export const ListOfTechnologiesStyled = styled(FlexComponent)`
   margin-top: 100px;
+  flex-wrap: wrap;
 
   @media ${({ theme }) => theme.media.bigPhone} {
-    flex-wrap: wrap;
     justify-content: flex-start;
     row-gap: 8px;
   }

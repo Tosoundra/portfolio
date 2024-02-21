@@ -1,17 +1,18 @@
 import React, { FC, SetStateAction, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import SearchIcon from '../../assets/images/searchIcon.svg';
 import { HeaderMobileMenu } from '../../components/HeaderMobileMenu/HeaderMobileMenu';
 import { HeaderSideMenu } from '../../components/HeaderSideMenu/HeaderSideMenu';
 import { Logo } from '../../components/Logo/Logo';
-import { LogoStyled } from '../../components/Logo/LogoStyled';
 import { SearchMovieDropdownMenu } from '../../components/SearchMovieDropdownMenu/SearchMovieDropdownMenu';
 import { LANDING_URL, SIGN_IN_URL } from '../../constants/API/appURL';
+import { ImageStyled } from '../../styledComponents/ImageStyled/ImageStyled';
 import { MovieType } from '../../types/MovieType';
 import {
   HeaderButtonStyled,
   HeaderNavigationButtonsContainerStyled,
+  HeaderSignUpLinkStyled,
   HeaderStyled,
-  NavLinkStyled,
   NavigationMenu,
   SearchButton,
 } from './HeaderStyled';
@@ -72,8 +73,9 @@ export const HeaderMobile: FC<Props> = ({
                 e.stopPropagation();
                 setIsSearchInputActive(true);
               }}
-              type="button"
-            />
+              type="button">
+              <ImageStyled src={SearchIcon} width={24} height={24} alt="icon" />
+            </SearchButton>
             <HeaderMobileMenu setIsActive={setIsActive} />
           </NavigationMenu>
         </HeaderStyled>
@@ -85,14 +87,9 @@ export const HeaderMobile: FC<Props> = ({
   return (
     <HeaderStyled $isLandingPath={pathname === LANDING_URL} $isHidden={isHidden}>
       <NavigationMenu as="nav">
-        <LogoStyled
-          onClick={() => {
-            navigate(LANDING_URL);
-          }}
-          type="button"
-        />
+        <Logo />
         <HeaderNavigationButtonsContainerStyled>
-          <NavLinkStyled to="sign-up">Регистрация</NavLinkStyled>
+          <HeaderSignUpLinkStyled to="sign-up">Регистрация</HeaderSignUpLinkStyled>
           <HeaderButtonStyled
             onClick={() => {
               navigate(SIGN_IN_URL);

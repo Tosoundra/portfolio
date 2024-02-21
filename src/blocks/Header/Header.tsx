@@ -1,17 +1,20 @@
 import { FC, memo, useLayoutEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import iconProfile from '../../assets/images/icon_profile_btn.svg';
+import SearchIcon from '../../assets/images/searchIcon.svg';
 import { Logo } from '../../components/Logo/Logo';
 import { SearchMovieDropdownMenu } from '../../components/SearchMovieDropdownMenu/SearchMovieDropdownMenu';
 import { LANDING_URL, SIGN_IN_URL, SIGN_UP_URL } from '../../constants/API/appURL';
 import { useAppSelector } from '../../hooks/storeHooks/storeHooks';
 import { useCalculateDimensions } from '../../hooks/useCalculateDimensions/useCalculateDimensions';
 import { useScrollY } from '../../hooks/useScrollY/useScrollY';
+import { ImageStyled } from '../../styledComponents/ImageStyled/ImageStyled';
 import { HeaderMobile } from './HeaderMobile';
 import {
   ButtonProfile,
   HeaderButtonStyled,
   HeaderNavigationButtonsContainerStyled,
+  HeaderSignUpLinkStyled,
   HeaderStyled,
   NavLinkStyled,
   NavigationMenu,
@@ -71,15 +74,20 @@ export const Header: FC = memo(() => {
         <NavigationMenu as="nav">
           <Logo />
           <HeaderNavigationButtonsContainerStyled>
-            <NavLinkStyled to="movies">Фильмы</NavLinkStyled>
-            <NavLinkStyled to="favorites">Сохранённые фильмы</NavLinkStyled>
+            <NavLinkStyled to="movies" preventScrollReset>
+              Фильмы
+            </NavLinkStyled>
+            <NavLinkStyled to="favorites" preventScrollReset>
+              Сохранённые фильмы
+            </NavLinkStyled>
             <SearchButton
               onClick={(e) => {
                 e.stopPropagation();
                 setIsSearchInputActive(true);
               }}
-              type="button"
-            />
+              type="button">
+              <ImageStyled src={SearchIcon} width={24} height={24} alt="icon" />
+            </SearchButton>
           </HeaderNavigationButtonsContainerStyled>
 
           <ButtonProfile to="profile">
@@ -96,7 +104,7 @@ export const Header: FC = memo(() => {
       <NavigationMenu as="nav">
         <Logo />
         <HeaderNavigationButtonsContainerStyled>
-          <Link to={SIGN_UP_URL}>Регистрация</Link>
+          <HeaderSignUpLinkStyled to={SIGN_UP_URL}>Регистрация</HeaderSignUpLinkStyled>
           <HeaderButtonStyled
             onClick={() => {
               navigate(SIGN_IN_URL);

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { ImageStyled } from '../../styledComponents/ImageStyled/ImageStyled';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
 import { DescriptionText } from '../../styledComponents/FontComponents/FontComponents';
+import { Link } from 'react-router-dom';
 
 export const ProjectStyled = styled(FlexComponent)<{ $isOpen: boolean }>`
   flex-direction: column;
@@ -23,9 +24,6 @@ export const ProjectStyled = styled(FlexComponent)<{ $isOpen: boolean }>`
   &:hover {
     border-color: #d9d9d9;
     opacity: 1;
-    img {
-      filter: unset;
-    }
   }
 `;
 
@@ -36,13 +34,33 @@ export const ProjectDescription = styled(DescriptionText)<{ $isOpen: boolean }>`
 
 export const ProjectContainer = styled(FlexComponent)``;
 
-export const Title = styled.span`
+export const ProjectTitle = styled.span`
   font-size: 30px;
   line-height: 50px;
+  margin-bottom: 10px;
 `;
 
 export const ProjectLogoStyled = styled(ImageStyled)`
   filter: grayscale();
 
   transition: filter ${({ theme }) => theme.hoverEffect.transition};
+  &:hover {
+    filter: unset;
+  }
+`;
+
+export const ProjectLinkStyled = styled(Link)`
+  color: ${({ theme }) => theme.colors.additionColor};
+
+  opacity: 0.9;
+
+  transition: opacity ${({ theme }) => theme.hoverEffect.transition};
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:visited {
+    color: ${({ theme }) => theme.colors.additionColor};
+  }
 `;

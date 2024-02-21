@@ -36,8 +36,8 @@ export const AllMovies: FC = memo(() => {
                 setCurrentMovieDetailsContainerId={setCurrentMovieDetailsContainerId}
                 containerId={indexOfList}
                 movies={listOfMovies}
-                renderItem={(movie, index, setIsOpen) => (
-                  <Suspense key={index} fallback={<MovieSkeleton />}>
+                renderItem={(movie, setIsOpen) => (
+                  <Suspense key={movie.id} fallback={<MovieSkeleton />}>
                     <ItemOfCarouselStyled>
                       <MovieCardLazy
                         movie={movie}

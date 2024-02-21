@@ -1,8 +1,7 @@
 import styled, { css } from 'styled-components';
 import { ButtonStyled } from '../../styledComponents/ButtonStyled/ButtonStyled';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
-import SearchIcon from '../../assets/images/searchIcon.svg';
 
 export const HeaderStyled = styled.header<{ $isLandingPath: boolean; $isHidden: boolean }>`
   position: sticky;
@@ -56,6 +55,13 @@ export const HeaderNavigationButtonsContainerStyled = styled(FlexComponent)`
   }
 `;
 
+export const HeaderSignUpLinkStyled = styled(Link)`
+  @media ${({ theme }) => theme.media.bigPhone} {
+    font-size: 20px;
+    line-height: 16px;
+  }
+`;
+
 export const HeaderButtonStyled = styled(ButtonStyled)`
   background-color: ${({ theme }) => theme.colors.mainColor};
 
@@ -64,7 +70,7 @@ export const HeaderButtonStyled = styled(ButtonStyled)`
   }
 
   @media ${({ theme }) => theme.media.bigPhone} {
-    font-size: 10px;
+    font-size: 20px;
     line-height: 16px;
   }
 `;
@@ -123,12 +129,7 @@ export const ButtonProfile = styled(NavLink)`
 `;
 
 export const SearchButton = styled.button`
-  width: 24px;
-  height: 24px;
+  border: none;
   background-color: transparent;
-  background-image: url(${SearchIcon});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 24px 24px;
   cursor: pointer;
 `;

@@ -1,5 +1,5 @@
 import { FC, Suspense, lazy, memo, useEffect, useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import loadMoreMovieArrowIcon from '../../assets/images/right-arrow_load-more-movie-section.svg';
 import { ALL_MOVIES_URL } from '../../constants/API/appURL';
 import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks/storeHooks';
@@ -102,7 +102,8 @@ export const MoviesContainer: FC<Props> = memo(({ movies }) => {
                 to={ALL_MOVIES_URL}
                 onClick={() => {
                   dispatch(setMovies(categoryOfMovies.movies));
-                }}>
+                }}
+                preventScrollReset>
                 <TitleOfCarouselStyled>{categoryOfMovies.title}</TitleOfCarouselStyled>
                 <ArrowIconStyled src={arrowIcon} width={15} height={15} alt="button icon" />
               </Link>
@@ -112,17 +113,8 @@ export const MoviesContainer: FC<Props> = memo(({ movies }) => {
                   setCurrentMovieDetailsContainerId={setCurrentMovieDetailsContainerId}
                   containerId={indexOfCategory}
                   movies={categoryOfMovies.movies.slice(0, maxNumberOfMoviesInContainer)}
-                  renderItem={(movie, index, setIsOpen) => (
-                    // <ItemOfCarouselStyled key={index}>
-                    //   <MovieCard
-                    //     movie={movie}
-                    //     containerId={indexOfCategory}
-                    //     currentMovieDetailsContainerId={indexOfCategory}
-                    //     setCurrentMovieDetailsContainerId={setCurrentMovieDetailsContainerId}
-                    //     setIsOpen={setIsOpen}
-                    //   />
-                    // </ItemOfCarouselStyled>
-                    <Suspense key={index} fallback={<MovieSkeleton />}>
+                  renderItem={(movie, setIsOpen) => (
+                    <Suspense key={movie.id} fallback={<div>loading</div>}>
                       <ItemOfCarouselStyled>
                         <MovieCardLazy
                           movie={movie}
@@ -138,7 +130,7 @@ export const MoviesContainer: FC<Props> = memo(({ movies }) => {
 
                 {categoryOfMovies.movies.length > maxNumberOfMoviesInContainer && (
                   <ItemOfCarouselStyled>
-                    <Link to={ALL_MOVIES_URL}>
+                    <Link to={ALL_MOVIES_URL} preventScrollReset>
                       <ButtonContainerStyled
                         onClick={() => {
                           dispatch(setMovies(categoryOfMovies.movies));
@@ -162,7 +154,6 @@ export const MoviesContainer: FC<Props> = memo(({ movies }) => {
           );
         }
       })}
-      <Outlet />
     </>
   );
 });

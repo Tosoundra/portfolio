@@ -30,7 +30,7 @@ export const SignUp: FC = () => {
   return (
     <SignContainer as="main">
       <SignForm
-        formTitle="Добро пожаловать!"
+        formTitle="Регистрация в приложении обзора фильмов"
         submitTitle="Зарегистрироваться"
         isAlreadyAuthTitle="Уже зарегистрированы?"
         linkTitle="Войти"

@@ -5,7 +5,7 @@ import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponen
 import { ImageStyled } from '../../styledComponents/ImageStyled/ImageStyled';
 
 export const WrapperWithColor = styled.section`
-  height: calc(100vh - 74px);
+  height: calc(100vh - 66px);
   background-color: ${({ theme }) => theme.colors.welcomeSectionColor};
 
   @media ${({ theme }) => theme.media.bigPhone} {

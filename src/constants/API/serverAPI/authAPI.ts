@@ -15,15 +15,17 @@ class AuthApi {
   }
 
   async register(name: string, email: string, password: string) {
-    return await postRequest<{ message: string }>(this.SERVER_SIGN_IN_URL, {
+    return await postRequest<{ message: string }>(this.SERVER_SIGN_UP_URL, {
       name,
       email,
       password,
     });
   }
+  
   async login(email: string, password: string) {
     return await postRequest<{ message: string }>(this.SERVER_SIGN_IN_URL, { email, password });
   }
+
   async logout() {
     return await getRequest(this.SERVER_SIGN_OUT_URL);
   }

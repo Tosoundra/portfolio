@@ -35,7 +35,6 @@ export const SearchMovieDropdownMenu: FC<Props> = memo(
     const containerRef = useRef<HTMLDivElement>(null);
 
     const handleKeyDown = (e: KeyboardEvent<HTMLUListElement>) => {
-      console.log(e.target);
       e.preventDefault();
       if (e.key === 'ArrowDown') {
         setSelectedItemIndex((prevIndex) =>
@@ -85,7 +84,6 @@ export const SearchMovieDropdownMenu: FC<Props> = memo(
                   onClick={() => {
                     setIsSearchInputActive(false);
                   }}
-                  tabIndex={0}
                   ref={selectedItemIndex === index ? listElementRef : null}>
                   <ElementOfDropdownMenuStyled $isOnFocus={selectedItemIndex === index}>
                     <FlexComponent>

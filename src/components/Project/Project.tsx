@@ -1,7 +1,14 @@
 import React, { FC, SetStateAction, memo } from 'react';
 import { Link } from 'react-router-dom';
+import { SIGN_UP_URL } from '../../constants/API/appURL';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
-import { ProjectDescription, ProjectLogoStyled, ProjectStyled, Title } from './ProjectStyled';
+import {
+  ProjectDescription,
+  ProjectLinkStyled,
+  ProjectLogoStyled,
+  ProjectStyled,
+  ProjectTitle,
+} from './ProjectStyled';
 
 interface Props {
   title: string;
@@ -26,9 +33,9 @@ export const Project: FC<Props> = memo(
         }}
         $isOpen={isOpen}>
         <FlexComponent>
-          <Title>{title}</Title>
+          <ProjectTitle>{title}</ProjectTitle>
 
-          <Link to={link} type="button" target="_blank">
+          <Link to={link} target="_blank">
             <ProjectLogoStyled src={image} width={50} height={50} alt="project logo" />{' '}
           </Link>
         </FlexComponent>
@@ -38,6 +45,14 @@ export const Project: FC<Props> = memo(
             <br />
           </li>
         ))}
+
+        {(title.includes('Портфолио') && (
+          <ProjectLinkStyled to={SIGN_UP_URL}>Зарегистрироваться</ProjectLinkStyled>
+        )) || (
+          <ProjectLinkStyled to={link} target="_blank">
+            Перейти
+          </ProjectLinkStyled>
+        )}
       </ProjectStyled>
     );
   },

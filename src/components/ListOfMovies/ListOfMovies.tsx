@@ -5,11 +5,7 @@ import { MovieCardDetails } from '../MovieCardDetails/MovieCardDetails';
 
 interface Props {
   movies: MovieType[];
-  renderItem: (
-    movie: MovieType,
-    index: number,
-    setter: React.Dispatch<SetStateAction<boolean>>,
-  ) => ReactNode;
+  renderItem: (movie: MovieType, setter: React.Dispatch<SetStateAction<boolean>>) => ReactNode;
   currentMovieDetailsContainerId: number;
   containerId: number;
   setCurrentMovieDetailsContainerId: React.Dispatch<SetStateAction<number>>;
@@ -21,16 +17,12 @@ export const ListOfMovies: FC<Props> = memo(
 
     return (
       <>
-        {movies.map((movie, index) => renderItem(movie, index, setIsOpen))}
+        {movies.map((movie) => renderItem(movie, setIsOpen))}
 
         {isOpen &&
+          currentMovieDetailsContainerId === containerId &&
           createPortal(
-            <MovieCardDetails
-              currentMovieDetailsContainerId={currentMovieDetailsContainerId}
-              setIsOpen={setIsOpen}
-              thisContainerId={containerId}
-              containerId={containerId}
-            />,
+            <MovieCardDetails setIsOpen={setIsOpen} containerId={containerId} />,
             document.getElementById(`listOfMovies${containerId}`)!,
           )}
       </>

@@ -45,7 +45,7 @@ export const TechnologyDescriptionContainer = styled.div`
 
   @media ${({ theme }) => theme.media.bigPhone} {
     bottom: 70px;
-    width: 100px;
+    width: 100%;
     font-size: 10px;
   }
 `;

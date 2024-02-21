@@ -16,6 +16,10 @@ export const App: FC = memo(() => {
 
   const { pathname } = useLocation();
 
+  // useLayoutEffect(() => {
+  //   dispatch(resetSelectedMovie());
+  // }, [pathname]);
+
   useEffect(() => {
     dispatch(authentication());
   }, [isLogged, dispatch]);
