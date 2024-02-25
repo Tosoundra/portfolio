@@ -1,4 +1,4 @@
-import { getRequest, postRequest } from '../../requestMethods/requestMethods';
+import { getRequest, postRequest } from '../../constants/requestMethods/requestMethods';
 import { SERVER_API } from './serverAPI';
 
 class AuthApi {
@@ -21,7 +21,7 @@ class AuthApi {
       password,
     });
   }
-  
+
   async login(email: string, password: string) {
     return await postRequest<{ message: string }>(this.SERVER_SIGN_IN_URL, { email, password });
   }

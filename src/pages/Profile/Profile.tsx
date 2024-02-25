@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ProfileForm } from '../../components/ProfileForm/ProfileForm';
 import { ProfileSkeleton } from '../../components/Skeleton/ProfileSkeleton/ProfileSkeleton';
-import { LANDING_URL } from '../../constants/API/appURL';
+import { LANDING_URL } from '../../API/appURL';
 import { logout } from '../../constants/authRequests/logout';
 import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks/storeHooks';
 import { showErrorTooltip } from '../../store/reducers/infoTooltip/showTooltip';

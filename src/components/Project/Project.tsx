@@ -1,6 +1,6 @@
 import React, { FC, SetStateAction, memo } from 'react';
 import { Link } from 'react-router-dom';
-import { SIGN_UP_URL } from '../../constants/API/appURL';
+import { MOVIES_URL, SIGN_UP_URL } from '../../API/appURL';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';
 import {
   ProjectDescription,
@@ -9,6 +9,7 @@ import {
   ProjectStyled,
   ProjectTitle,
 } from './ProjectStyled';
+import { useAppSelector } from '../../hooks/storeHooks/storeHooks';
 
 interface Props {
   title: string;
@@ -21,6 +22,8 @@ interface Props {
 export const Project: FC<Props> = memo(
   ({ description, image, isOpen, link, setCurrentOpenProject, title }) => {
     const paragraphs = description.split('\n');
+
+    const { isLogged } = useAppSelector((state) => state.logged);
 
     return (
       <ProjectStyled
@@ -46,13 +49,16 @@ export const Project: FC<Props> = memo(
           </li>
         ))}
 
-        {(title.includes('Портфолио') && (
-          <ProjectLinkStyled to={SIGN_UP_URL}>Зарегистрироваться</ProjectLinkStyled>
-        )) || (
-          <ProjectLinkStyled to={link} target="_blank">
-            Перейти
-          </ProjectLinkStyled>
-        )}
+        {(title.includes('Портфолио') && isLogged && (
+          <ProjectLinkStyled to={MOVIES_URL}>Перейти к каталогу</ProjectLinkStyled>
+        )) ||
+          (title.includes('Портфолио') && (
+            <ProjectLinkStyled to={SIGN_UP_URL}>Зарегистрироваться</ProjectLinkStyled>
+          )) || (
+            <ProjectLinkStyled to={link} target="_blank">
+              Перейти
+            </ProjectLinkStyled>
+          )}
       </ProjectStyled>
     );
   },

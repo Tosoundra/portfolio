@@ -1,6 +1,6 @@
 import React, { FC, KeyboardEvent, SetStateAction, memo, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { moviesAPI } from '../../constants/API/movies/moviesAPI';
+import { moviesAPI } from '../../API/movies/moviesAPI';
 import { inputOnChangeHandle } from '../../constants/inputOnChangeHandle/inputOnChangeHandle';
 import { useCloseModal } from '../../hooks/useCloseModals/useCloseModals';
 import { FlexComponent } from '../../styledComponents/FlexComponent/FlexComponent';

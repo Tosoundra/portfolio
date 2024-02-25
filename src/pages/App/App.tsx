@@ -4,7 +4,7 @@ import { Footer } from '../../blocks/Footer/Footer';
 import { Header } from '../../blocks/Header/Header';
 import { InfoTooltip } from '../../components/InfoTooltip/InfoTooltip';
 import { ProtectedRouteComponent } from '../../components/ProtectedRouteComponent/ProtectedRouteComponent';
-import { LANDING_URL } from '../../constants/API/appURL';
+import { LANDING_URL } from '../../API/appURL';
 import { authentication } from '../../constants/authRequests/authentication';
 import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks/storeHooks';
 import { Landing } from '../Landing/Landing';

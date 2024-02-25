@@ -5,7 +5,7 @@ import { HeaderMobileMenu } from '../../components/HeaderMobileMenu/HeaderMobile
 import { HeaderSideMenu } from '../../components/HeaderSideMenu/HeaderSideMenu';
 import { Logo } from '../../components/Logo/Logo';
 import { SearchMovieDropdownMenu } from '../../components/SearchMovieDropdownMenu/SearchMovieDropdownMenu';
-import { LANDING_URL, SIGN_IN_URL } from '../../constants/API/appURL';
+import { LANDING_URL, SIGN_IN_URL } from '../../API/appURL';
 import { ImageStyled } from '../../styledComponents/ImageStyled/ImageStyled';
 import { MovieType } from '../../types/MovieType';
 import {

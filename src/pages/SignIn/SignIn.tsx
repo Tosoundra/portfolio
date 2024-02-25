@@ -2,12 +2,12 @@ import { FC } from 'react';
 import { SignForm } from '../../components/SignForm/SignForm';
 import { SignContainer } from '../../styledComponents/SignContainer/SignContainer';
 import { useNavigate } from 'react-router-dom';
-import { MOVIES_URL, SIGN_UP_URL } from '../../constants/API/appURL';
+import { MOVIES_URL, SIGN_UP_URL } from '../../API/appURL';
 import { useAppDispatch } from '../../hooks/storeHooks/storeHooks';
 import { setLoggedIn } from '../../store/reducers/logged/logged.slice';
 import { InfoTooltip } from '../../components/InfoTooltip/InfoTooltip';
 import { showTooltip } from '../../store/reducers/infoTooltip/showTooltip';
-import { authAPI } from '../../constants/API/serverAPI/authAPI';
+import { authAPI } from '../../API/serverAPI/authAPI';
 
 export const SignIn: FC = () => {
   const navigate = useNavigate();

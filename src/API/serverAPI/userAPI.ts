@@ -1,10 +1,10 @@
-import { RootState } from '../../../store/store';
+import { RootState } from '../../store/store';
 import {
   deleteRequest,
   getRequest,
   patchRequest,
   putRequest,
-} from '../../requestMethods/requestMethods';
+} from '../../constants/requestMethods/requestMethods';
 import { SERVER_API } from './serverAPI';
 
 type UserType = RootState['user'];

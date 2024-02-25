@@ -1,4 +1,4 @@
-import { notFound } from '../../errorMessage/errorMessage';
+import { notFound } from '../../constants/errorMessage/errorMessage';
 
 class MoviesAPI {
   BASE_URL: string;

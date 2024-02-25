@@ -5,7 +5,7 @@ import {
   SideMenuContainerStyled,
 } from './HeaderSideMenuStyled';
 import { ButtonProfile, SideMenuNavLink } from '../../blocks/Header/HeaderStyled';
-import { FAVORITE_MOVIES_URL, LANDING_URL, MOVIES_URL } from '../../constants/API/appURL';
+import { FAVORITE_MOVIES_URL, LANDING_URL, MOVIES_URL } from '../../API/appURL';
 import iconProfile from '../../assets/images/icon_profile_btn.svg';
 import { ImageStyled } from '../../styledComponents/ImageStyled/ImageStyled';
 import closeButton from '../../assets/images/menu_close-button.svg';

@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { BASE_URL, SIGN_IN_URL, SIGN_UP_URL } from '../constants/API/appURL';
+import { BASE_URL, SIGN_IN_URL, SIGN_UP_URL } from '../API/appURL';
 import { AllMovies } from '../pages/AllMovies/AllMovies';
 import { App } from '../pages/App/App';
 import { FavoriteMovies } from '../pages/FavoriteMovies/FavoriteMovies';

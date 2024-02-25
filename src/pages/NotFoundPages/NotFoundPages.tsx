@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { NotFoundPagesStyled } from './NotFoundPagesStyled';
 import { TitleText } from '../../styledComponents/FontComponents/FontComponents';
-import { LANDING_URL } from '../../constants/API/appURL';
+import { LANDING_URL } from '../../API/appURL';
 
 export const NotFoundPages = () => {
   return (

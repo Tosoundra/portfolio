@@ -1,6 +1,6 @@
 import { LogoStyled } from './LogoStyled';
 import { useNavigate } from 'react-router-dom';
-import { LANDING_URL } from '../../constants/API/appURL';
+import { LANDING_URL } from '../../API/appURL';
 
 export const Logo = () => {
   const navigate = useNavigate();

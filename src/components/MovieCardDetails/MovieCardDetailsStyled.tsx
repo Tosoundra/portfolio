@@ -8,7 +8,7 @@ const expandContainer = keyframes`
     height:0;
   }
   to{
-    height:calc(100vh - 73.5px - 80px)
+    height:calc(100vh - 73.5px - 80px - 40px)
   }
 `;
 
@@ -33,6 +33,10 @@ const showElementTop = keyframes`
     transform:translateY(0)
   }
 `;
+
+interface Props {
+  $isDescriptionTab: boolean;
+}
 
 export const MovieCardDetailsStyled = styled.article<{ $src: string }>`
   position: relative;
@@ -61,11 +65,11 @@ export const MovieCardDetailsStyled = styled.article<{ $src: string }>`
   }
 `;
 
-export const Blur = styled.div<{ $isDetailsTab: boolean }>`
+export const Blur = styled.div<Props>`
   padding-block: 20px;
   width: 100%;
   height: 100%;
-  backdrop-filter: ${({ $isDetailsTab }) => ($isDetailsTab ? 'blur(10px)' : 'unset')};
+  backdrop-filter: ${({ $isDescriptionTab }) => ($isDescriptionTab ? 'blur(10px)' : 'unset')};
 
   transition: backdrop-filter ${({ theme }) => theme.hoverEffect.transition};
 `;
@@ -94,8 +98,6 @@ export const MovieInfoContainerStyled = styled(FlexComponent)`
 `;
 
 export const MovieNavigationMenuStyled = styled(FlexComponent)`
-  justify-content: center;
-
   @media ${({ theme }) => theme.media.bigPhone} {
     justify-content: flex-end;
   }
@@ -126,17 +128,28 @@ export const ButtonCloseContainer = styled(ButtonStyled)`
   }
 `;
 
-export const MovieTitle = styled(MediumFont)`
-  display: unset;
+export const InfoWrapper = styled(FlexComponent)<Props>`
+  display: ${({ $isDescriptionTab }) => $isDescriptionTab && 'none'};
+  flex-direction: column;
+  gap: 20px;
+`;
+
+export const MovieTitle = styled(MediumFont)<Props>`
   font-size: 55px;
 
+  /* font-size: ${({ $isDescriptionTab }) => ($isDescriptionTab && '20px') || '55px'}; */
+  translate: ${({ $isDescriptionTab }) => $isDescriptionTab && '-20%'};
+  scale: ${({ $isDescriptionTab }) => $isDescriptionTab && '.6'};
+  transition: scale ${({ theme }) => theme.hoverEffect.transition},
+    translate ${({ theme }) => theme.hoverEffect.transition};
   animation: ${showElementTop} 0.5s cubic-bezier(0.51, -0.01, 0.32, 1);
   @media ${({ theme }) => theme.media.bigPhone} {
     font-size: 30px;
   }
 `;
 
-export const MovieDetailsContainer = styled(FlexComponent)`
+export const MovieDetailsContainer = styled(FlexComponent)<Props>`
+  display: ${({ $isDescriptionTab }) => $isDescriptionTab && 'none'};
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
@@ -146,15 +159,21 @@ export const MovieDetailsContainer = styled(FlexComponent)`
   animation: ${showElementTop} 0.5s cubic-bezier(0.51, -0.01, 0.32, 1);
 `;
 
-export const MovieDescription = styled(DescriptionText)<{ $isAboutTab: boolean }>`
+export const MovieDescriptionShort = styled(DescriptionText)<Props>`
   font-size: 18px;
 
-  text-overflow: ${({ $isAboutTab }) => $isAboutTab && 'ellipsis'};
-  white-space: ${({ $isAboutTab }) => $isAboutTab && 'nowrap'};
-  overflow: ${({ $isAboutTab }) => $isAboutTab && 'hidden'};
+  text-overflow: ${({ $isDescriptionTab }) => $isDescriptionTab && 'ellipsis'};
+  white-space: ${({ $isDescriptionTab }) => $isDescriptionTab && 'nowrap'};
+  overflow: ${({ $isDescriptionTab }) => $isDescriptionTab && 'hidden'};
   animation: ${showElementBottom} 0.5s cubic-bezier(0.51, -0.01, 0.32, 1);
 
   @media ${({ theme }) => theme.media.bigPhone} {
     text-align: left;
   }
+`;
+
+export const MovieDescription = styled(MovieDescriptionShort)`
+  text-overflow: unset;
+  white-space: unset;
+  overflow: unset;
 `;

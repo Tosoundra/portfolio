@@ -7,7 +7,7 @@ export const ListOfProjects = [
   {
     title: 'Gymnasium',
     image: gymn,
-    link: 'https://tosoundra.github.io/gymnasium',
+    link: 'https://gmnsm.com/',
     description:
       'Лендинг. Макет для адаптации под мобильные устройства отсутствовал. Использовал стек React + SCSS. На сайте имеется форма обратной связи.',
   },

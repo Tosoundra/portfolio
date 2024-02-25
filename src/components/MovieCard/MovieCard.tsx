@@ -1,7 +1,7 @@
 import React, { FC, SetStateAction, memo } from 'react';
 import { useLocation } from 'react-router-dom';
-import { ALL_MOVIES_URL } from '../../constants/API/appURL';
-import { moviesAPI } from '../../constants/API/movies/moviesAPI';
+import { ALL_MOVIES_URL } from '../../API/appURL';
+import { moviesAPI } from '../../API/movies/moviesAPI';
 import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks/storeHooks';
 import { setSelectedMovie } from '../../store/reducers/selectedMovie/selectedMovie.slice';
 import { MovieType } from '../../types/MovieType';

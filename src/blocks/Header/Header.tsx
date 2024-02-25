@@ -4,7 +4,7 @@ import iconProfile from '../../assets/images/icon_profile_btn.svg';
 import SearchIcon from '../../assets/images/searchIcon.svg';
 import { Logo } from '../../components/Logo/Logo';
 import { SearchMovieDropdownMenu } from '../../components/SearchMovieDropdownMenu/SearchMovieDropdownMenu';
-import { LANDING_URL, SIGN_IN_URL, SIGN_UP_URL } from '../../constants/API/appURL';
+import { LANDING_URL, SIGN_IN_URL, SIGN_UP_URL } from '../../API/appURL';
 import { useAppSelector } from '../../hooks/storeHooks/storeHooks';
 import { useCalculateDimensions } from '../../hooks/useCalculateDimensions/useCalculateDimensions';
 import { useScrollY } from '../../hooks/useScrollY/useScrollY';

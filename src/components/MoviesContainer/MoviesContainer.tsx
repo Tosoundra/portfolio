@@ -1,7 +1,7 @@
 import { FC, Suspense, lazy, memo, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import loadMoreMovieArrowIcon from '../../assets/images/right-arrow_load-more-movie-section.svg';
-import { ALL_MOVIES_URL } from '../../constants/API/appURL';
+import { ALL_MOVIES_URL } from '../../API/appURL';
 import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks/storeHooks';
 import { showErrorTooltip } from '../../store/reducers/infoTooltip/showTooltip';
 import { setMovies } from '../../store/reducers/selectedCategoryOfMovies/selectedCategoryOfMovies.slice';

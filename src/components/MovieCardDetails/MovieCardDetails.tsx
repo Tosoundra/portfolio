@@ -1,8 +1,8 @@
 import React, { FC, SetStateAction, memo, useEffect, useState } from 'react';
+import { moviesAPI } from '../../API/movies/moviesAPI';
 import closeButton from '../../assets/images/menu_close-button_white.svg';
-
-import { moviesAPI } from '../../constants/API/movies/moviesAPI';
 import { convertNumberToTime } from '../../constants/convertNumberToTime/convertNumberToTime';
+import { setDescriptionShort } from '../../constants/doDescriptionShort/setDescriptionShort';
 import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks/storeHooks';
 import { resetSelectedMovie } from '../../store/reducers/selectedMovie/selectedMovie.slice';
 import { ImageStyled } from '../../styledComponents/ImageStyled/ImageStyled';
@@ -10,9 +10,11 @@ import { LikeButton } from '../LikeButton/LikeButton';
 import {
   Blur,
   ButtonCloseContainer,
+  InfoWrapper,
   MenuTabStyled,
   MovieCardDetailsStyled,
   MovieDescription,
+  MovieDescriptionShort,
   MovieDetailsContainer,
   MovieInfoContainerStyled,
   MovieInfoWrapper,
@@ -26,13 +28,14 @@ interface Props {
   containerId: number;
 }
 
-const aboutTab = 'О фильме';
-const detailsTab = 'Детали';
-export const MovieCardDetails: FC<Props> = memo(({ setIsOpen, containerId }) => {
-  const [currentTab, setCurrentTab] = useState(aboutTab);
-  const movie = useAppSelector((state) => state.selectedMovie);
+enum Tabs {
+  about = 'О фильме',
+  description = 'Описание',
+}
 
-  const dispatch = useAppDispatch();
+export const MovieCardDetails: FC<Props> = memo(({ setIsOpen, containerId }) => {
+  const [currentTab, setCurrentTab] = useState<Tabs>(Tabs.about);
+  const movie = useAppSelector((state) => state.selectedMovie);
   const {
     country,
     description,
@@ -43,59 +46,36 @@ export const MovieCardDetails: FC<Props> = memo(({ setIsOpen, containerId }) => 
     image: { url },
     id,
   } = movie;
-
   const isMovieLiked = useAppSelector((state) => state.favoriteMovies.favoriteMovies.includes(id!));
-
   const filmDuration = convertNumberToTime(duration);
-
   const imageLink = `${moviesAPI.BASE_URL}${url}`;
+  const shortDescription = setDescriptionShort(description);
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    setCurrentTab(aboutTab);
+    setCurrentTab(Tabs.about);
   }, [movie]);
-
-  if (currentTab === detailsTab) {
-    return (
-      <MovieCardDetailsStyled $src={imageLink} id={`movieAboutSection${containerId}`}>
-        <Blur $isDetailsTab>
-          <MovieInfoWrapper>
-            <MovieNavigationMenuStyled>
-              <MenuTabStyled>
-                <NavigationMenuButtonStyled
-                  onClick={() => {
-                    setCurrentTab(aboutTab);
-                  }}
-                  type="button">
-                  О фильме
-                </NavigationMenuButtonStyled>
-                <NavigationMenuButtonStyled disabled={currentTab === detailsTab} type="button">
-                  Описание
-                </NavigationMenuButtonStyled>
-              </MenuTabStyled>
-            </MovieNavigationMenuStyled>
-            <MovieInfoContainerStyled>
-              <MovieDescription>{description}</MovieDescription>
-            </MovieInfoContainerStyled>
-          </MovieInfoWrapper>
-        </Blur>
-      </MovieCardDetailsStyled>
-    );
-  }
 
   return (
     <MovieCardDetailsStyled $src={imageLink} id={`movieAboutSection${containerId}`}>
-      <Blur $isDetailsTab={false}>
+      <Blur $isDescriptionTab={currentTab === Tabs.description}>
         <MovieInfoWrapper>
           <MovieNavigationMenuStyled>
             <MenuTabStyled>
-              <NavigationMenuButtonStyled disabled={currentTab === aboutTab} type="button">
+              <NavigationMenuButtonStyled
+                onClick={() => {
+                  setCurrentTab(Tabs.about);
+                }}
+                disabled={currentTab === Tabs.about}
+                type="button">
                 О фильме
               </NavigationMenuButtonStyled>
               <NavigationMenuButtonStyled
                 onClick={() => {
-                  setCurrentTab(detailsTab);
+                  setCurrentTab(Tabs.description);
                 }}
-                disabled={currentTab === detailsTab}
+                disabled={currentTab === Tabs.description}
                 type="button">
                 Описание
               </NavigationMenuButtonStyled>
@@ -111,16 +91,24 @@ export const MovieCardDetails: FC<Props> = memo(({ setIsOpen, containerId }) => 
             </ButtonCloseContainer>
           </MovieNavigationMenuStyled>
           <MovieInfoContainerStyled>
-            <MovieTitle>{nameRU}</MovieTitle>
-            <MovieDetailsContainer>
-              <span>Фильм</span>
-              <span>{year}</span>
-              <span>{country}</span>
-              <span>{filmDuration}</span>
-              <span>{director}</span>
-            </MovieDetailsContainer>
-            <LikeButton movieId={id!} isLiked={isMovieLiked} />
-            <MovieDescription $isAboutTab>{description}</MovieDescription>
+            <MovieTitle $isDescriptionTab={currentTab === Tabs.description}>{nameRU}</MovieTitle>
+            <InfoWrapper $isDescriptionTab={currentTab === Tabs.description}>
+              <MovieDetailsContainer>
+                <span>Фильм</span>
+                <span>{year}</span>
+                <span>{country}</span>
+                <span>{filmDuration}</span>
+                <span>{director}</span>
+              </MovieDetailsContainer>
+              <LikeButton isLiked={isMovieLiked} movieId={id!} />
+            </InfoWrapper>
+            {(currentTab === Tabs.description && (
+              <MovieDescription>{shortDescription}</MovieDescription>
+            )) || (
+              <MovieDescriptionShort $isDescriptionTab={currentTab !== Tabs.description}>
+                {description}
+              </MovieDescriptionShort>
+            )}
           </MovieInfoContainerStyled>
         </MovieInfoWrapper>
       </Blur>
